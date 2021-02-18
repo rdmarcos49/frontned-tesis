@@ -1,0 +1,32 @@
+// @packages
+import React from 'react'
+// @styles
+import './styles.scss'
+
+export default function ListOfImages ({ images, onRemoveImage, onSelectImage }) {
+  return (
+    <div className='list-of-images'>
+      {images.map(image => {
+        return (
+          <div
+            className='list-of-images__wrapper'
+            key={image.id}
+          >
+            <span
+              className='list-of-images__wrapper__icon'
+              onClick={() => onRemoveImage(image.id)}
+            >
+              <i className="fas fa-2x fa-times-circle"></i>
+            </span>
+            <img
+              alt='small-capture'
+              className='list-of-images__wrapper__image'
+              onClick={() => onSelectImage(image)}
+              src={image.image}
+            />
+          </div>
+        )
+      })}
+    </div>
+  )
+}

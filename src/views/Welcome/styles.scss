@@ -1,0 +1,29 @@
+@import 'styles/index.scss';
+
+.Welcome {
+    align-items: center;
+    background-color: $blue;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    font-family: 'Encode Sans', sans-serif;
+    justify-content: center;
+    min-height: 100vh;
+
+    &__title {
+        margin: 0;
+        padding-bottom: 10px;
+    }
+
+    &__link-to-login {
+        color: white;
+        display: block;
+        text-decoration: none;
+        margin: 0 10px;
+        &:hover {
+            color: rgb(103, 195, 231);
+            transition: 0.1s;
+        }
+    }
+}

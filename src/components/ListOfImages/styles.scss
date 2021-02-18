@@ -1,0 +1,40 @@
+.list-of-images {
+    border: solid 2px white;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    height: 50vh;
+    justify-content: flex-start;
+    margin: 0 5px;
+    overflow-y: scroll;
+    width: 180px;
+
+    &__wrapper {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        margin: 0 5px;
+        position: relative;
+
+        &__image {
+            cursor: pointer;
+            height: 110px;
+            margin: 5px 0;
+            transition: 0.2s;
+            width: 100%;
+
+            &:hover {
+                filter: brightness(0.8);
+            }
+        }
+
+        &__icon {
+            cursor: pointer;
+            position: absolute;
+            right: -5px;
+            top: -5px;
+            z-index: 1;
+        }
+    }
+}

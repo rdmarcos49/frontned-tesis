@@ -1,0 +1,35 @@
+.selected-image-wrapper {
+    display: flex;
+    justify-content: center;
+
+    &__outter-layout {
+        align-items: center;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        height: 50vh;
+        width: 600px;
+
+        &--dashed-border {
+            border: dashed 2px white;
+        }
+
+        &--normal-border {
+            border: solid 2px white;
+        }
+
+        &__image {
+            box-sizing: border-box;
+            max-height: 50vh;
+            padding: 5px;
+            width: 100%;
+        }
+
+        &__image-placeholder {
+            box-sizing: border-box;
+            max-width: 200px;
+            padding: 5px;
+            width: 100%;
+        }
+    }
+}

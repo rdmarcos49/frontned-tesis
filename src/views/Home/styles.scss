@@ -1,0 +1,27 @@
+.Home {
+    font-family: sans-serif;
+
+    &__logo-wrapper {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+
+        &__logo {
+            margin-top: 30px;
+            width: 30%;
+        }
+    }
+
+    &__title {
+        color: white;
+        font-size: 36px;
+        text-align: center;
+    }
+
+    &__subtitle {
+        color: white;
+        font-size: 28px;
+        text-align: center;
+    }
+    
+}

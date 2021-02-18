@@ -1,0 +1,18 @@
+.NewPatient {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+    &__images {
+        
+        input[type=file] {
+            display: none;
+        }
+    }
+}
+
+.total-wrapper {
+    display: flex;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
