@@ -1,4 +1,4 @@
-export default signInService = async (dataFromUserForm) => {
+const signInService = async (dataFromUserForm) => {
   let formData = new FormData()
   for (const keysAndValues of Object.entries(dataFromUserForm)) {
     const [key, value] = keysAndValues
@@ -12,3 +12,5 @@ export default signInService = async (dataFromUserForm) => {
   const info = await fetch('http://localhost:3030/signin', response).then(response => response.json())
   console.log(info)
  }
+
+export default signInService
