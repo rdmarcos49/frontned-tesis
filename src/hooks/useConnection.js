@@ -4,13 +4,15 @@ import {useLocation} from 'wouter'
 
 export default function useConnection() {
   const [, setLocation] = useLocation()
-  const login = async ({username, password}) => {
+  const login = async (usernameAndPassword) => {
+    let formData = new FormData()
+    for (const keyAndValue of Object.entries(usernameAndPassword)) {
+      const [key, value] = keyAndValue
+      formData.append(key, value)
+    }
     const response = {
       method: 'POST',
-      headers: {
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify({username, password})
+      body: formData,
     }
     try {
       console.log(response)
@@ -33,14 +35,15 @@ export default function useConnection() {
   }
 
   const signin = async (objectWithAllTheInformation) => {
-    const response = {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json'
-        // 'Content-type': 'multipart/form-data'
-      },
-      body: JSON.stringify({...objectWithAllTheInformation})
-    }
+   let formData = new FormData()
+   for (const keysAndValues of Object.entries(objectWithAllTheInformation)) {
+     const [key, value] = keysAndValues
+     formData.append(key, value)
+   }
+   const response = {
+     method: 'POST',
+     body: formData,
+   }
     try {
       console.log(response)
       const info = await fetch('http://localhost:3030/signin', response).then(response => response.json())

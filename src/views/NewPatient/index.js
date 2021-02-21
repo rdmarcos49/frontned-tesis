@@ -20,26 +20,9 @@ export default function NewPatient () {
   const inputFileRef = useRef(null)
   const {isLoading, isLogged} = useUser()
 
-  const handleSubmit = (e, data) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
-    let formdata = new FormData()
-    const objects = Object.entries(data)
-    for (const obj of objects) {
-      formdata.append(obj[0], obj[1])
-    }
-    console.log(formdata.values())
-    for (const value of formdata) {
-      console.log(value);
-   }
-   const response = {
-    method: 'POST',
-    headers: {
-      'Content-type': 'multipart/form-data'
-    },
-    body: formdata,
-  }
-  fetch('http://localhost:3030/formdata', response).then(response => response.json()).then(response => console.log(response))
-    // setStep(2)
+    setStep(2)
   }
 
   const handleUploadImages = () => {
