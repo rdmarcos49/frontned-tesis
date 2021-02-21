@@ -1,7 +1,7 @@
 // @packages
 import Cookies from 'universal-cookie'
 
-export default logInService = async (dataFromUserForm) => {
+const logInService = async (dataFromUserForm) => {
   let formData = new FormData()
   for (const keyAndValue of Object.entries(dataFromUserForm)) {
     const [key, value] = keyAndValue
@@ -24,3 +24,5 @@ export default logInService = async (dataFromUserForm) => {
     alert("Usuario y/o contraseña incorrecta")
   }
 } 
+
+export default logInService
