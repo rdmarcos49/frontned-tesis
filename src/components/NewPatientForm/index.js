@@ -98,12 +98,8 @@ export default function NewPatientForm ({onHandleSubmit}) {
     {value: '2', text: 'Tipo II'},
   ]
 
-  const useFormData = (e) => {
-    onHandleSubmit(e, data)
-  }
-
   return (
-    <Form onHandleSubmit={useFormData}>
+    <Form onHandleSubmit={onHandleSubmit}>
       <Input
         error={errors.dni}
         halfWidth
