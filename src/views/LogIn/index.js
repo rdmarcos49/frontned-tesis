@@ -6,8 +6,8 @@ import Form from 'components/Form'
 import Input from 'components/Input'
 import Button from 'components/Button'
 import ButtonsWrapper from 'components/ButtonsWrapper'
-// @hooks
-import useConnection from 'hooks/useConnection'
+// @services
+import logInService from 'services/logInService'
 // @styles
 import './styles.scss'
 
@@ -18,11 +18,9 @@ const LogIn = () => {
     password: '',
   })
 
-  const {login} = useConnection()
-
   const handleOnSubmit = async (e) => {
     e.preventDefault()
-    login(formData)
+    logInService(formData)
   }
 
   const handleChangeField = (e) => {

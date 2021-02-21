@@ -6,15 +6,14 @@ import Button from 'components/Button'
 import Input from 'components/Input'
 import Select from 'components/Select'
 import ButtonsWrapper from 'components/ButtonsWrapper'
-// @hooks
-import useConnection from 'hooks/useConnection'
+// @services
+import signInService from 'services/signInService'
 // @utils
 import { requiredField, validLastname, validName, validUsername, validPassword, validRepeatPassword, validEmail } from 'utils/regex'
 // @styles
 import './styles.scss'
 
 const LogIn = () => {
-  const {signin} = useConnection()
   const [image, setImage] = useState(null)
   const [formData, setFormData] = useState({
     name: '',
@@ -45,7 +44,7 @@ const LogIn = () => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault()
-    signin(formData)
+    signInService(formData)
   }
 
   const clearAllTheFields = () => {
