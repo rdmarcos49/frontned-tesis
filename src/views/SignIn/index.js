@@ -15,6 +15,7 @@ import './styles.scss'
 
 const LogIn = () => {
   const [image, setImage] = useState(null)
+  const [imageInformation, setImageInformation] = useState(null)
   const [formData, setFormData] = useState({
     name: '',
     lastname: '',
@@ -44,7 +45,9 @@ const LogIn = () => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault()
-    signInService(formData)
+    const newInformation = {...formData, image: imageInformation}
+    console.log(newInformation)
+    signInService(newInformation)
   }
 
   const clearAllTheFields = () => {
@@ -74,6 +77,7 @@ const LogIn = () => {
     if (!!file) {
       const newImage = URL.createObjectURL(file)
       setImage(newImage) 
+      setImageInformation(e.target.files[0])
     }
   }
 
