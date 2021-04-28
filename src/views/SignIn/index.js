@@ -7,32 +7,24 @@ import Input from 'components/Input'
 import Select from 'components/Select'
 import ButtonsWrapper from 'components/ButtonsWrapper'
 // @services
-import signInService from 'services/signInService'
-// @utils
-import { requiredField, validLastname, validName, validUsername, validPassword, validRepeatPassword, validEmail } from 'utils/regex'
+import { addProfileImageToFirebase } from 'firebase/client'
+// @hooks
+import { useSignInForm } from './hook'
 // @styles
 import './styles.scss'
 
 const LogIn = () => {
   const [image, setImage] = useState(null)
-  const [formData, setFormData] = useState({
-    name: '',
-    lastname: '',
-    email: '',
-    username: '',
-    password: '',
-    repeatPassword: '',
-    role: '',
-  })
-  const [formErrors, setFormErrors] = useState({
-    name: '',
-    lastname: '',
-    email: '',
-    username: '',
-    password: '',
-    repeatPassword: '',
-    role: '',
-  })
+  const [imageInformation, setImageInformation] = useState(null)
+  const {
+    formData,
+    formErrors,
+    handleFocus,
+    handleBlur,
+    handleChange,
+    clearForm,
+  } = useSignInForm()
+
   const inputFileRef = useRef(null)
   
   const options = [
@@ -42,30 +34,23 @@ const LogIn = () => {
     {value: 'onlyRead', text: 'Solo lectura'},
   ]
 
-  const handleOnSubmit = async (e) => {
-    e.preventDefault()
-    signInService(formData)
+  function getBase64Image(img) {
+    let canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    let ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+    let dataURL = canvas.toDataURL("image/png");
+    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
   }
 
-  const clearAllTheFields = () => {
-    setFormData({
-      name: '',
-      lastname: '',
-      email: '',
-      username: '',
-      password: '',
-      repeatPassword: '',
-      role: '',
-    })
-    setFormErrors({
-      name: '',
-      lastname: '',
-      email: '',
-      username: '',
-      password: '',
-      repeatPassword: '',
-      role: '',
-    })
+  const handleOnSubmit = async (e) => {
+    e.preventDefault()
+    const newInformation = {...formData, image: imageInformation}
+    console.log(newInformation)
+    // addProfileImageToFirebase(imageInformation)
+    const base64 = getBase64Image(document.getElementById("imageid"));
+    console.log(base64)
   }
 
   const handleProfileImageChanged = (e) => {
@@ -74,81 +59,12 @@ const LogIn = () => {
     if (!!file) {
       const newImage = URL.createObjectURL(file)
       setImage(newImage) 
+      setImageInformation(e.target.files[0])
     }
   }
 
   const handleChangeOfImage = () => {
     inputFileRef.current.click()
-  }
-
-  const handleClearErrorForFocus = (e) => {
-    const field = e.target.name
-    setFormErrors({
-      ...formErrors,
-      [field]: undefined,
-    })
-  }
-
-  const handleChangeField = (e) => {
-    const field = e.target.name
-    const value = e.target.value
-    setFormData({
-      ...formData,
-      [field]: value,
-    })
-  }
-
-  const checkForErrors = (value, regexs) => {
-    for (const regex of regexs) {
-      const result = regex(value)
-      if (!!result) {
-        return result
-      }
-    }
-    return undefined
-  }
-
-  const handleErrors = (e) => {
-    const field = e.target.name
-    const value = e.target.value
-    const {password} = formData
-    let result = undefined
-    switch (field) {
-      case 'name':{
-        result = checkForErrors(value, [requiredField, validName])
-        break
-      }
-      case 'lastname':{
-        result = checkForErrors(value, [requiredField, validLastname])
-        break
-      }
-      case 'email':{
-        result = checkForErrors(value, [requiredField, validEmail])
-        break
-      }
-      case 'username':{
-        result = checkForErrors(value, [requiredField, validUsername])
-        break
-      }
-      case 'password':{
-        result = checkForErrors(value, [requiredField, validPassword])
-        break
-      }
-      case 'repeatPassword':{
-        result = checkForErrors(value, [requiredField, validRepeatPassword(password)])
-        break
-      }
-      case 'role':{
-        result = checkForErrors(value, [requiredField])
-        break
-      }
-      default:
-        result = undefined
-    }
-    setFormErrors({
-      ...formErrors,
-      [field]: result
-    })
   }
 
   return (
@@ -160,9 +76,9 @@ const LogIn = () => {
               error={formErrors.name}
               label='Nombre'
               name='name'
-              onClearErrorsForFocus={handleClearErrorForFocus}
-              onHandleChangeField={handleChangeField}
-              onHandleErrors={handleErrors}
+              onClearErrorsForFocus={handleFocus}
+              onHandleChangeField={handleChange}
+              onHandleErrors={handleBlur}
               placeholder='Juan'
               type='text'
               value={formData.name}
@@ -172,9 +88,9 @@ const LogIn = () => {
               error={formErrors.lastname}
               label='Apellido'
               name='lastname'
-              onClearErrorsForFocus={handleClearErrorForFocus}
-              onHandleChangeField={handleChangeField}
-              onHandleErrors={handleErrors}
+              onClearErrorsForFocus={handleFocus}
+              onHandleChangeField={handleChange}
+              onHandleErrors={handleBlur}
               placeholder='Perez'
               type='text'
               value={formData.lastname}
@@ -184,6 +100,7 @@ const LogIn = () => {
             <img
               alt='profile'
               className='Signin__form-section__image-wrapper__image'
+              id='imageid'
               src={`${image !== null ? image : 'assets/default-profile-image.png'}`}
             />
             <input
@@ -208,9 +125,9 @@ const LogIn = () => {
           error={formErrors.email}
           label='Correo electrónico'
           name='email'
-          onClearErrorsForFocus={handleClearErrorForFocus}
-          onHandleChangeField={handleChangeField}
-          onHandleErrors={handleErrors}
+          onClearErrorsForFocus={handleFocus}
+          onHandleChangeField={handleChange}
+          onHandleErrors={handleBlur}
           placeholder='juanperez123@gmail.com'
           type='text'
           value={formData.email}
@@ -220,9 +137,9 @@ const LogIn = () => {
           error={formErrors.username}
           label='Usuario'
           name='username'
-          onClearErrorsForFocus={handleClearErrorForFocus}
-          onHandleChangeField={handleChangeField}
-          onHandleErrors={handleErrors}
+          onClearErrorsForFocus={handleFocus}
+          onHandleChangeField={handleChange}
+          onHandleErrors={handleBlur}
           placeholder='juanperez123'
           type='text'
           value={formData.username}
@@ -232,9 +149,9 @@ const LogIn = () => {
           error={formErrors.password}
           label='Contraseña'
           name='password'
-          onClearErrorsForFocus={handleClearErrorForFocus}
-          onHandleChangeField={handleChangeField}
-          onHandleErrors={handleErrors}
+          onClearErrorsForFocus={handleFocus}
+          onHandleChangeField={handleChange}
+          onHandleErrors={handleBlur}
           placeholder='••••••••••••••'
           type='password'
           value={formData.password}
@@ -244,9 +161,9 @@ const LogIn = () => {
           error={formErrors.repeatPassword}
           label='Repetir contraseña'
           name='repeatPassword'
-          onClearErrorsForFocus={handleClearErrorForFocus}
-          onHandleChangeField={handleChangeField}
-          onHandleErrors={handleErrors}
+          onClearErrorsForFocus={handleFocus}
+          onHandleChangeField={handleChange}
+          onHandleErrors={handleBlur}
           placeholder='••••••••••••••'
           type='password'
           value={formData.repeatPassword}
@@ -256,9 +173,9 @@ const LogIn = () => {
           disabledText='Selecciona un rol'
           label='Rol'
           name='role'
-          onClearErrorsForFocus={handleClearErrorForFocus}
-          onHandleChangeField={handleChangeField}
-          onHandleErrors={handleErrors}
+          onClearErrorsForFocus={handleFocus}
+          onHandleChangeField={handleChange}
+          onHandleErrors={handleBlur}
           options={options}
           placeholder='Rol'
           type='select'
@@ -266,7 +183,7 @@ const LogIn = () => {
         />
 
         <ButtonsWrapper>
-          <Button callback={clearAllTheFields} type='button'> Borrar Datos </Button>
+          <Button callback={clearForm} type='button'> Borrar Datos </Button>
           <Button type='submit'> Solicitar registro </Button>
         </ButtonsWrapper>
       </Form>
