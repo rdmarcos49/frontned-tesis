@@ -6,6 +6,7 @@
     margin: 8px 0;
 
     &__label {
+        color: #fff;
         padding-bottom: 3px;
     }
 
@@ -20,12 +21,11 @@
     &__input {
         border: solid 2px;
         border-radius: 5px;
-        box-sizing: border-box;
         font-size: 14px;
         padding: 8px 5px;
 
         &--normal-border {
-            border: solid 2px rgb(103, 195, 231);
+            border: solid 2px #000;
         }
         &--error-border {
             border: solid 2px red;

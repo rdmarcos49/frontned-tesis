@@ -194,10 +194,9 @@ const LogIn = () => {
               type='file'
             />
             <Button
-              callback={handleChangeOfImage}
+              onClick={handleChangeOfImage}
               size='small'
               tabIndex='-1'
-              type='Button'
             >
               Seleccionar archivo
             </Button>
@@ -266,8 +265,8 @@ const LogIn = () => {
         />
 
         <ButtonsWrapper>
-          <Button callback={clearAllTheFields} type='button'> Borrar Datos </Button>
-          <Button type='submit'> Solicitar registro </Button>
+          <Button onClick={clearAllTheFields}> Borrar Datos </Button>
+          <Button> Solicitar registro </Button>
         </ButtonsWrapper>
       </Form>
     </div>

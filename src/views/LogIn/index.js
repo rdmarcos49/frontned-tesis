@@ -66,8 +66,8 @@ const LogIn = () => {
         <Link href='/passwordrecovery' className="Login__forgot-password">¿Ha olvidado su contraseña?</Link>
 
         <ButtonsWrapper>
-          <Button callback={redirectToSignIn} type='button'> Solicitar Registro </Button>
-          <Button type='submit'> Log in </Button>
+          <Button onClick={redirectToSignIn}> Solicitar Registro </Button>
+          <Button> Log in </Button>
         </ButtonsWrapper>
       </Form>
       

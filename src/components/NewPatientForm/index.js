@@ -190,8 +190,8 @@ export default function NewPatientForm ({onHandleSubmit}) {
         value={data.diabetesType}
       />
       <ButtonsWrapper>
-        <Button callback={handlePreviousPage} type='button'> Volver </Button>
-        <Button type='submit'> Siguiente </Button>
+        <Button onClick={handlePreviousPage}> Volver </Button>
+        <Button> Siguiente </Button>
       </ButtonsWrapper>
     </Form>
   )

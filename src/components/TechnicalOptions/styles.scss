@@ -1,7 +1,7 @@
 @import 'styles/index.scss';
 
 .TechnicalOptions {
-    color: $white;
+    color: white;
     display: flex;
     justify-content: space-between;
     margin: 50px auto 100px auto;
@@ -11,6 +11,7 @@
         margin: 0 auto;
 
         &__icon-wrapper {
+            background-color: #333;
             border: solid 4px $white;
             border-radius: 20px;
             box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, 0.2);
@@ -25,7 +26,9 @@
         }
 
         &__text {
+            color: #333;
             font-family: sans-serif;
+            margin: 10px 0;
             text-align: center;
         }
     }
