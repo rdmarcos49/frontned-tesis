@@ -41,7 +41,6 @@ const LogIn = () => {
     if (!!file) {
       const newImage = URL.createObjectURL(file)
       setImage(newImage) 
-      setImageInformation(e.target.files[0])
     }
   }
 
