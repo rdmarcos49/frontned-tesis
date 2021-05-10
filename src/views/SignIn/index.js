@@ -6,33 +6,22 @@ import Button from 'components/Button'
 import Input from 'components/Input'
 import Select from 'components/Select'
 import ButtonsWrapper from 'components/ButtonsWrapper'
-// @services
-import signInService from 'services/signInService'
-// @utils
-import { requiredField, validLastname, validName, validUsername, validPassword, validRepeatPassword, validEmail } from 'utils/regex'
+// @hooks
+import useForm from './hook'
 // @styles
 import './styles.scss'
 
 const LogIn = () => {
   const [image, setImage] = useState(null)
-  const [formData, setFormData] = useState({
-    name: '',
-    lastname: '',
-    email: '',
-    username: '',
-    password: '',
-    repeatPassword: '',
-    role: '',
-  })
-  const [formErrors, setFormErrors] = useState({
-    name: '',
-    lastname: '',
-    email: '',
-    username: '',
-    password: '',
-    repeatPassword: '',
-    role: '',
-  })
+  const {
+    formData,
+    formErrors,
+    clearAllFields,
+    handleChange,
+    handleFocus,
+    handleErrors,
+  } = useForm()
+  
   const inputFileRef = useRef(null)
   
   const options = [
@@ -44,28 +33,7 @@ const LogIn = () => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault()
-    signInService(formData)
-  }
-
-  const clearAllTheFields = () => {
-    setFormData({
-      name: '',
-      lastname: '',
-      email: '',
-      username: '',
-      password: '',
-      repeatPassword: '',
-      role: '',
-    })
-    setFormErrors({
-      name: '',
-      lastname: '',
-      email: '',
-      username: '',
-      password: '',
-      repeatPassword: '',
-      role: '',
-    })
+    // signInService(formData)
   }
 
   const handleProfileImageChanged = (e) => {
@@ -81,76 +49,6 @@ const LogIn = () => {
     inputFileRef.current.click()
   }
 
-  const handleClearErrorForFocus = (e) => {
-    const field = e.target.name
-    setFormErrors({
-      ...formErrors,
-      [field]: undefined,
-    })
-  }
-
-  const handleChangeField = (e) => {
-    const field = e.target.name
-    const value = e.target.value
-    setFormData({
-      ...formData,
-      [field]: value,
-    })
-  }
-
-  const checkForErrors = (value, regexs) => {
-    for (const regex of regexs) {
-      const result = regex(value)
-      if (!!result) {
-        return result
-      }
-    }
-    return undefined
-  }
-
-  const handleErrors = (e) => {
-    const field = e.target.name
-    const value = e.target.value
-    const {password} = formData
-    let result = undefined
-    switch (field) {
-      case 'name':{
-        result = checkForErrors(value, [requiredField, validName])
-        break
-      }
-      case 'lastname':{
-        result = checkForErrors(value, [requiredField, validLastname])
-        break
-      }
-      case 'email':{
-        result = checkForErrors(value, [requiredField, validEmail])
-        break
-      }
-      case 'username':{
-        result = checkForErrors(value, [requiredField, validUsername])
-        break
-      }
-      case 'password':{
-        result = checkForErrors(value, [requiredField, validPassword])
-        break
-      }
-      case 'repeatPassword':{
-        result = checkForErrors(value, [requiredField, validRepeatPassword(password)])
-        break
-      }
-      case 'role':{
-        result = checkForErrors(value, [requiredField])
-        break
-      }
-      default:
-        result = undefined
-    }
-    setFormErrors({
-      ...formErrors,
-      [field]: result
-    })
-  }
-
   return (
     <div className='Signin'>
       <Form onHandleSubmit={handleOnSubmit}>
@@ -160,9 +58,9 @@ const LogIn = () => {
               error={formErrors.name}
               label='Nombre'
               name='name'
-              onClearErrorsForFocus={handleClearErrorForFocus}
-              onHandleChangeField={handleChangeField}
-              onHandleErrors={handleErrors}
+              onFocus={handleFocus}
+              onChange={handleChange}
+              onBlur={handleErrors}
               placeholder='Juan'
               type='text'
               value={formData.name}
@@ -172,9 +70,9 @@ const LogIn = () => {
               error={formErrors.lastname}
               label='Apellido'
               name='lastname'
-              onClearErrorsForFocus={handleClearErrorForFocus}
-              onHandleChangeField={handleChangeField}
-              onHandleErrors={handleErrors}
+              onFocus={handleFocus}
+              onChange={handleChange}
+              onBlur={handleErrors}
               placeholder='Perez'
               type='text'
               value={formData.lastname}
@@ -207,9 +105,9 @@ const LogIn = () => {
           error={formErrors.email}
           label='Correo electrónico'
           name='email'
-          onClearErrorsForFocus={handleClearErrorForFocus}
-          onHandleChangeField={handleChangeField}
-          onHandleErrors={handleErrors}
+          onFocus={handleFocus}
+          onChange={handleChange}
+          onBlur={handleErrors}
           placeholder='juanperez123@gmail.com'
           type='text'
           value={formData.email}
@@ -219,9 +117,9 @@ const LogIn = () => {
           error={formErrors.username}
           label='Usuario'
           name='username'
-          onClearErrorsForFocus={handleClearErrorForFocus}
-          onHandleChangeField={handleChangeField}
-          onHandleErrors={handleErrors}
+          onFocus={handleFocus}
+          onChange={handleChange}
+          onBlur={handleErrors}
           placeholder='juanperez123'
           type='text'
           value={formData.username}
@@ -231,9 +129,9 @@ const LogIn = () => {
           error={formErrors.password}
           label='Contraseña'
           name='password'
-          onClearErrorsForFocus={handleClearErrorForFocus}
-          onHandleChangeField={handleChangeField}
-          onHandleErrors={handleErrors}
+          onFocus={handleFocus}
+          onChange={handleChange}
+          onBlur={handleErrors}
           placeholder='••••••••••••••'
           type='password'
           value={formData.password}
@@ -243,9 +141,9 @@ const LogIn = () => {
           error={formErrors.repeatPassword}
           label='Repetir contraseña'
           name='repeatPassword'
-          onClearErrorsForFocus={handleClearErrorForFocus}
-          onHandleChangeField={handleChangeField}
-          onHandleErrors={handleErrors}
+          onFocus={handleFocus}
+          onChange={handleChange}
+          onBlur={handleErrors}
           placeholder='••••••••••••••'
           type='password'
           value={formData.repeatPassword}
@@ -255,9 +153,9 @@ const LogIn = () => {
           disabledText='Selecciona un rol'
           label='Rol'
           name='role'
-          onClearErrorsForFocus={handleClearErrorForFocus}
-          onHandleChangeField={handleChangeField}
-          onHandleErrors={handleErrors}
+          onFocus={handleFocus}
+          onChange={handleChange}
+          onBlur={handleErrors}
           options={options}
           placeholder='Rol'
           type='select'
@@ -265,7 +163,7 @@ const LogIn = () => {
         />
 
         <ButtonsWrapper>
-          <Button onClick={clearAllTheFields}> Borrar Datos </Button>
+          <Button onClick={clearAllFields}> Borrar Datos </Button>
           <Button> Solicitar registro </Button>
         </ButtonsWrapper>
       </Form>

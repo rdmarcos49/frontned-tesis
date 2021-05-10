@@ -43,9 +43,7 @@ const LogIn = () => {
           error={undefined}
           label='Usuario'
           name='username'
-          onClearErrorsForFocus={() => {}}
-          onHandleChangeField={handleChangeField}
-          onHandleErrors={() => {}}
+          onChange={handleChangeField}
           placeholder='juanperez123'
           type='text'
           value={formData.username}
@@ -55,9 +53,7 @@ const LogIn = () => {
           error={undefined}
           label='Contraseña'
           name='password'
-          onClearErrorsForFocus={() => {}}
-          onHandleChangeField={handleChangeField}
-          onHandleErrors={() => {}}
+          onChange={handleChangeField}
           placeholder='••••••••••••••'
           type='password'
           value={formData.password}

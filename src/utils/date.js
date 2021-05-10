@@ -17,3 +17,13 @@ export function getFormattedDay(day) {
 
     return formattedDay;
 }
+
+export function getCurrentDate() {
+  const date = new Date()
+  const day = getFormattedDay(date.getDate())
+  const month = getFormattedMonth(date.getMonth()) 
+  const year = date.getFullYear()
+  
+  const currentDate = `${year}-${month}-${day}`
+  return currentDate
+}

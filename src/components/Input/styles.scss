@@ -3,7 +3,7 @@
 .Input {
     display: flex;
     flex-direction: column;
-    margin: 8px 0;
+    margin: 2px 0;
 
     &__label {
         color: #fff;
@@ -37,6 +37,13 @@
         font-size: 12px;
         font-style: italic;
         padding-top: 3px;
+
+        &--enabled {
+            visibility: normal;
+        }
+        &--disabled {
+            visibility: hidden;
+        }
     }
 }
 

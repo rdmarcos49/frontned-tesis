@@ -7,13 +7,7 @@ const Input = ({
   error,
   label,
   halfWidth,
-  name,
-  onClearErrorsForFocus,
-  onHandleChangeField, 
-  onHandleErrors,
-  placeholder,
-  type,
-  value,
+  ...props
 }) => {
   return (
     <div className={`Input ${!!halfWidth ? 'Input--half-width' : 'Input--full-width'}`}>
@@ -21,15 +15,9 @@ const Input = ({
       <input
         autoComplete='off'
         className={`Input__input ${!!error ? 'Input__input--error-border' : 'Input__input--normal-border'}`}
-        name={name}
-        onChange={onHandleChangeField}
-        onFocus={onClearErrorsForFocus}
-        onBlur={onHandleErrors}
-        placeholder={placeholder}
-        type={type}
-        value={value}
+        {...props}
       />
-      <span className='Input__error'>{error}</span>
+      <span className={`Input__error ${error ? 'Input__error--enabled' : 'Input__error--disabled'}`}>{error || '#'}</span>
     </div>
   )
 }

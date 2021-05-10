@@ -7,25 +7,15 @@ const Select = ({
   disabledText,
   error,
   label,
-  name,
-  onClearErrorsForFocus,
-  onHandleChangeField, 
-  onHandleErrors,
   options,
-  placeholder,
-  value,
+  ...props
 }) => {
   return (
     <div className='Select'>
       <label className='Select__label'>{label}</label>
       <select
         className={`Select__select ${!!error ? 'Select__select--error-border' : 'Select__select--normal-border'}`}
-        name={name}
-        onChange={onHandleChangeField}
-        onFocus={onClearErrorsForFocus}
-        onBlur={onHandleErrors}
-        placeholder={placeholder}
-        value={value}
+        {...props}
       >
         <option disabled defaultValue value=''> {`-- ${disabledText} --`} </option>
         {options.map((option, index) => 
