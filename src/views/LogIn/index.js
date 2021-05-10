@@ -43,9 +43,7 @@ const LogIn = () => {
           error={undefined}
           label='Usuario'
           name='username'
-          onClearErrorsForFocus={() => {}}
-          onHandleChangeField={handleChangeField}
-          onHandleErrors={() => {}}
+          onChange={handleChangeField}
           placeholder='juanperez123'
           type='text'
           value={formData.username}
@@ -55,9 +53,7 @@ const LogIn = () => {
           error={undefined}
           label='Contraseña'
           name='password'
-          onClearErrorsForFocus={() => {}}
-          onHandleChangeField={handleChangeField}
-          onHandleErrors={() => {}}
+          onChange={handleChangeField}
           placeholder='••••••••••••••'
           type='password'
           value={formData.password}
@@ -66,8 +62,8 @@ const LogIn = () => {
         <Link href='/passwordrecovery' className="Login__forgot-password">¿Ha olvidado su contraseña?</Link>
 
         <ButtonsWrapper>
-          <Button callback={redirectToSignIn} type='button'> Solicitar Registro </Button>
-          <Button type='submit'> Log in </Button>
+          <Button onClick={redirectToSignIn}> Solicitar Registro </Button>
+          <Button> Log in </Button>
         </ButtonsWrapper>
       </Form>
       

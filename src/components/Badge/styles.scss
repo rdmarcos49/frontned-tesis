@@ -1,0 +1,25 @@
+.badge {
+    align-items: center;
+    border: solid 1px #333;
+    border-radius: 50px;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+    display: flex;
+    font-size: .7rem;
+    font-weight: 500;
+    justify-content: center;
+    margin: 10px;
+    padding: 4px 16px;
+    transition: 0.2s;
+
+    &--enabled {
+        cursor: pointer;
+        &:hover {
+            background-color: #333;
+            color: #eee;
+        }
+    }
+
+    &--disabled {
+        border: none;
+    }
+}

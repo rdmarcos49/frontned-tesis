@@ -3,7 +3,7 @@ import { useState } from 'react'
 // @utils
 import { requiredField, validLastname, validName, validUsername, validPassword, validRepeatPassword, validEmail } from 'utils/regex'
 
-export function useSignInForm () {
+function useForm () {
   const [formData, setFormData] = useState({
     name: '',
     lastname: '',
@@ -13,6 +13,7 @@ export function useSignInForm () {
     repeatPassword: '',
     role: '',
   })
+
   const [formErrors, setFormErrors] = useState({
     name: '',
     lastname: '',
@@ -23,12 +24,24 @@ export function useSignInForm () {
     role: '',
   })
 
-  const handleChange = (e) => {
-    const field = e.target.name
-    const value = e.target.value
+  const clearAllFields = () => {
     setFormData({
-      ...formData,
-      [field]: value,
+      name: '',
+      lastname: '',
+      email: '',
+      username: '',
+      password: '',
+      repeatPassword: '',
+      role: '',
+    })
+    setFormErrors({
+      name: '',
+      lastname: '',
+      email: '',
+      username: '',
+      password: '',
+      repeatPassword: '',
+      role: '',
     })
   }
 
@@ -37,6 +50,15 @@ export function useSignInForm () {
     setFormErrors({
       ...formErrors,
       [field]: undefined,
+    })
+  }
+
+  const handleChange = (e) => {
+    const field = e.target.name
+    const value = e.target.value
+    setFormData({
+      ...formData,
+      [field]: value,
     })
   }
 
@@ -50,7 +72,7 @@ export function useSignInForm () {
     return undefined
   }
 
-  const handleBlur = (e) => {
+  const handleErrors = (e) => {
     const field = e.target.name
     const value = e.target.value
     const {password} = formData
@@ -93,33 +115,14 @@ export function useSignInForm () {
     })
   }
 
-  const clearForm = () => {
-    setFormData({
-      name: '',
-      lastname: '',
-      email: '',
-      username: '',
-      password: '',
-      repeatPassword: '',
-      role: '',
-    })
-    setFormErrors({
-      name: '',
-      lastname: '',
-      email: '',
-      username: '',
-      password: '',
-      repeatPassword: '',
-      role: '',
-    })
-  }
-
   return {
-    clearForm,
     formData,
     formErrors,
-    handleBlur,
+    clearAllFields,
     handleFocus,
     handleChange,
+    handleErrors,
   }
-} 
+}
+
+export default useForm

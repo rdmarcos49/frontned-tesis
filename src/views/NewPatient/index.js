@@ -108,7 +108,7 @@ export default function NewPatient () {
                   onSelectImage={handleSelectImage}
                 />
               </div>
-              <Button callback={() => console.log("pendiente")}>
+              <Button>
                 Pendiente
               </Button>
             </div>

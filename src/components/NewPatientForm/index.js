@@ -1,5 +1,4 @@
 // @package
-import {useState, useEffect} from 'react'
 import { useLocation } from 'wouter'
 // @components
 import Form from 'components/Form'
@@ -7,81 +6,20 @@ import Input from 'components/Input'
 import Select from 'components/Select'
 import ButtonsWrapper from 'components/ButtonsWrapper'
 import Button from 'components/Button'
-// @utils
-import { requiredField, validLastname, validName, validDni } from 'utils/regex'
-import { getFormattedDay, getFormattedMonth } from 'utils/date'
+// @hooks
+import useForm from './hook'
+
 
 export default function NewPatientForm ({onHandleSubmit}) {
   const [, setLocation] = useLocation()
 
-  const getCurrentDate = () => {
-    const date = new Date()
-    const day = getFormattedDay(date.getDate())
-    const month = getFormattedMonth(date.getMonth()) 
-    const year = date.getFullYear()
-    
-    const currentDate = `${year}-${month}-${day}`
-    return currentDate
-  }
-
-  const [data, setData] = useState({
-    dni: '',
-    consultDate: '',
-    lastname: '',
-    name: '',
-    sex: '',
-    birthday: '',
-    diabetesType: '',
-  })
-
-  useEffect(() => {
-    const currentDate = getCurrentDate()
-    setData(prevData => {
-      return {
-        ...prevData,
-        consultDate: currentDate,
-      }
-    })
-  }, [])
-
-  const [errors, setErrors] = useState({})
-
-  const getErrorResult = (field, value) => {
-    const theFieldIsEmpty = requiredField(value)
-    if (!theFieldIsEmpty) {
-      switch(field) {
-        case 'dni':
-          return validDni(value)
-        case 'lastname':
-          return validLastname(value)
-        case 'name':
-          return validName(value)
-        default:
-          return null
-      }
-    } else {
-      return theFieldIsEmpty
-    }
-  }
-
-  const handleChangeField = (e) => {
-    const field = e.target.name
-    const value = e.target.value
-    const newData = { ...data, [field]: value }
-    setData(newData)
-  }
-
-  const clearErrorsForFocus = (e) => {
-    const field = e.target.name;
-    setErrors({...errors, [field]: undefined})
-  }
-
-  const handleErrors = (e) => {
-    const field = e.target.name
-    const value = e.target.value
-    const errorValue = getErrorResult(field, value)
-    setErrors({...errors, [field]: errorValue})
-  }
+  const {
+    data,
+    errors,
+    handleFocus,
+    handleChange,
+    handleBlur,
+  } = useForm()
 
   const handlePreviousPage = () => {
     setLocation('/home')
@@ -105,9 +43,9 @@ export default function NewPatientForm ({onHandleSubmit}) {
         halfWidth
         label='DNI'
         name='dni'
-        onClearErrorsForFocus={clearErrorsForFocus}
-        onHandleChangeField={handleChangeField}
-        onHandleErrors={handleErrors}
+        onFocus={handleFocus}
+        onChange={handleChange}
+        onBlur={handleBlur}
         placeholder='12345678'
         type='text'
         value={data.dni}
@@ -118,9 +56,9 @@ export default function NewPatientForm ({onHandleSubmit}) {
         halfWidth
         label='Fecha de consulta'
         name='consultDate'
-        onClearErrorsForFocus={clearErrorsForFocus}
-        onHandleChangeField={handleChangeField}
-        onHandleErrors={handleErrors}
+        onFocus={handleFocus}
+        onChange={handleChange}
+        onBlur={handleBlur}
         placeholder=''
         type='date'
         value={data.consultDate}
@@ -131,9 +69,9 @@ export default function NewPatientForm ({onHandleSubmit}) {
         halfWidth
         label='Apellido'
         name='lastname'
-        onClearErrorsForFocus={clearErrorsForFocus}
-        onHandleChangeField={handleChangeField}
-        onHandleErrors={handleErrors}
+        onFocus={handleFocus}
+        onChange={handleChange}
+        onBlur={handleBlur}
         placeholder='Perez'
         type='text'
         value={data.lastname}
@@ -144,9 +82,9 @@ export default function NewPatientForm ({onHandleSubmit}) {
         halfWidth
         label='Nombre'
         name='name'
-        onClearErrorsForFocus={clearErrorsForFocus}
-        onHandleChangeField={handleChangeField}
-        onHandleErrors={handleErrors}
+        onFocus={handleFocus}
+        onChange={handleChange}
+        onBlur={handleBlur}
         placeholder='Juan'
         type='text'
         value={data.name}
@@ -157,9 +95,9 @@ export default function NewPatientForm ({onHandleSubmit}) {
         error={errors.sex}
         label='Sexo (asignado al nacer)'
         name='sex'
-        onClearErrorsForFocus={clearErrorsForFocus}
-        onHandleChangeField={handleChangeField}
-        onHandleErrors={handleErrors}
+        onFocus={handleFocus}
+        onChange={handleChange}
+        onBlur={handleBlur}
         options={sexOptions}
         placeholder=''
         value={data.sex}
@@ -169,9 +107,9 @@ export default function NewPatientForm ({onHandleSubmit}) {
         error={errors.birthday}
         label='Fecha de nacimiento'
         name='birthday'
-        onClearErrorsForFocus={clearErrorsForFocus}
-        onHandleChangeField={handleChangeField}
-        onHandleErrors={handleErrors}
+        onFocus={handleFocus}
+        onChange={handleChange}
+        onBlur={handleBlur}
         placeholder=''
         type='date'
         value={data.birthday}
@@ -182,16 +120,16 @@ export default function NewPatientForm ({onHandleSubmit}) {
         error={errors.diabetesType}
         label='Tipo de diabetes'
         name='diabetesType'
-        onClearErrorsForFocus={clearErrorsForFocus}
-        onHandleChangeField={handleChangeField}
-        onHandleErrors={handleErrors}
+        onFocus={handleFocus}
+        onChange={handleChange}
+        onBlur={handleBlur}
         options={diabetesOptions}
         placeholder=''
         value={data.diabetesType}
       />
       <ButtonsWrapper>
-        <Button callback={handlePreviousPage} type='button'> Volver </Button>
-        <Button type='submit'> Siguiente </Button>
+        <Button onClick={handlePreviousPage}> Volver </Button>
+        <Button> Siguiente </Button>
       </ButtonsWrapper>
     </Form>
   )

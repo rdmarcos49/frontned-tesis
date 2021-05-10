@@ -1,6 +1,8 @@
 // @packages
 import React from 'react'
 import {useLocation} from 'wouter'
+// @components
+import Badge from 'components/Badge'
 // @styles
 import './styles.scss'
 
@@ -34,15 +36,9 @@ const Header = ({ name, profileImage, role }) => {
 
   return (
     <div className='Header'>
-      <div className='Header__logout'><span onClick={handleLogOut}>Logout</span></div>
-      <div className='Header__text-wrapper'>
-        <p className='Header__text-wrapper__name'>
-          {safetyName}
-        </p>
-        <p className='Header__text-wrapper__role'>
-          {safetyRole}
-        </p>
-      </div>
+      <Badge disabled>Logout</Badge>
+      <Badge>{safetyName} </Badge>
+      <Badge>{safetyRole}</Badge>
       <div className='Header__image-wrapper'>
         <img
           alt='profile'
