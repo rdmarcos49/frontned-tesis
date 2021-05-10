@@ -33,7 +33,6 @@ const LogIn = () => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault()
-    // signInService(formData)
   }
 
   const handleProfileImageChanged = (e) => {
@@ -42,6 +41,7 @@ const LogIn = () => {
     if (!!file) {
       const newImage = URL.createObjectURL(file)
       setImage(newImage) 
+      setImageInformation(e.target.files[0])
     }
   }
 
@@ -82,6 +82,7 @@ const LogIn = () => {
             <img
               alt='profile'
               className='Signin__form-section__image-wrapper__image'
+              id='imageid'
               src={`${image !== null ? image : 'assets/default-profile-image.png'}`}
             />
             <input
