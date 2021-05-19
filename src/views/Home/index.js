@@ -8,9 +8,7 @@ import useUser from 'hooks/useUser'
 // @styles
 import './styles.scss'
 
-
-export default function Home() {
-
+function Home() {
   const {isLogged, isLoading} = useUser()
 
   if (isLoading) {
@@ -47,3 +45,5 @@ export default function Home() {
     </>
   )
 }
+
+export default Home

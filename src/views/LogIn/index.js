@@ -11,7 +11,7 @@ import logInService from 'services/logInService'
 // @styles
 import './styles.scss'
 
-const LogIn = () => {
+function LogIn() {
   const [, setLocation] = useLocation();
   const [formData, setFormData] = useState({
     username: '',

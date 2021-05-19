@@ -3,7 +3,7 @@ import React from 'react'
 // @styles
 import './styles.scss'
 
-const ButtonsWrapper = ({ children }) => {
+function ButtonsWrapper({ children }) {
   return (
     <div className='ButtonsWrapper'>
       {children}

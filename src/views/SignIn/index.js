@@ -12,7 +12,7 @@ import { useForm } from './hook'
 // @styles
 import './styles.scss'
 
-const LogIn = () => {
+function LogIn() {
   const [image, setImage] = useState(null)
   const [croppedAvatar, setCroppedAvatar] = useState(null)
   const [isOpen, setIsOpen] = useState(false)

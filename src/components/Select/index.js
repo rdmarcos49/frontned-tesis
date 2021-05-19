@@ -3,13 +3,13 @@ import React from 'react'
 // @styles
 import './styles.scss'
 
-const Select = ({
+function Select({
   disabledText,
   error,
   label,
   options,
   ...props
-}) => {
+}) {
   return (
     <div className='Select'>
       <label className='Select__label'>{label}</label>

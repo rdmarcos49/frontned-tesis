@@ -3,7 +3,7 @@ import React from 'react'
 // @styles
 import './styles.scss'
 
-export default function ListOfImages ({ images, onRemoveImage, onSelectImage }) {
+function ListOfImages ({ images, onRemoveImage, onSelectImage }) {
   return (
     <div className='list-of-images'>
       {images.map(image => {
@@ -30,3 +30,5 @@ export default function ListOfImages ({ images, onRemoveImage, onSelectImage }) 
     </div>
   )
 }
+
+export default ListOfImages

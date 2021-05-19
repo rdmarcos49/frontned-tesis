@@ -1,6 +1,6 @@
 import React from 'react'
 
-const PasswordRecovery = () => {
+function PasswordRecovery() {
  return (
    <div>
      Password recovery

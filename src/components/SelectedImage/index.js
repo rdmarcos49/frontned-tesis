@@ -3,7 +3,7 @@ import React from 'react'
 // @styles
 import './styles.scss'
 
-export default function SelectedImage ({ selectedImage }) {
+function SelectedImage ({ selectedImage }) {
   return (
     <div className={`selected-image-wrapper ${!!selectedImage ? '' : 'selected-image-wrapper--bordered'}`}>
       <div className={`selected-image-wrapper__outter-layout
@@ -27,3 +27,5 @@ export default function SelectedImage ({ selectedImage }) {
     </div>
   )
 }
+
+export default SelectedImage

@@ -3,12 +3,12 @@ import React from 'react'
 // @styles
 import './styles.scss'
 
-const Input = ({
+function Input({
   error,
   label,
   halfWidth,
   ...props
-}) => {
+}) {
   return (
     <div className={`Input ${!!halfWidth ? 'Input--half-width' : 'Input--full-width'}`}>
       <label className='Input__label'>{label}</label>

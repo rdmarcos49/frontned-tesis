@@ -6,7 +6,7 @@ import Badge from 'components/Badge'
 // @styles
 import './styles.scss'
 
-const Header = ({ name, profileImage, role }) => {
+function Header({ name, profileImage, role }) {
   
   const [, setLocation] = useLocation()
 
