@@ -6,13 +6,16 @@ import Button from 'components/Button'
 import Input from 'components/Input'
 import Select from 'components/Select'
 import ButtonsWrapper from 'components/ButtonsWrapper'
+import ModalCrop from './ModalCrop'
 // @hooks
-import useForm from './hook'
+import { useForm } from './hook'
 // @styles
 import './styles.scss'
 
 const LogIn = () => {
   const [image, setImage] = useState(null)
+  const [croppedAvatar, setCroppedAvatar] = useState(null)
+  const [isOpen, setIsOpen] = useState(false)
   const {
     formData,
     formErrors,
@@ -35,21 +38,44 @@ const LogIn = () => {
     e.preventDefault()
   }
 
-  const handleProfileImageChanged = (e) => {
-    const file = e.target.files[0];
-    console.log(file)
+  const getBase64 = (file) => new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onload = () => resolve(reader.result)
+    reader.onerror = error => reject(error)
+  })
+
+  const resetInputFile = () => {
+    inputFileRef.current.value = ''
+  }
+
+  const handleProfileImageChanged = async (e) => {
+    const file = e.target.files[0]
     if (!!file) {
-      const newImage = URL.createObjectURL(file)
-      setImage(newImage) 
+      const base64NewImage = await getBase64(file)
+      setImage(base64NewImage) 
     }
+    setIsOpen(true)
+    resetInputFile()
   }
 
   const handleChangeOfImage = () => {
     inputFileRef.current.click()
   }
 
+  const handleCancelCrop = () => {
+    setIsOpen(false)
+    setImage(null)
+  }
+
+  const handleCroppedAvatar = (newAvatar) => {
+    setCroppedAvatar(newAvatar)
+    setIsOpen(false)
+  }
+
   return (
     <div className='Signin'>
+      <ModalCrop cancelCrop={handleCancelCrop} handleCroppedAvatar={handleCroppedAvatar} isOpen={isOpen} src={image}/>
       <Form onHandleSubmit={handleOnSubmit}>
         <div className='Signin__form-section'>
           <div className='Signin__form-section__inputs'>
@@ -82,7 +108,7 @@ const LogIn = () => {
               alt='profile'
               className='Signin__form-section__image-wrapper__image'
               id='imageid'
-              src={`${image !== null ? image : 'assets/default-profile-image.png'}`}
+              src={`${croppedAvatar !== null ? croppedAvatar : 'assets/default-profile-image.png'}`}
             />
             <input
               accept='.png, .jpg, .jpeg'
