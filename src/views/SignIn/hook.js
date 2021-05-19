@@ -3,7 +3,7 @@ import { useState } from 'react'
 // @utils
 import { requiredField, validLastname, validName, validUsername, validPassword, validRepeatPassword, validEmail } from 'utils/regex'
 
-function useForm () {
+export function useForm () {
   const [formData, setFormData] = useState({
     name: '',
     lastname: '',
@@ -124,5 +124,3 @@ function useForm () {
     handleErrors,
   }
 }
-
-export default useForm
