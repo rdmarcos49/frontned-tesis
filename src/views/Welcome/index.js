@@ -4,7 +4,7 @@ import { Link } from 'wouter'
 // @styles
 import './styles.scss'
 
-const Welcome = () => {
+function Welcome() {
   return (
     <div className='Welcome'>
       <h1 className='Welcome__title'>Welcome</h1>

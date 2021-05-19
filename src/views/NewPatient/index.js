@@ -11,7 +11,7 @@ import useUser from 'hooks/useUser'
 // @styles
 import './styles.scss'
 
-export default function NewPatient () {
+function NewPatient () {
   
   const [step, setStep] = useState(1)
   const [images, setImages] = useState([])
@@ -120,3 +120,5 @@ export default function NewPatient () {
     </>
   )
 }
+
+export default NewPatient

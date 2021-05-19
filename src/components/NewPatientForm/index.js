@@ -9,8 +9,7 @@ import Button from 'components/Button'
 // @hooks
 import useForm from './hook'
 
-
-export default function NewPatientForm ({onHandleSubmit}) {
+function NewPatientForm ({onHandleSubmit}) {
   const [, setLocation] = useLocation()
 
   const {
@@ -134,3 +133,5 @@ export default function NewPatientForm ({onHandleSubmit}) {
     </Form>
   )
 }
+
+export default NewPatientForm

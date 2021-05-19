@@ -3,7 +3,7 @@ import React from 'react'
 // @styles
 import './styles.scss'
 
-const Form = ({ children, onHandleSubmit }) => {
+function Form({ children, onHandleSubmit }) {
   return (
     <form className='Form' onSubmit={onHandleSubmit}>
       <div className='Form__logo-wrapper'>

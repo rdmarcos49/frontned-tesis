@@ -4,7 +4,7 @@ import { useLocation } from 'wouter'
 // @styles
 import './styles.scss'
 
-const TechnicalOptions = () => {
+function TechnicalOptions() {
 
   const [, setLocation] = useLocation();
 
