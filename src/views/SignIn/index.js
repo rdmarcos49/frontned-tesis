@@ -9,6 +9,8 @@ import ButtonsWrapper from 'components/ButtonsWrapper'
 import ModalCrop from './ModalCrop'
 // @hooks
 import { useForm } from './hook'
+// @services
+import signInService from 'services/signInService'
 // @styles
 import './styles.scss'
 
@@ -36,6 +38,10 @@ function LogIn() {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault()
+    await signInService({
+      ...formData,
+      avatar: croppedAvatar,
+    })
   }
 
   const getBase64 = (file) => new Promise((resolve, reject) => {
@@ -120,6 +126,7 @@ function LogIn() {
             <Button
               onClick={handleChangeOfImage}
               size='small'
+              type='button'
               tabIndex='-1'
             >
               Seleccionar archivo
