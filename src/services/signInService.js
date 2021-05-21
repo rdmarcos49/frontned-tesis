@@ -1,16 +1,14 @@
 const signInService = async (dataFromUserForm) => {
-  let formData = new FormData()
-  for (const keysAndValues of Object.entries(dataFromUserForm)) {
-    const [key, value] = keysAndValues
-    formData.append(key, value)
-  }
-  const response = {
+  const URL = 'http://localhost:3030/signin'
+  console.log(JSON.stringify(dataFromUserForm))
+  const response = await fetch(URL, {
     method: 'POST',
-    body: formData,
-  }
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify(dataFromUserForm),
+  }).then(response => response.json())
   console.log(response)
-  const info = await fetch('http://localhost:3030/signin', response).then(response => response.json())
-  console.log(info)
  }
 
 export default signInService
