@@ -2,17 +2,15 @@
 import Cookies from 'universal-cookie'
 
 const logInService = async (dataFromUserForm) => {
-  let formData = new FormData()
-  for (const keyAndValue of Object.entries(dataFromUserForm)) {
-    const [key, value] = keyAndValue
-    formData.append(key, value)
-  }
-  const response = {
+  const URL = 'http://localhost:3030/login'
+  console.log(JSON.stringify(dataFromUserForm))
+  const info = await fetch(URL, {
     method: 'POST',
-    body: formData,
-  }
-  console.log(response)
-  const info = await fetch('http://localhost:3030/login', response).then(response => response.json())
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify(dataFromUserForm),
+  }).then(res => res.json())
   console.log(info)
   if (!!info.token) {
     const cookies = new Cookies()
