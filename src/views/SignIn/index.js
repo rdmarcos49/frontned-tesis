@@ -1,12 +1,12 @@
 // @packages
-import React, { useState, useRef } from 'react'
+import React from 'react'
 // @components
 import Form from 'components/Form'
 import Button from 'components/Button'
 import Input from 'components/Input'
 import Select from 'components/Select'
 import ButtonsWrapper from 'components/ButtonsWrapper'
-import ModalCrop from './ModalCrop'
+import { InputFileAvatar } from 'components/InputFile/InputFileAvatar'
 // @hooks
 import { useForm } from './hook'
 // @services
@@ -15,9 +15,6 @@ import signInService from 'services/signInService'
 import './styles.scss'
 
 function LogIn() {
-  const [image, setImage] = useState(null)
-  const [croppedAvatar, setCroppedAvatar] = useState(null)
-  const [isOpen, setIsOpen] = useState(false)
   const {
     formData,
     formErrors,
@@ -26,8 +23,6 @@ function LogIn() {
     handleFocus,
     handleErrors,
   } = useForm()
-  
-  const inputFileRef = useRef(null)
   
   const options = [
     {value: 'ophthalmologist', text: 'Oftalmólogo/a'},
@@ -40,48 +35,12 @@ function LogIn() {
     e.preventDefault()
     await signInService({
       ...formData,
-      avatar: croppedAvatar,
+      // avatar: croppedAvatar,
     })
-  }
-
-  const getBase64 = (file) => new Promise((resolve, reject) => {
-    const reader = new FileReader()
-    reader.readAsDataURL(file)
-    reader.onload = () => resolve(reader.result)
-    reader.onerror = error => reject(error)
-  })
-
-  const resetInputFile = () => {
-    inputFileRef.current.value = ''
-  }
-
-  const handleProfileImageChanged = async (e) => {
-    const file = e.target.files[0]
-    if (!!file) {
-      const base64NewImage = await getBase64(file)
-      setImage(base64NewImage) 
-    }
-    setIsOpen(true)
-    resetInputFile()
-  }
-
-  const handleChangeOfImage = () => {
-    inputFileRef.current.click()
-  }
-
-  const handleCancelCrop = () => {
-    setIsOpen(false)
-    setImage(null)
-  }
-
-  const handleCroppedAvatar = (newAvatar) => {
-    setCroppedAvatar(newAvatar)
-    setIsOpen(false)
   }
 
   return (
     <div className='Signin'>
-      <ModalCrop cancelCrop={handleCancelCrop} handleCroppedAvatar={handleCroppedAvatar} isOpen={isOpen} src={image}/>
       <Form onHandleSubmit={handleOnSubmit}>
         <div className='Signin__form-section'>
           <div className='Signin__form-section__inputs'>
@@ -109,29 +68,7 @@ function LogIn() {
               value={formData.lastname}
             />
           </div>
-          <div className='Signin__form-section__image-wrapper'>
-            <img
-              alt='profile'
-              className='Signin__form-section__image-wrapper__image'
-              id='imageid'
-              src={`${croppedAvatar !== null ? croppedAvatar : 'assets/default-profile-image.png'}`}
-            />
-            <input
-              accept='.png, .jpg, .jpeg'
-              className='Signin__form-section__image-wrapper__input--hide'
-              onChange={handleProfileImageChanged}
-              ref={inputFileRef}
-              type='file'
-            />
-            <Button
-              onClick={handleChangeOfImage}
-              size='small'
-              type='button'
-              tabIndex='-1'
-            >
-              Seleccionar archivo
-            </Button>
-          </div>
+          <InputFileAvatar accept='.png, .jpg, .jpeg' />
         </div>
 
         <Input
