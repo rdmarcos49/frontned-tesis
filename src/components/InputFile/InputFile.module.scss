@@ -1,0 +1,21 @@
+.InputFile {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    input {
+        display: none;
+    }
+}
+
+.InputFileAvatar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    & > img {
+        border-radius: 10px;
+        height: 150px;
+        width: 150px;
+    }
+}

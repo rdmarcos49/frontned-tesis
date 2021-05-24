@@ -1,5 +1,8 @@
+// @packages
 import React, { useState, useRef } from 'react'
 import ReactCrop from 'react-image-crop';
+// @styles
+import styles from './ModalCrop.module.scss'
 import 'react-image-crop/lib/ReactCrop.scss';
 
 function ModalCrop({ cancelCrop, handleCroppedAvatar, isOpen = false, src }) {
@@ -43,7 +46,7 @@ function ModalCrop({ cancelCrop, handleCroppedAvatar, isOpen = false, src }) {
   if (!isOpen) return null
 
   return (
-    <div className='ModalCrop'>
+    <div className={styles.ModalCrop}>
       <ReactCrop ref={imageRef} onChange={handleChange} src={src} crop={crop} />
       <section>
         <button onClick={cancelCrop}>Cancelar</button>
