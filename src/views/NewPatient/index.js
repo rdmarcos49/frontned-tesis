@@ -18,7 +18,7 @@ function NewPatient () {
   const [lastId, setLastId] = useState(0)
   const [selectedImage, setSelectedImage] = useState(null)
   const inputFileRef = useRef(null)
-  const {isLoading, isLogged} = useUser()
+  const {user, isLoading} = useUser()
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -74,7 +74,7 @@ function NewPatient () {
 
   return (
     <>
-      {isLogged
+      {user
       ?
         <div className='NewPatient'>
           <Header />
