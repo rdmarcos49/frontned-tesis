@@ -1,12 +1,12 @@
 // @packages
 import React, { useState } from 'react'
 
-const Context  = React.createContext({})
+const Context = React.createContext({})
 
-export function SessionContextProvider ({children}) {
-  const [isLogged, setIsLogged] = useState(null)
+export function SessionContextProvider ({ children }) {
+  const [user, setUser] = useState(null)
 
-  return <Context.Provider value={{isLogged, setIsLogged}}>
+  return <Context.Provider value={{ user, setUser }}>
     {children}
   </Context.Provider>
 }
