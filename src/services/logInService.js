@@ -13,9 +13,9 @@ const logInService = async (dataFromUserForm) => {
   }).then(res => res.json())
   console.log(info)
   if (!!info.token) {
-    const { expireTime } = info
+    const { expireTime, token } = info
     const { id } = info.user
-    setSessionCookie(id, expireTime)
+    setSessionCookie(id, token, expireTime)
     alert('Autentificacion correcta!')
   } else {
     alert('Usuario y/o contraseña incorrecta')

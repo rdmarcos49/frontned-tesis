@@ -9,13 +9,12 @@ import getUserService from 'services/getUserService'
 export default function useUser() {
   const {user, setUser} = useContext(SessionContext)
   const [isLoading, setIsLoading] = useState(true)
-
   useEffect(() => {
-    console.log(user)
     setIsLoading(true)
     if (!user) {
       const cookies = new Cookies()
-      const jwt = JSON.parse(cookies.get('sessionCookie'))
+      const jwt = cookies.get('sessionCookie')
+      console.log(jwt)
       if (jwt) {
         const userFetched = getUserService(jwt)
         setUser(userFetched)

@@ -9,21 +9,21 @@ import useUser from 'hooks/useUser'
 import './styles.scss'
 
 function Home() {
-  const {isLogged, isLoading} = useUser()
+  const {user, isLoading} = useUser()
 
   if (isLoading) {
     return <p>Cargando...</p>
   }
 
   /**
-   * if (!isLogged) {
+   * if (!user) {
    *  enviar a pagina de error con texto de NO TENES PERMISOS POR NO ESTAR LOGUEADO
    * }
    */
 
   return (
     <>
-    {isLogged 
+    {user 
     ?
       <div className='Home'>
         <Header />
