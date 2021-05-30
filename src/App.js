@@ -10,6 +10,8 @@ import PasswordRecovery from 'views/PasswordRecovery'
 import NewPatient from 'views/NewPatient'
 // @contexts
 import {SessionContextProvider} from 'context/SessionContext'
+// @constants
+import { URL } from 'constants/urls'
 // @styles
 import './styles.scss'
 
@@ -18,12 +20,13 @@ const App = () => {
     <SessionContextProvider>
       <Switch>
         <Route path="/" component={ Welcome } />
-        <Route path='/login' component={ LogIn } />
-        <Route path='/signin' component={ SignIn } />
+        <Route path={URL.LOG_IN} component={ LogIn } />
+        <Route path={URL.SIGN_IN} component={ SignIn } />
         <Route path='/home' component={ Home } />
-        <Route path='/passwordrecovery' component={ PasswordRecovery } />
-        <Route path='/newpatient' component={ NewPatient } />
+        <Route path={URL.PASSWORD_RECOVERY} component={ PasswordRecovery } />
+        <Route path={URL.NEW_PATIENT} component={ NewPatient } />
       </Switch>
+      
     </SessionContextProvider>
   )
 }

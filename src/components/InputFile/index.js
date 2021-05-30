@@ -30,7 +30,6 @@ export const InputFile = ({ ...props }) => {
     if (!!file && handleChange) {
       const base64NewImage = await getBase64(file)
       handleChange(base64NewImage) 
-      console.log({ base64NewImage })
     }
     resetInputFile()
   }
