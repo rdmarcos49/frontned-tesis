@@ -59,7 +59,7 @@ function LogIn() {
           value={formData.password}
         />
 
-        <Link href='/passwordrecovery' className="Login__forgot-password">¿Ha olvidado su contraseña?</Link>
+        <Link href='/password-recovery' className="Login__forgot-password">¿Ha olvidado su contraseña?</Link>
 
         <ButtonsWrapper>
           <Button onClick={redirectToSignIn}> Solicitar Registro </Button>

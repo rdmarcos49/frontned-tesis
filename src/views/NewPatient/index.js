@@ -18,7 +18,16 @@ function NewPatient () {
   const [lastId, setLastId] = useState(0)
   const [selectedImage, setSelectedImage] = useState(null)
   const inputFileRef = useRef(null)
-  const {user, isLoading} = useUser()
+
+  const { isLoading, isLogged } = useUser()
+
+  if (isLoading) {
+    return <p>Cargando...</p>
+  }
+
+  if (!isLogged) {
+    return <p>Para ver este contenido debes estar loggeado</p>
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -31,7 +40,6 @@ function NewPatient () {
 
   const handleProfileImageChanged = (e) => {
     const thereIsAImage = !!e.target.files[0]
-    console.log(thereIsAImage)
     let targetId = lastId
     if (thereIsAImage) {
       let newImages = []
@@ -47,7 +55,6 @@ function NewPatient () {
         )
         targetId++
       }
-      console.log(newImages)
       setLastId(targetId)
       setImages(newImages)
     }
@@ -64,60 +71,49 @@ function NewPatient () {
     }
   }
 
-  const handleSelectImage = ({image, id}) => {
-    setSelectedImage({image, id})
-  }
-
-  if (isLoading) {
-    return <p>Cargando...</p>
+  const handleSelectImage = ({ image, id }) => {
+    setSelectedImage({ image, id })
   }
 
   return (
-    <>
-      {user
-      ?
-        <div className='NewPatient'>
-          <Header />
-          { step === 1 ?
-            <NewPatientForm onHandleSubmit={handleSubmit}/>
-          :
-            <div className='NewPatient__images'>
-              <input
-                accept='.png, .jpg, .jpeg'
-                name='images'
-                multiple
-                onChange={handleProfileImageChanged}
-                type='file'
-                ref={inputFileRef}
-              />
-
-              <div>
-                <Button
-                  callback={handleUploadImages}
-                >
-                  Subir imagenes
-                </Button>
-              </div>
-              <div className='total-wrapper'>
-                <SelectedImage
-                  selectedImage={selectedImage}
-                />
-                <ListOfImages
-                  images={images}
-                  onRemoveImage={handleRemoveImage}
-                  onSelectImage={handleSelectImage}
-                />
-              </div>
-              <Button>
-                Pendiente
-              </Button>
-            </div>
-          }
-        </div>
+    <div className='NewPatient'>
+      <Header />
+      { step === 1 ?
+        <NewPatientForm onHandleSubmit={handleSubmit}/>
       :
-        <p>No estas logueado y no podes ver este contenido</p>
+        <div className='NewPatient__images'>
+          <input
+            accept='.png, .jpg, .jpeg'
+            name='images'
+            multiple
+            onChange={handleProfileImageChanged}
+            type='file'
+            ref={inputFileRef}
+          />
+
+          <div>
+            <Button
+              callback={handleUploadImages}
+            >
+              Subir imagenes
+            </Button>
+          </div>
+          <div className='total-wrapper'>
+            <SelectedImage
+              selectedImage={selectedImage}
+            />
+            <ListOfImages
+              images={images}
+              onRemoveImage={handleRemoveImage}
+              onSelectImage={handleSelectImage}
+            />
+          </div>
+          <Button>
+            Pendiente
+          </Button>
+        </div>
       }
-    </>
+    </div>
   )
 }
 

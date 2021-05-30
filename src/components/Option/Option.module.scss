@@ -1,0 +1,27 @@
+@import 'styles/index.scss';
+
+.Option {
+    margin: 0 auto;
+
+    div {
+        background-color: #333;
+        border: solid 4px $white;
+        border-radius: 20px;
+        box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        padding: 20px;
+        transition: 0.3s;
+        
+        &:hover {
+            cursor: pointer;
+            transform: scale(1.05);
+        }
+    }
+
+    p {
+        color: #333;
+        font-family: sans-serif;
+        margin: 10px 0;
+        text-align: center;
+    }
+}

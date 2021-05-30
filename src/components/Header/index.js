@@ -1,6 +1,6 @@
 // @packages
 import React from 'react'
-import {useLocation} from 'wouter'
+import { useLocation } from 'wouter'
 // @components
 import Badge from 'components/Badge'
 // @styles

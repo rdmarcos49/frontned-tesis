@@ -11,6 +11,8 @@ import { InputFileAvatar } from 'components/InputFile/InputFileAvatar'
 import { useForm } from './hook'
 // @services
 import signInService from 'services/signInService'
+// @constants
+import { ROLES } from 'constants/roles'
 // @styles
 import './styles.scss'
 
@@ -25,10 +27,10 @@ function LogIn() {
   } = useForm()
   
   const options = [
-    {value: 'ophthalmologist', text: 'Oftalmólogo/a'},
-    {value: 'technical', text: 'Técnico/a de captura'},
-    {value: 'admin', text: 'Administrador/a'},
-    {value: 'onlyRead', text: 'Solo lectura'},
+    { value: ROLES.ADMIN, text: 'Administrador/a' },
+    { value: ROLES.ONLY_READ, text: 'Solo lectura' },
+    { value: ROLES.OPHTHALMOLOGIST, text: 'Oftalmólogo/a' },
+    { value: ROLES.TECHNICAL, text: 'Técnico/a de captura' },
   ]
 
   const handleOnSubmit = async (e) => {
