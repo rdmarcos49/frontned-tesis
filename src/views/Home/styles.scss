@@ -1,6 +1,6 @@
 .Home {
     color: #333;
-    font-family: sans-serif;
+    min-height: calc(100vh - 50px);
 
     &__logo-wrapper {
         display: flex;

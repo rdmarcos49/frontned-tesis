@@ -1,7 +1,7 @@
 // @packages
 import React, { useRef, useState } from 'react'
+import { useLocation } from 'wouter'
 // @componets
-import Header from 'components/Header'
 import Button from 'components/Button'
 import ListOfImages from 'components/ListOfImages/index'
 import SelectedImage from 'components/SelectedImage/index'
@@ -20,18 +20,24 @@ function NewPatient () {
   const inputFileRef = useRef(null)
 
   const { isLoading, isLogged } = useUser()
+  const [, setLocation] = useLocation()
 
   if (isLoading) {
     return <p>Cargando...</p>
   }
 
   if (!isLogged) {
-    return <p>Para ver este contenido debes estar loggeado</p>
+    setLocation(URL.ERROR_PAGE)
+    return null
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
     setStep(2)
+  }
+
+  const returnToStepOne = () => {
+    setStep(1)
   }
 
   const handleUploadImages = () => {
@@ -77,7 +83,6 @@ function NewPatient () {
 
   return (
     <div className='NewPatient'>
-      <Header />
       { step === 1 ?
         <NewPatientForm onHandleSubmit={handleSubmit}/>
       :
@@ -93,7 +98,7 @@ function NewPatient () {
 
           <div>
             <Button
-              callback={handleUploadImages}
+              onClick={handleUploadImages}
             >
               Subir imagenes
             </Button>
@@ -108,9 +113,14 @@ function NewPatient () {
               onSelectImage={handleSelectImage}
             />
           </div>
-          <Button>
-            Pendiente
-          </Button>
+          <div className='listOfImagesFooter'>
+            <Button onClick={returnToStepOne}>
+              Volver
+            </Button>
+            <Button>
+              Finalizar
+            </Button>
+          </div>
         </div>
       }
     </div>

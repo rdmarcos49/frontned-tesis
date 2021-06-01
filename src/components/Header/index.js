@@ -1,52 +1,48 @@
 // @packages
 import React from 'react'
-import { useLocation } from 'wouter'
-// @components
-import Badge from 'components/Badge'
+import { Link } from 'wouter'
+// @hooks
+import useUser from 'hooks/useUser'
+// @constants
+import { ROLES } from 'constants/roles'
+import { URL } from 'constants/urls'
 // @styles
-import './styles.scss'
+import styles from './Header.module.scss'
 
-function Header({ name, profileImage, role }) {
+function Header() {
   
-  const [, setLocation] = useLocation()
+  const { isLogged, logOut } = useUser()
 
   const handleLogOut = () => {
-    // elimino la cookie
-    setLocation('/login')
+    logOut()
   }
 
   const getUserRole = (roleValue) => {
     switch (roleValue) {
-      case 'ophthalmologist':
+      case ROLES.OPHTHALMOLOGIST:
         return 'Oftalmólogo/a'
-      case 'technical':
+      case ROLES.TECHNICAL:
         return 'Técnico/a de captura'
-      case 'admin':
+      case ROLES.ADMIN:
         return 'Administrador/a'
-      case 'onlyRead':
+      case ROLES.ONLY_READ:
         return 'Solo lectura'
       default:
         return 'Default'
     }
   }
 
-  const safetyName = name || 'Juan Perez'
-  const safetyImage = profileImage || 'assets/default-profile-image.png'
-  const safetyRole = getUserRole(role)
-
   return (
-    <div className='Header'>
-      <Badge disabled>Logout</Badge>
-      <Badge>{safetyName} </Badge>
-      <Badge>{safetyRole}</Badge>
-      <div className='Header__image-wrapper'>
-        <img
-          alt='profile'
-          className='Header__image-wrapper__image'
-          src={safetyImage}
-          title='profile'
-        />
-      </div>
+    <div className={styles.Header}>
+      {isLogged
+        ?
+          <Link onClick={handleLogOut} to={URL.LOG_IN}>Log out</Link>
+        :
+          <>
+            <Link to={URL.LOG_IN}>Log in</Link>
+            <Link to={URL.SIGN_IN}>Sign in</Link>
+          </>
+      }
     </div>
   )
 }

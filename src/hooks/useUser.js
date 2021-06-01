@@ -32,7 +32,14 @@ export default function useUser() {
     }
   }, [user, setUser, setLocation])
 
+  const logOut = () => {
+    setUser(null)
+    const cookies = new Cookies()
+    cookies.remove('sessionCookie')
+  }
+
   return {
+    logOut,
     isLogged: (Boolean(user)),
     isLoading,
     user,
