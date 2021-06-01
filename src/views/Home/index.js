@@ -1,13 +1,14 @@
 // @packages
 import React from 'react'
+import { useLocation } from 'wouter'
 // @components
-import Header from 'components/Header'
 import { AdminOptions } from 'components/UserOptions/AdminOptions'
 import { TechnicalOptions } from 'components/UserOptions/TechnicalOptions'
 // @hooks
 import useUser from 'hooks/useUser'
 // @constants
 import { ROLES } from 'constants/roles'
+import { URL } from 'constants/urls'
 // @styles
 import './styles.scss'
 import UserOptions from 'components/UserOptions/index'
@@ -21,20 +22,21 @@ const MenuRoles = {
 
 function Home() {
   const { isLoading, isLogged, user } = useUser()
+  const [, setLocation] = useLocation()
 
   if (isLoading) {
     return <p>Cargando...</p>
   }
 
   if (!isLogged) {
-    return <p>Para ver este contenido debes estar loggeado</p>
+    setLocation(URL.ERROR_PAGE)
+    return null
   }
 
   const { role } = user
 
   return (
     <div className='Home'>
-      <Header />
       <div className='Home__logo-wrapper'>
         <img
           alt='logo'

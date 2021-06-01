@@ -1,15 +1,10 @@
-@keyframes shake {
-    20% { transform: translate(-3px, 0px) rotate(1deg); }
-}
-
 .Login {
     align-items: center;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    font-family: 'Encode Sans', sans-serif;
     margin: 0 auto;
-    min-height: 100vh;
+    min-height: calc(100vh - 50px);
 
     &__forgot-password {
         color: white;

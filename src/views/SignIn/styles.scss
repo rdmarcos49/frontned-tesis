@@ -3,9 +3,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    font-family: 'Encode Sans', sans-serif;
     margin: 0 auto;
-    min-height: 100vh;
+    min-height: calc(100vh - 50px);
 
     &__form-section {
         display: flex;
