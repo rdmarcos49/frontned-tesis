@@ -6,17 +6,25 @@ import { useLocation } from "wouter";
 import SessionContext from 'context/SessionContext'
 // @services
 import getUserService from 'services/getUserService'
+// @constants
+import { publicUrl } from 'constants/urls'
 
 export default function useUser() {
   const { user, setUser } = useContext(SessionContext)
   const [isLoading, setIsLoading] = useState(true)
-  const [, setLocation] = useLocation()
+  const [location, setLocation] = useLocation()
+
+  const isAPublicUrl = publicUrl.includes(location)
   
   useEffect(() => {
     async function fetchAndSetUser(jwt) {
       const userFetched = await getUserService(jwt)
       setUser(userFetched.user)
       setIsLoading(false)
+    }
+    if (isAPublicUrl) {
+      setIsLoading(false)
+      return null
     }
     if (!user) {
       const cookies = new Cookies()
@@ -30,7 +38,7 @@ export default function useUser() {
     } else {
       setIsLoading(false)
     }
-  }, [user, setUser, setLocation])
+  }, [publicUrl, user, setUser, setLocation])
 
   const logOut = () => {
     setUser(null)

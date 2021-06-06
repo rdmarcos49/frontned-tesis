@@ -1,5 +1,5 @@
 // @packages
-import React from 'react'
+import React, { useState } from 'react'
 // @components
 import Form from 'components/Form'
 import Button from 'components/Button'
@@ -25,6 +25,7 @@ function LogIn() {
     handleFocus,
     handleErrors,
   } = useForm()
+  const [avatar, setAvatar] = useState(null)
   
   const options = [
     { value: ROLES.ADMIN, text: 'Administrador/a' },
@@ -33,11 +34,15 @@ function LogIn() {
     { value: ROLES.TECHNICAL, text: 'Técnico/a de captura' },
   ]
 
+  const handleChangeAvatar = croppedImage => {
+    setAvatar(croppedImage)
+  } 
+
   const handleOnSubmit = async (e) => {
     e.preventDefault()
     await signInService({
       ...formData,
-      // avatar: croppedAvatar,
+      avatar,
     })
   }
 
@@ -70,7 +75,7 @@ function LogIn() {
               value={formData.lastname}
             />
           </div>
-          <InputFileAvatar accept='.png, .jpg, .jpeg' />
+          <InputFileAvatar callback={handleChangeAvatar} accept='.png, .jpg, .jpeg' />
         </div>
 
         <Input
