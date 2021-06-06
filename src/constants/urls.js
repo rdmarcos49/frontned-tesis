@@ -1,4 +1,5 @@
 export const URL = {
+  BASE_PATH: '/',
   SIGN_IN: '/signin',
   LOG_IN: '/login',
   HOME: '/home',
@@ -9,6 +10,8 @@ export const URL = {
   USERS_STATISTICS: '/u-statistics',
   SYSTEM_STATISTICS: '/s-statistics',
   DATA_ACCESS: '/data',
-  ERROR_PAGE: '404',
+  ERROR_PAGE: '/404',
   REST: '/:rest*',
 }
+
+export const publicUrl = [URL.SIGN_IN, URL.LOG_IN, URL.BASE_PATH]

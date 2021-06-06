@@ -6,7 +6,7 @@ import Button from 'components/Button'
 import styles from "./InputFile.module.scss"
 
 export const InputFile = ({ ...props }) => {
-  const { handleChange, ...rest } = props
+  const { handleChange, text, ...rest } = props
 
   const inputFileRef = useRef(null)
 
@@ -26,10 +26,14 @@ export const InputFile = ({ ...props }) => {
   })
 
   const handleProfileImageChanged = async (e) => {
-    const file = e.target.files[0]
-    if (!!file && handleChange) {
-      const base64NewImage = await getBase64(file)
-      handleChange(base64NewImage) 
+    const files = e.target.files
+    if (files[0] && handleChange) {
+      let base64NewImages = []
+      for (const file of files) {
+        const newImage = await getBase64(file)
+        base64NewImages.push(newImage)
+      }
+      handleChange(base64NewImages)
     }
     resetInputFile()
   }
@@ -48,7 +52,7 @@ export const InputFile = ({ ...props }) => {
         type='button'
         tabIndex='-1'
       >
-        Seleccionar archivo
+        {text}
       </Button>
     </div>
   )

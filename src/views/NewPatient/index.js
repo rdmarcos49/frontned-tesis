@@ -1,23 +1,24 @@
 // @packages
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { useLocation } from 'wouter'
 // @componets
 import Button from 'components/Button'
 import ListOfImages from 'components/ListOfImages/index'
 import SelectedImage from 'components/SelectedImage/index'
 import NewPatientForm from 'components/NewPatientForm'
+import InputFileNewPatient from 'components/InputFile/InputFileNewPatient'
 // @hooks
 import useUser from 'hooks/useUser'
+// @constants
+import { STEP_ONE, STEP_TWO } from 'constants/steps'
 // @styles
 import './styles.scss'
 
 function NewPatient () {
   
-  const [step, setStep] = useState(1)
+  const [step, setStep] = useState(STEP_ONE)
   const [images, setImages] = useState([])
-  const [lastId, setLastId] = useState(0)
   const [selectedImage, setSelectedImage] = useState(null)
-  const inputFileRef = useRef(null)
 
   const { isLoading, isLogged } = useUser()
   const [, setLocation] = useLocation()
@@ -33,37 +34,19 @@ function NewPatient () {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setStep(2)
+    setStep(STEP_TWO)
   }
 
   const returnToStepOne = () => {
-    setStep(1)
+    setStep(STEP_ONE)
   }
 
-  const handleUploadImages = () => {
-    inputFileRef.current.click()
-  }
-
-  const handleProfileImageChanged = (e) => {
-    const thereIsAImage = !!e.target.files[0]
-    let targetId = lastId
-    if (thereIsAImage) {
-      let newImages = []
-      for (const image of images) {
-        newImages.push(image)
-      }
-      for (const image of [...e.target.files]) {
-        newImages.push(
-          {
-            id: targetId,
-            image: URL.createObjectURL(image),
-          }
-        )
-        targetId++
-      }
-      setLastId(targetId)
-      setImages(newImages)
-    }
+  const handleChangeImages = newImages => {
+    console.log(images)
+    setImages([
+      ...images,
+      ...newImages,
+    ])
   }
 
   const handleRemoveImage = (id) => {
@@ -83,26 +66,12 @@ function NewPatient () {
 
   return (
     <div className='NewPatient'>
-      { step === 1 ?
+      { step === STEP_ONE ?
         <NewPatientForm onHandleSubmit={handleSubmit}/>
       :
         <div className='NewPatient__images'>
-          <input
-            accept='.png, .jpg, .jpeg'
-            name='images'
-            multiple
-            onChange={handleProfileImageChanged}
-            type='file'
-            ref={inputFileRef}
-          />
+          <InputFileNewPatient callback={handleChangeImages} accept='.png, .jpg, .jpeg' multiple />
 
-          <div>
-            <Button
-              onClick={handleUploadImages}
-            >
-              Subir imagenes
-            </Button>
-          </div>
           <div className='total-wrapper'>
             <SelectedImage
               selectedImage={selectedImage}

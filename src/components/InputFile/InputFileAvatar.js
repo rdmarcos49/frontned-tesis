@@ -4,9 +4,10 @@ import React, { useState } from 'react'
 import InputFile from './index'
 import ModalCrop from 'components/ModalCrop'
 // @styles
-import styles from "./InputFile.module.scss"
+import styles from './InputFile.module.scss'
 
 export const InputFileAvatar = ({ ...props }) => {
+  const { callback, ...rest } = props
   // this is the reference to the original and selected image for crop
   const [image, setImage] = useState(null)
   // this is the cropped image
@@ -48,12 +49,16 @@ export const InputFileAvatar = ({ ...props }) => {
     setIsOpen(false)
   }
 
-  const handleCroppedAvatar = (newAvatar) => {
-    resizeImage(newAvatar).then(res => setCroppedAvatar(res))
+  const handleCroppedAvatar = async (newAvatar) => {
+    // resizeImage(newAvatar).then(res => setCroppedAvatar(res))
+    const result = await resizeImage(newAvatar)
+    setCroppedAvatar(result)
+    callback(result)
     setIsOpen(false)
   }
 
-  const onHandleChange = (image) => {
+  const onHandleChange = (arrOfImages) => {
+    const image = arrOfImages[0]
     setImage(image)
     setIsOpen(true)
   }
@@ -65,7 +70,7 @@ export const InputFileAvatar = ({ ...props }) => {
           alt='profile'
           src={`${croppedAvatar ? croppedAvatar : 'assets/default-profile-image.png'}`}
       />
-      <InputFile handleChange={onHandleChange} {...props} />
+      <InputFile handleChange={onHandleChange} text='Seleccionar archivo' {...rest} />
     </div>
   )
 }
