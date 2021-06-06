@@ -38,7 +38,7 @@ export default function useUser() {
     } else {
       setIsLoading(false)
     }
-  }, [publicUrl, user, setUser, setLocation])
+  }, [isAPublicUrl, user, setUser, setLocation])
 
   const logOut = () => {
     setUser(null)

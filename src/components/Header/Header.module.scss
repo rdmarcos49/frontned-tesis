@@ -5,13 +5,62 @@
     display: flex;
     font-weight: bold;
     height: 50px;
-    justify-content: flex-start;
     padding: 0 10px;
     width: 100%;
+}
+
+.IsLoggedOptions {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    & > div {
+        align-items: center;
+        display: flex;
+
+        & > * {
+            margin: 0 10px;
+        }
+    
+        & > a {
+            color: #ccc;
+            text-decoration: none;
+    
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    
+        img {
+            border-radius: 50px;
+            height: 48px;
+            width: 48px;
+        }
+    
+        p {
+            align-items: center;
+            background:#eee;
+            border-radius: 50px;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            height: 48px;
+            width: 48px;
+        }
+    }
+}
+
+.IsNotLoggedOptions {
+    align-items: center;
+    display: flex;
+
+    & > * {
+        margin: 0 10px;
+    }
 
     & > a {
         color: #ccc;
-        margin: 0 10px;
         text-decoration: none;
 
         &:hover {

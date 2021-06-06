@@ -17,8 +17,10 @@ const logInService = async (dataFromUserForm) => {
     const { id } = info.user
     setSessionCookie(id, token, expireTime)
     alert('Autentificacion correcta!')
+    return true
   } else {
     alert('Usuario y/o contraseña incorrecta')
+    return false
   }
 } 
 
