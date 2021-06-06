@@ -1,21 +1,16 @@
-// @packages
-import React from 'react'
-import { Link } from 'wouter'
 // @hooks
 import useUser from 'hooks/useUser'
 // @constants
 import { ROLES } from 'constants/roles'
-import { URL } from 'constants/urls'
 // @styles
 import styles from './Header.module.scss'
+import { IsLoggedOptions } from './IsLoggedOptions'
+import { IsNotLoggedOptions } from './IsNotLoggedOptions'
 
 function Header() {
   
-  const { isLogged, logOut } = useUser()
-
-  const handleLogOut = () => {
-    logOut()
-  }
+  const { isLogged, user, logOut } = useUser()
+  
 
   const getUserRole = (roleValue) => {
     switch (roleValue) {
@@ -33,17 +28,19 @@ function Header() {
   }
 
   return (
-    <div className={styles.Header}>
+    <header className={styles.Header}>
       {isLogged
         ?
-          <Link onClick={handleLogOut} to={URL.LOG_IN}>Log out</Link>
+          <IsLoggedOptions
+            avatar={user.avatar}
+            name={user.name}
+            lastname={user.lastname}
+            handleLogOut={logOut}
+          />
         :
-          <>
-            <Link to={URL.LOG_IN}>Log in</Link>
-            <Link to={URL.SIGN_IN}>Sign in</Link>
-          </>
+          <IsNotLoggedOptions />
       }
-    </div>
+    </header>
   )
 }
 

@@ -8,6 +8,8 @@ import Button from 'components/Button'
 import ButtonsWrapper from 'components/ButtonsWrapper'
 // @services
 import logInService from 'services/logInService'
+// @constants
+import { URL } from 'constants/urls'
 // @styles
 import './styles.scss'
 
@@ -20,7 +22,10 @@ function LogIn() {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault()
-    logInService(formData)
+    const result = await logInService(formData)
+    if (result) {
+      setLocation(URL.HOME)
+    }
   }
 
   const handleChangeField = (e) => {
