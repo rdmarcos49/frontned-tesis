@@ -1,5 +1,7 @@
 // @packages
 import { Link } from 'wouter'
+// @components
+import Avatar from 'components/Avatar'
 // @constants
 import { URL } from 'constants/urls'
 // @styles
@@ -15,12 +17,11 @@ export function IsLoggedOptions({ avatar, name, lastname, handleLogOut }) {
       </div>
       <div>
         <span>{name}</span>
-        {avatar
-          ?
-            <img alt='avatar' src={avatar}/>
-          :
-            <p>{name.charAt(0)}{lastname.charAt(0)}</p>
-        }
+        <Avatar
+          avatar={avatar}
+          name={name}
+          lastname={lastname}
+        />
       </div>
     </div>
   )

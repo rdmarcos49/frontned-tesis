@@ -1,5 +1,6 @@
 // @packages
-import React, { useState } from 'react'
+import { useState } from 'react'
+import { useLocation } from 'wouter'
 // @components
 import Form from 'components/Form'
 import Button from 'components/Button'
@@ -7,12 +8,15 @@ import Input from 'components/Input'
 import Select from 'components/Select'
 import ButtonsWrapper from 'components/ButtonsWrapper'
 import { InputFileAvatar } from 'components/InputFile/InputFileAvatar'
+import AlreadyLogged from 'components/AlreadyLogged'
 // @hooks
 import { useForm } from './hook'
+import useUser from 'hooks/useUser'
 // @services
 import signInService from 'services/signInService'
 // @constants
 import { ROLES } from 'constants/roles'
+import { publicUrl } from 'constants/urls'
 // @styles
 import './styles.scss'
 
@@ -25,7 +29,14 @@ function LogIn() {
     handleFocus,
     handleErrors,
   } = useForm()
+  const [location] = useLocation()
   const [avatar, setAvatar] = useState(null)
+  const { isLoading, isLogged } = useUser()
+
+
+  if (!isLoading && isLogged) {
+    return <AlreadyLogged path={publicUrl[location]} />
+  }
   
   const options = [
     { value: ROLES.ADMIN, text: 'Administrador/a' },

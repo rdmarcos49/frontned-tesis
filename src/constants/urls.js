@@ -14,4 +14,8 @@ export const URL = {
   REST: '/:rest*',
 }
 
-export const publicUrl = [URL.SIGN_IN, URL.LOG_IN, URL.BASE_PATH]
+export const publicUrl = {
+  [URL.SIGN_IN]: 'Sign in',
+  [URL.LOG_IN]: 'Log in',
+  [URL.BASE_PATH]: 'Bienvenida',
+}

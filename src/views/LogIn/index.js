@@ -6,19 +6,28 @@ import Form from 'components/Form'
 import Input from 'components/Input'
 import Button from 'components/Button'
 import ButtonsWrapper from 'components/ButtonsWrapper'
+import AlreadyLogged from 'components/AlreadyLogged'
 // @services
 import logInService from 'services/logInService'
+// @hooks
+import useUser from 'hooks/useUser'
 // @constants
-import { URL } from 'constants/urls'
+import { URL, publicUrl } from 'constants/urls'
 // @styles
 import './styles.scss'
 
 function LogIn() {
-  const [, setLocation] = useLocation();
+  const [location, setLocation] = useLocation();
   const [formData, setFormData] = useState({
     username: '',
     password: '',
   })
+  const { isLoading, isLogged } = useUser()
+
+  if (!isLoading && isLogged) {
+    return <AlreadyLogged path={publicUrl[location]} />
+  }
+  
 
   const handleOnSubmit = async (e) => {
     e.preventDefault()

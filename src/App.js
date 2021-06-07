@@ -23,10 +23,10 @@ const App = () => {
     <SessionContextProvider>
       <Header />
       <Switch>
-        <Route path="/" component={ Welcome } />
+        <Route path={URL.BASE_PATH} component={ Welcome } />
         <Route path={URL.LOG_IN} component={ LogIn } />
         <Route path={URL.SIGN_IN} component={ SignIn } />
-        <Route path='/home' component={ Home } />
+        <Route path={URL.HOME} component={ Home } />
         <Route path={URL.PASSWORD_RECOVERY} component={ PasswordRecovery } />
         <Route path={URL.NEW_PATIENT} component={ NewPatient } />
         <Route path={URL.REST} component={ ErrorPage } />
