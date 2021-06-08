@@ -12,9 +12,9 @@ function Option({ icon, path, text }) {
   
   return (
     <div className={styles.Option}>
-      <div onClick={onHandleClick}>
+      <button onClick={onHandleClick}>
         <i className={icon}></i>
-      </div>
+      </button>
       <p> {text} </p>
     </div>
   )

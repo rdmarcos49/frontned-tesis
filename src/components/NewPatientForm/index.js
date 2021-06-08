@@ -38,6 +38,7 @@ function NewPatientForm ({onHandleSubmit}) {
   return (
     <Form onHandleSubmit={onHandleSubmit}>
       <Input
+        autoFocus
         error={errors.dni}
         halfWidth
         label='DNI'
