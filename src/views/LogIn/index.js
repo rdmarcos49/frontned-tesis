@@ -54,6 +54,7 @@ function LogIn() {
     <div className='Login'>
       <Form onHandleSubmit={handleOnSubmit}>
         <Input
+          autoFocus
           error={undefined}
           label='Usuario'
           name='username'

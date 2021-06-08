@@ -63,6 +63,7 @@ function LogIn() {
         <div className='Signin__form-section'>
           <div className='Signin__form-section__inputs'>
             <Input
+              autoFocus
               error={formErrors.name}
               label='Nombre'
               name='name'
