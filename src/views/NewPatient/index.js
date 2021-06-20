@@ -9,6 +9,8 @@ import NewPatientForm from 'components/NewPatientForm'
 import InputFileNewPatient from 'components/InputFile/InputFileNewPatient'
 // @hooks
 import useUser from 'hooks/useUser'
+// @services
+import sendNewPatientService from 'services/sendNewPatientService'
 // @constants
 import { STEP_ONE, STEP_TWO } from 'constants/steps'
 // @styles
@@ -32,7 +34,12 @@ function NewPatient () {
     return null
   }
 
-  const handleSubmit = (e) => {
+  const handleNewPatient = () => {
+    const randomDni = Math.floor(Math.random() * 100 + 100000)
+    sendNewPatientService({ dni: randomDni, images })
+  }
+
+  const moveToStepTwo = (e) => {
     e.preventDefault()
     setStep(STEP_TWO)
   }
@@ -67,7 +74,7 @@ function NewPatient () {
   return (
     <div className='NewPatient'>
       { step === STEP_ONE ?
-        <NewPatientForm onHandleSubmit={handleSubmit}/>
+        <NewPatientForm onHandleSubmit={moveToStepTwo}/>
       :
         <div className='NewPatient__images'>
           <InputFileNewPatient callback={handleChangeImages} accept='.png, .jpg, .jpeg' multiple />
@@ -86,7 +93,7 @@ function NewPatient () {
             <Button onClick={returnToStepOne}>
               Volver
             </Button>
-            <Button>
+            <Button onClick={handleNewPatient}>
               Finalizar
             </Button>
           </div>

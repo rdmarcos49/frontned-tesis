@@ -11,6 +11,7 @@ import NewPatient from 'views/NewPatient'
 import ErrorPage from 'views/Error'
 // @components
 import Header from 'components/Header'
+import Footer from 'components/Footer'
 // @contexts
 import { SessionContextProvider } from 'context/SessionContext'
 // @constants
@@ -31,7 +32,7 @@ const App = () => {
         <Route path={URL.NEW_PATIENT} component={ NewPatient } />
         <Route path={URL.REST} component={ ErrorPage } />
       </Switch>
-      
+      <Footer />
     </SessionContextProvider>
   )
 }

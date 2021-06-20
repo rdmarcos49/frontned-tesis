@@ -34,6 +34,16 @@
     }
 }
 
+.RetinarLogo {
+    cursor: pointer;
+    height: 30px;
+    transition: 0.1s;
+
+    &:hover {
+        filter: brightness(0.7);
+    }
+}
+
 .IsNotLoggedOptions {
     align-items: center;
     display: flex;
