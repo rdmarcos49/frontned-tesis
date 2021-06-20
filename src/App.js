@@ -11,6 +11,7 @@ import NewPatient from 'views/NewPatient'
 import ErrorPage from 'views/Error'
 // @components
 import Header from 'components/Header'
+import MainLayout from 'components/MainLayout'
 import Footer from 'components/Footer'
 // @contexts
 import { SessionContextProvider } from 'context/SessionContext'
@@ -23,15 +24,17 @@ const App = () => {
   return(
     <SessionContextProvider>
       <Header />
-      <Switch>
-        <Route path={URL.BASE_PATH} component={ Welcome } />
-        <Route path={URL.LOG_IN} component={ LogIn } />
-        <Route path={URL.SIGN_IN} component={ SignIn } />
-        <Route path={URL.HOME} component={ Home } />
-        <Route path={URL.PASSWORD_RECOVERY} component={ PasswordRecovery } />
-        <Route path={URL.NEW_PATIENT} component={ NewPatient } />
-        <Route path={URL.REST} component={ ErrorPage } />
-      </Switch>
+      <MainLayout>
+        <Switch>
+          <Route path={URL.BASE_PATH} component={ Welcome } />
+          <Route path={URL.LOG_IN} component={ LogIn } />
+          <Route path={URL.SIGN_IN} component={ SignIn } />
+          <Route path={URL.HOME} component={ Home } />
+          <Route path={URL.PASSWORD_RECOVERY} component={ PasswordRecovery } />
+          <Route path={URL.NEW_PATIENT} component={ NewPatient } />
+          <Route path={URL.REST} component={ ErrorPage } />
+        </Switch>
+      </MainLayout>
       <Footer />
     </SessionContextProvider>
   )
