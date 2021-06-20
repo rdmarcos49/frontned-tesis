@@ -1,7 +1,7 @@
 // @packages
 import { useState } from 'react'
 // @utils
-import { requiredField, validLastname, validName, validUsername, validPassword, validRepeatPassword, validEmail } from 'utils/regex'
+import { requiredField, validLastname, validName, validUsername, validPassword, validRepeatPassword, validEmail } from 'utils/validations'
 
 export function useForm () {
   const [formData, setFormData] = useState({

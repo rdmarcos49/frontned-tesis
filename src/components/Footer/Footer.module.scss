@@ -1,0 +1,26 @@
+.Footer {
+    align-items: center;
+    background-color: #333;
+    bottom: 0;
+    color: #eee;
+    display: flex;
+    font-size: 14px;
+    justify-content: space-between;
+    height: 34px;
+    padding: 0 12px;
+    position: absolute;
+    width: 100%;
+
+    nav {
+        align-items: center;
+        display: flex;
+        a {
+            color: #eee;
+            margin: 0 8px;
+
+            &:hover {
+                filter: brightness(0.75);
+            }
+        }
+    }
+}

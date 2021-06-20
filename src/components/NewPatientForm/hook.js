@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 // @utils
 import { getCurrentDate } from 'utils/date'
-import { requiredField, validLastname, validName, validDni } from 'utils/regex'
+import { requiredField, validLastname, validName, validDni } from 'utils/validations'
 
 function useForm() {
 
