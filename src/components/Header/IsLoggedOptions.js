@@ -18,7 +18,7 @@ export function IsLoggedOptions({ avatar, name, lastname, handleLogOut }) {
         <img
           alt='nav to home'
           className={styles.RetinarLogo}
-          src='assets/logo-white-yellow.png'
+          src='assets/logo-white-blue.png'
           onClick={navToHome}
         />
         <Link onClick={handleLogOut} to={URL.LOG_IN}>

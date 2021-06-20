@@ -68,7 +68,7 @@ export const InputFileAvatar = ({ ...props }) => {
       <ModalCrop cancelCrop={handleCancelCrop} handleCroppedAvatar={handleCroppedAvatar} isOpen={isOpen} src={image}/>
       <img
           alt='profile'
-          src={`${croppedAvatar ? croppedAvatar : 'assets/default-profile-image.png'}`}
+          src={`${croppedAvatar ? croppedAvatar : 'assets/default-profile-image.jpg'}`}
       />
       <InputFile handleChange={onHandleChange} text='Seleccionar archivo' {...rest} />
     </div>
