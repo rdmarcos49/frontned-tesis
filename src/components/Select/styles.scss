@@ -18,7 +18,7 @@
         padding: 8px 5px;
 
         &--normal-border {
-            border: solid 2px rgb(103, 195, 231);
+            border: solid 2px #000;
         }
         &--error-border {
             border: solid 2px red;
@@ -30,6 +30,14 @@
         font-size: 12px;
         font-style: italic;
         padding-top: 3px;
+
+        
+        &--enabled {
+            visibility: normal;
+        }
+        &--disabled {
+            visibility: hidden;
+        }
     }
 }
 

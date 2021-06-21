@@ -18,7 +18,7 @@ export const AdminOptions = [
     text: 'Estadisticas del sistema'
   },
   {
-    icon: 'fas fa-9x fa-chart-bar',
+    icon: 'fas fa-9x fa-database',
     path: URL.DATA_ACCESS,
     text: 'Acceso a datos'
   },

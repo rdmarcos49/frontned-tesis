@@ -7,7 +7,7 @@ const sendNewPatientService = async ({ dni, images }) => {
   const jwt = cookies.get('sessionCookie')
   const { token } = jwt
 
-  const result = await fetch(URL, {
+  await fetch(URL, {
     method: 'POST',
     headers: {
       'Content-type': 'application/json',
@@ -15,8 +15,6 @@ const sendNewPatientService = async ({ dni, images }) => {
     },
     body: JSON.stringify({ dni, images }),
   }).then(response => response.json())
-  
-  console.log(result)
  }
 
 export default sendNewPatientService
