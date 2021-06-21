@@ -1,7 +1,9 @@
 .UserOptions {
     color: white;
     display: flex;
-    justify-content: space-between;
-    margin: 50px auto 100px auto;
-    max-width: 1024px;
+    flex-grow: 1;
+    justify-content: space-evenly;
+    margin: 100px auto;
+    max-width: 1200px;
+    width: 100%;
 }

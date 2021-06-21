@@ -22,7 +22,7 @@ function Select({
           <option key={index} value={option.value}>{option.text}</option>  
         )}
       </select>
-      {!!error && <span className='Select__error'>{error}</span>}
+      <span className={`Select__error ${error ? 'Select__error--enabled' : 'Select__error--disabled'}`}>{error || '#'}</span>
     </div>
   )
 }

@@ -49,7 +49,6 @@ function NewPatient () {
   }
 
   const handleChangeImages = newImages => {
-    console.log(images)
     setImages([
       ...images,
       ...newImages,

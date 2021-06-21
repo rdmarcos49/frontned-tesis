@@ -41,7 +41,7 @@ function Home() {
         <img
           alt='logo'
           className='Home__logo-wrapper__logo'
-          src='assets/logo-white-yellow.png'
+          src='assets/logo-blue-yellow.png'
           title='logo'
         />
       </div>
