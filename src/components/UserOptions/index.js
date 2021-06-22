@@ -5,7 +5,7 @@ import styles from './UserOptions.module.scss'
 
 function UserOptions ({ options }) {
   return (
-    <div className={styles.UserOptions}>
+    <section className={styles.UserOptions}>
       {options.map(option => 
         <Option
           key={option.text}
@@ -14,7 +14,7 @@ function UserOptions ({ options }) {
           text={option.text}
         />
       )}
-    </div>
+    </section>
   )
 }
 

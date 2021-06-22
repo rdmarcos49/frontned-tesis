@@ -9,7 +9,7 @@ import styles from './Header.module.scss'
 
 export function IsLoggedOptions({ avatar, name, lastname, handleLogOut }) {
   return (
-    <div className={styles.IsLoggedOptions}>
+    <nav className={styles.IsLoggedOptions}>
       <div>
         <Link to={URL.HOME}>
           Home
@@ -26,6 +26,6 @@ export function IsLoggedOptions({ avatar, name, lastname, handleLogOut }) {
           lastname={lastname}
         />
       </div>
-    </div>
+    </nav>
   )
 }

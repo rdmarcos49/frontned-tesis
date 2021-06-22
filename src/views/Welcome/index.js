@@ -14,6 +14,10 @@ function Welcome() {
   const [location] = useLocation()
   const { isLoading, isLogged } = useUser()
 
+  if (isLoading) {
+    return <p>Cargando...</p>
+  }
+
   if (!isLoading && isLogged) {
     return <AlreadyLogged path={publicUrl[location]} />
   }

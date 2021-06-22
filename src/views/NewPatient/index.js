@@ -36,7 +36,7 @@ function NewPatient () {
 
   const handleNewPatient = () => {
     const randomDni = Math.floor(Math.random() * 100 + 100000)
-    sendNewPatientService({ dni: randomDni, images })
+    sendNewPatientService({ dni: randomDni, images: [...images.map(image => image.image)] })
   }
 
   const moveToStepTwo = (e) => {

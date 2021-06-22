@@ -33,6 +33,9 @@ function LogIn() {
   const [avatar, setAvatar] = useState(null)
   const { isLoading, isLogged } = useUser()
 
+  if (isLoading) {
+    return <p>Cargando...</p>
+  }
 
   if (!isLoading && isLogged) {
     return <AlreadyLogged path={publicUrl[location]} />

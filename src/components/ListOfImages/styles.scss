@@ -12,6 +12,8 @@
 
     &__wrapper {
         align-items: center;
+        background-color: #fff;
+        border: 1px solid black;
         display: flex;
         justify-content: center;
         margin: 0 5px;
@@ -21,8 +23,8 @@
             cursor: pointer;
             height: 110px;
             margin: 5px 0;
+            max-width: 100%;
             transition: 0.2s;
-            width: 100%;
 
             &:hover {
                 filter: brightness(0.8);
