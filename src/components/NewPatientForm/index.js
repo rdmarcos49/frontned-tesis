@@ -9,7 +9,7 @@ import Button from 'components/Button'
 // @hooks
 import useForm from './hook'
 
-function NewPatientForm ({onHandleSubmit}) {
+function NewPatientForm ({ handleSubmit }) {
   const [, setLocation] = useLocation()
 
   const {
@@ -36,7 +36,7 @@ function NewPatientForm ({onHandleSubmit}) {
   ]
 
   return (
-    <Form onHandleSubmit={onHandleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <Input
         autoFocus
         error={errors.dni}

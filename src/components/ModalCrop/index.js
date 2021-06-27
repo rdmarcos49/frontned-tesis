@@ -50,7 +50,7 @@ function ModalCrop({ cancelCrop, handleCroppedAvatar, isOpen = false, src }) {
       <ReactCrop ref={imageRef} onChange={handleChange} src={src} crop={crop} />
       <section>
         <button onClick={cancelCrop}>Cancelar</button>
-        <button onClick={cropImage}>Seleccionar</button>
+        <button onClick={cropImage} type='button'>Seleccionar</button>
       </section>
     </div>
   )
