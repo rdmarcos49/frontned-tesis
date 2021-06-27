@@ -3,9 +3,9 @@ import React from 'react'
 // @styles
 import './styles.scss'
 
-function Form({ children, onHandleSubmit }) {
+function Form({ children, ...props }) {
   return (
-    <form className='Form' onSubmit={onHandleSubmit}>
+    <form className='Form' {...props}>
       <div className='Form__logo-wrapper'>
         <img
           alt='logo'

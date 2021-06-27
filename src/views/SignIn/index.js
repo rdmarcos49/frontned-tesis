@@ -62,7 +62,7 @@ function LogIn() {
 
   return (
     <div className='Signin'>
-      <Form onHandleSubmit={handleOnSubmit}>
+      <Form onSubmit={handleOnSubmit}>
         <div className='Signin__form-section'>
           <div className='Signin__form-section__inputs'>
             <Input
@@ -155,7 +155,7 @@ function LogIn() {
         />
 
         <ButtonsWrapper>
-          <Button onClick={clearAllFields}> Borrar Datos </Button>
+          <Button onClick={clearAllFields} type='button'> Borrar Datos </Button>
           <Button> Solicitar registro </Button>
         </ButtonsWrapper>
       </Form>

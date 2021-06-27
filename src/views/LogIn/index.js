@@ -55,7 +55,7 @@ function LogIn() {
 
   return (
     <div className='Login'>
-      <Form onHandleSubmit={handleOnSubmit}>
+      <Form onSubmit={handleOnSubmit}>
         <Input
           autoFocus
           error={undefined}
@@ -80,7 +80,7 @@ function LogIn() {
         <Link href='/password-recovery' className="Login__forgot-password">¿Ha olvidado su contraseña?</Link>
 
         <ButtonsWrapper>
-          <Button onClick={redirectToSignIn}> Solicitar Registro </Button>
+          <Button type='button' onClick={redirectToSignIn}> Solicitar Registro </Button>
           <Button> Log in </Button>
         </ButtonsWrapper>
       </Form>
