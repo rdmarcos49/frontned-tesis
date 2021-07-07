@@ -1,7 +1,6 @@
 // @packages
 import { useContext, useEffect, useState } from 'react'
 import Cookies from 'universal-cookie'
-import { useLocation } from "wouter";
 // @contexts
 import SessionContext from 'context/SessionContext'
 // @services
@@ -10,13 +9,11 @@ import getUserService from 'services/getUserService'
 export default function useUser() {
   const { user, setUser } = useContext(SessionContext)
   const [isLoading, setIsLoading] = useState(true)
-  const [, setLocation] = useLocation()
   
   useEffect(() => {
     async function fetchAndSetUser(jwt) {
       const userFetched = await getUserService(jwt)
       setUser(userFetched.user)
-      setIsLoading(false)
     }
     if (!user) {
       const cookies = new Cookies()
@@ -24,13 +21,12 @@ export default function useUser() {
       
       if (jwt) {
         fetchAndSetUser(jwt)
-      } else {
-        setIsLoading(false)
+          .then(() => console.log('Logged!'))
+          .catch(e => console.warn(e))
       }
-    } else {
-      setIsLoading(false)
     }
-  }, [user, setUser, setLocation])
+    setIsLoading(false)
+  }, [user, setUser])
 
   const logOut = () => {
     setUser(null)

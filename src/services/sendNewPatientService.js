@@ -2,7 +2,7 @@
 import Cookies from 'universal-cookie'
 
 const sendNewPatientService = async ({ dni, images }) => {
-  const URL = 'http://localhost:3030/patients'
+  const URL = 'http://localhost:3030/patient'
   const cookies = new Cookies()
   const jwt = cookies.get('sessionCookie')
   const { token } = jwt

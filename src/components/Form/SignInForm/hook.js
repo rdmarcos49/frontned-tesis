@@ -25,6 +25,7 @@ export function useForm () {
   })
 
   const clearAllFields = () => {
+    console.log("CLEAREDDDDDDDDDDDD")
     setFormData({
       name: '',
       lastname: '',

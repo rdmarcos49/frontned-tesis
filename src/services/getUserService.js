@@ -1,6 +1,6 @@
 const getUserService = async (jwt) => {
   const { id, token } = jwt
-  const URL = `http://localhost:3030/users/${id}`
+  const URL = `http://localhost:3030/user/${id}`
   
   const info = await fetch(URL, {
     method: 'POST',

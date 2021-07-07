@@ -5,7 +5,7 @@ import { useLocation } from 'wouter'
 import Button from 'components/Button'
 import ListOfImages from 'components/ListOfImages/index'
 import SelectedImage from 'components/SelectedImage/index'
-import NewPatientForm from 'components/NewPatientForm'
+import NewPatientForm from 'components/Form/NewPatientForm'
 import InputFileNewPatient from 'components/InputFile/InputFileNewPatient'
 // @hooks
 import useUser from 'hooks/useUser'
