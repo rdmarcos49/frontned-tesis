@@ -128,7 +128,7 @@ function NewPatientForm ({ handleSubmit }) {
         value={data.diabetesType}
       />
       <ButtonsWrapper>
-        <Button onClick={handlePreviousPage}> Volver </Button>
+        <Button onClick={handlePreviousPage} type='button'> Volver </Button>
         <Button> Siguiente </Button>
       </ButtonsWrapper>
     </Form>
