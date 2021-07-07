@@ -1,17 +1,16 @@
 // @hooks
 import useUser from 'hooks/useUser'
 // @constants
-import { ROLES } from 'constants/roles'
+// import { ROLES } from 'constants/roles'
 // @styles
 import styles from './Header.module.scss'
 import { IsLoggedOptions } from './IsLoggedOptions'
 import { IsNotLoggedOptions } from './IsNotLoggedOptions'
 
 function Header() {
-  
   const { isLogged, user, logOut } = useUser()
   
-
+  /*
   const getUserRole = (roleValue) => {
     switch (roleValue) {
       case ROLES.OPHTHALMOLOGIST:
@@ -26,6 +25,7 @@ function Header() {
         return 'Default'
     }
   }
+  */
 
   return (
     <header className={styles.Header}>

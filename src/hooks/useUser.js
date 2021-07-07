@@ -9,23 +9,25 @@ import getUserService from 'services/getUserService'
 export default function useUser() {
   const { user, setUser } = useContext(SessionContext)
   const [isLoading, setIsLoading] = useState(true)
-  
+
   useEffect(() => {
-    async function fetchAndSetUser(jwt) {
-      const userFetched = await getUserService(jwt)
-      setUser(userFetched.user)
-    }
     if (!user) {
       const cookies = new Cookies()
       const jwt = cookies.get('sessionCookie')
       
       if (jwt) {
-        fetchAndSetUser(jwt)
-          .then(() => console.log('Logged!'))
+        getUserService(jwt)
+          .then(response => {
+            setUser(response.user)
+            setIsLoading(false)
+          })
           .catch(e => console.warn(e))
+      } else {
+        setIsLoading(false)
       }
+    } else {
+      setIsLoading(false)
     }
-    setIsLoading(false)
   }, [user, setUser])
 
   const logOut = () => {
@@ -36,7 +38,7 @@ export default function useUser() {
 
   return {
     logOut,
-    isLogged: (Boolean(user)),
+    isLogged: user,
     isLoading,
     user,
   }
