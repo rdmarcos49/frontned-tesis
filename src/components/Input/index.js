@@ -14,10 +14,9 @@ function Input({
       <label className='Input__label'>{label}</label>
       <input
         autoComplete='off'
-        className={`Input__input ${!!error ? 'Input__input--error-border' : 'Input__input--normal-border'}`}
+        className='Input__input Input__input--error-border'
         {...props}
       />
-      <span className={`Input__error ${error ? 'Input__error--enabled' : 'Input__error--disabled'}`}>{error || '#'}</span>
     </div>
   )
 }

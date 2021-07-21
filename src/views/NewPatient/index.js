@@ -73,7 +73,7 @@ function NewPatient () {
   return (
     <div className='NewPatient'>
       { step === STEP_ONE ?
-        <NewPatientForm handleSubmit={moveToStepTwo}/>
+        <NewPatientForm handleOnSubmit={moveToStepTwo}/>
       :
         <div className='NewPatient__images'>
           <InputFileNewPatient callback={handleChangeImages} accept='.png, .jpg, .jpeg' multiple />

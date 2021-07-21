@@ -7,7 +7,7 @@ const Button = ({ children, size, tabIndex, ...props }) => {
   return (
     <button
       className={`Button ${size ? `Button--${size}` : 'Button--medium'}`}
-      tabIndex={!!tabIndex ? tabIndex : 1}
+      tabIndex={tabIndex && tabIndex}
       {...props}
     >
       {children}

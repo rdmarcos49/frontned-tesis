@@ -35,7 +35,6 @@ const App = () => {
           <Route path={URL.REST} component={ ErrorPage } />
         </Switch>
       </MainLayout>
-      <Footer />
     </SessionContextProvider>
   )
 }

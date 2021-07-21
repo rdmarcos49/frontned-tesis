@@ -1,7 +1,7 @@
 // @utils
 import setSessionCookie from 'utils/sessionCookie'
 
-const logInService = async (dataFromUserForm) => {
+const logInService = async (dataForLogIn) => {
   const URL = 'http://localhost:3030/login'
   
   const info = await fetch(URL, {
@@ -9,7 +9,7 @@ const logInService = async (dataFromUserForm) => {
     headers: {
       'Content-type': 'application/json',
     },
-    body: JSON.stringify(dataFromUserForm),
+    body: JSON.stringify(dataForLogIn),
   }).then(res => res.json())
 
   if (!!info.token) {

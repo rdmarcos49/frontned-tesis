@@ -15,22 +15,19 @@ import { URL } from 'constants/urls'
 
 export function LogInForm() {
   const [, setLocation] = useLocation();
-  const [formData, setFormData] = useState({
-    username: '',
-    password: '',
-  })
+  const [formData, setFormData] = useState({})
 
   const handleOnSubmit = async (e) => {
     e.preventDefault()
-    const result = await logInService(formData)
-    if (result) {
-      setLocation(URL.HOME)
-    }
+
+    await logInService({
+      ...formData,
+    })
   }
 
-  const handleChangeField = (e) => {
-    const field = e.target.name
-    const value = e.target.value
+  const handleOnChange = (e) => {
+    const { name: field, value } = e.target
+
     setFormData({
       ...formData,
       [field]: value,
@@ -38,29 +35,24 @@ export function LogInForm() {
   }
 
   const redirectToSignIn = () => {
-    setLocation('/signin')
+    setLocation(URL.SIGN_IN)
   }
+
   return (
-    <Form onSubmit={handleOnSubmit}>
+    <Form onChange={handleOnChange} onSubmit={handleOnSubmit}>
       <Input
         autoFocus
-        error={undefined}
         label='Usuario'
         name='username'
-        onChange={handleChangeField}
         placeholder='juanperez123'
         type='text'
-        value={formData.username}
       />
 
       <Input
-        error={undefined}
         label='Contraseña'
         name='password'
-        onChange={handleChangeField}
         placeholder='••••••••••••••'
         type='password'
-        value={formData.password}
       />
 
       <Link href='/password-recovery' className="Login__forgot-password">¿Ha olvidado su contraseña?</Link>
