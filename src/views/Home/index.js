@@ -1,5 +1,4 @@
 // @packages
-import React from 'react'
 import { useLocation } from 'wouter'
 // @components
 import { AdminOptions } from 'components/UserOptions/AdminOptions'
@@ -21,19 +20,14 @@ const MenuRoles = {
 }
 
 function Home() {
-  const { isLoading, isLogged, user } = useUser()
+  const { isLoading, isLogged, userData } = useUser()
   const [, setLocation] = useLocation()
 
-  if (isLoading) {
-    return <p>Cargando...</p>
-  }
+  if (isLoading) return <p>Cargando...</p>
 
-  if (!isLogged) {
-    setLocation(URL.ERROR_PAGE)
-    return null
-  }
+  if (!isLogged) setLocation(URL.ERROR_PAGE)
 
-  const { role } = user
+  const { role } = userData
 
   return (
     <div className='Home'>

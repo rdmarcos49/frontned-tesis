@@ -5,7 +5,6 @@ import './styles.scss'
 
 function Select({
   disabledText,
-  error,
   label,
   options,
   ...props
@@ -14,7 +13,7 @@ function Select({
     <div className='Select'>
       <label className='Select__label'>{label}</label>
       <select
-        className={`Select__select ${!!error ? 'Select__select--error-border' : 'Select__select--normal-border'}`}
+        className={`Select__select Select__select--normal-border`}
         {...props}
       >
         <option disabled defaultValue value=''> {`-- ${disabledText} --`} </option>
@@ -22,7 +21,6 @@ function Select({
           <option key={index} value={option.value}>{option.text}</option>  
         )}
       </select>
-      <span className={`Select__error ${error ? 'Select__error--enabled' : 'Select__error--disabled'}`}>{error || '#'}</span>
     </div>
   )
 }

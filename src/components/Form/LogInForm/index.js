@@ -6,23 +6,21 @@ import Form from 'components/Form'
 import Input from 'components/Input'
 import Button from 'components/Button'
 import ButtonsWrapper from 'components/ButtonsWrapper'
-// @services
-import logInService from 'services/logInService'
+// @hooks
+import useUser from 'hooks/useUser'
 // @constants
 import { URL } from 'constants/urls'
 // @styles
 // import './styles.scss'
 
 export function LogInForm() {
+  const { login } = useUser()
   const [, setLocation] = useLocation();
   const [formData, setFormData] = useState({})
 
   const handleOnSubmit = async (e) => {
     e.preventDefault()
-
-    await logInService({
-      ...formData,
-    })
+    login(formData)
   }
 
   const handleOnChange = (e) => {

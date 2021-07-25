@@ -1,27 +1,16 @@
-// @utils
-import setSessionCookie from 'utils/sessionCookie'
-
-const logInService = async (dataForLogIn) => {
+const loginService = async ({ username, password }) => {
   const URL = 'http://localhost:3030/login'
-  
-  const info = await fetch(URL, {
+  const response = await fetch(URL, {
     method: 'POST',
     headers: {
       'Content-type': 'application/json',
     },
-    body: JSON.stringify(dataForLogIn),
-  }).then(res => res.json())
+    body: JSON.stringify({ username, password }),
+  })
+    .then(res => res.json())
+    .catch(err => console.error(err))
 
-  if (!!info.token) {
-    const { expireTime, token } = info
-    const { id } = info.user
-    setSessionCookie(id, token, expireTime)
-    alert('Autentificacion correcta!')
-    return true
-  } else {
-    alert('Usuario y/o contraseña incorrecta')
-    return false
-  }
+  return response
 } 
 
-export default logInService
+export default loginService
