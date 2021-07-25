@@ -12,7 +12,7 @@ import ErrorPage from 'views/Error'
 // @components
 import Header from 'components/Header'
 import MainLayout from 'components/MainLayout'
-import Footer from 'components/Footer'
+// import Footer from 'components/Footer'
 // @contexts
 import { SessionContextProvider } from 'context/SessionContext'
 // @constants

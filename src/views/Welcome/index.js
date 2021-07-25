@@ -1,26 +1,26 @@
 // @packages
-import React from 'react'
+import { useEffect } from 'react'
 import { Link, useLocation } from 'wouter'
-// @components
-import AlreadyLogged from 'components/AlreadyLogged'
 // @hooks
 import useUser from 'hooks/useUser'
 // @constants
-import { publicUrl } from 'constants/urls'
+import { URL } from 'constants/urls'
 // @styles
 import './styles.scss'
 
 function Welcome() {
-  const [location] = useLocation()
+  const [, setLocation] = useLocation()
   const { isLoading, isLogged } = useUser()
 
-  if (isLoading) {
-    return <p>Cargando...</p>
-  }
+  useEffect(() => {
+    if (isLoading) return <p>Cargando...</p>
+  }, [isLoading])
 
-  if (!isLoading && isLogged) {
-    return <AlreadyLogged path={publicUrl[location]} />
-  }
+  useEffect(() => {
+    if (isLogged) {
+      setLocation(URL.HOME)
+    }
+  }, [isLogged, setLocation])
 
   return (
     <div className='Welcome'>

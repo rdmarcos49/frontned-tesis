@@ -1,5 +1,5 @@
 // @packages
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useLocation } from 'wouter'
 // @componets
 import Button from 'components/Button'
@@ -25,18 +25,14 @@ function NewPatient () {
   const { isLoading, isLogged } = useUser()
   const [, setLocation] = useLocation()
 
-  if (isLoading) {
-    return <p>Cargando...</p>
-  }
+  if (isLoading) return <p>Cargando...</p>
 
-  if (!isLogged) {
-    setLocation(URL.ERROR_PAGE)
-    return null
-  }
+  if (!isLogged) setLocation(URL.ERROR_PAGE)
 
   const handleNewPatient = () => {
     const randomDni = Math.floor(Math.random() * 100 + 100000)
-    sendNewPatientService({ dni: randomDni, images: [...images.map(image => image.image)] })
+    const jwt = window.sessionStorage.getItem('jwt')
+    sendNewPatientService({ dni: randomDni, images: [...images.map(image => image.image)], jwt })
   }
 
   const moveToStepTwo = (e) => {

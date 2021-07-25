@@ -1,17 +1,11 @@
-// @packages
-import Cookies from 'universal-cookie'
-
-const sendNewPatientService = async ({ dni, images }) => {
+const sendNewPatientService = async ({ dni, images, jwt }) => {
   const URL = 'http://localhost:3030/patient'
-  const cookies = new Cookies()
-  const jwt = cookies.get('sessionCookie')
-  const { token } = jwt
 
   await fetch(URL, {
     method: 'POST',
     headers: {
       'Content-type': 'application/json',
-      'access-token': token,
+      'access-token': jwt,
     },
     body: JSON.stringify({ dni, images }),
   }).then(response => response.json())

@@ -1,5 +1,3 @@
-// @packages
-import React from 'react'
 // @styles
 import './styles.scss'
 

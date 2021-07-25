@@ -4,7 +4,7 @@
     color: #eee;
     display: flex;
     flex-direction: column;
-    margin: 8px 0;
+    margin: 5px 0;
     width: 100%;
 
     &__label {
@@ -19,24 +19,6 @@
 
         &--normal-border {
             border: solid 2px #000;
-        }
-        &--error-border {
-            border: solid 2px red;
-        }
-    }
-
-    &__error {
-        color: red;
-        font-size: 12px;
-        font-style: italic;
-        padding-top: 3px;
-
-        
-        &--enabled {
-            visibility: normal;
-        }
-        &--disabled {
-            visibility: hidden;
         }
     }
 }

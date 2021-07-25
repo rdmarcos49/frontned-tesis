@@ -3,7 +3,7 @@ import Option from 'components/Option'
 // @styles
 import styles from './UserOptions.module.scss'
 
-function UserOptions ({ options }) {
+function UserOptions ({ options = [] }) {
   return (
     <section className={styles.UserOptions}>
       {options.map(option => 

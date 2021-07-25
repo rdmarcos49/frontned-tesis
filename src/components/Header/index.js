@@ -8,8 +8,7 @@ import { IsLoggedOptions } from './IsLoggedOptions'
 import { IsNotLoggedOptions } from './IsNotLoggedOptions'
 
 function Header() {
-  const { isLogged, user, logOut } = useUser()
-  
+  const { isLoading, isLogged, userData, logout } = useUser()
   /*
   const getUserRole = (roleValue) => {
     switch (roleValue) {
@@ -29,16 +28,16 @@ function Header() {
 
   return (
     <header className={styles.Header}>
-      {isLogged
+      {isLoading || !isLogged
         ?
-          <IsLoggedOptions
-            avatar={user.avatar}
-            name={user.name}
-            lastname={user.lastname}
-            handleLogOut={logOut}
-          />
+        <IsNotLoggedOptions />
         :
-          <IsNotLoggedOptions />
+        <IsLoggedOptions
+          avatar={userData.avatar}
+          name={userData.name}
+          lastname={userData.lastname}
+          handleLogOut={logout}
+        />
       }
     </header>
   )
