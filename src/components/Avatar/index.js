@@ -8,7 +8,9 @@ function Avatar({ avatar, name, lastname }) {
         ?
           <img className={styles.AvatarImage} alt='avatar' src={avatar}/>
         :
-          <p className={styles.AvatarLetters}>{name.charAt(0)}{lastname.charAt(0)}</p>
+          <p className={styles.AvatarLetters}>
+            {name.charAt(0).toUpperCase()}{lastname.charAt(0).toUpperCase()}
+          </p>
       }
     </>
     
