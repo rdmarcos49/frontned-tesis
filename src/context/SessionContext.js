@@ -3,7 +3,7 @@ import { useState, useEffect, createContext } from 'react'
 // @services
 import getUserService from 'services/getUserService'
 // @constants
-import { initialUserData, userHasNotFetchedYet } from 'constants/initialUserData'
+import { initialUserData, userHasNotFetchedYet, theIdIsNotNull } from 'constants/initialUserData'
 
 const Context = createContext({})
 
@@ -14,9 +14,8 @@ export function SessionContextProvider ({ children }) {
   )
 
   useEffect(() => {
-    if (!jwt) return setJwt(null)
-    if (userHasNotFetchedYet(userData)) {
-      const id = window.sessionStorage.getItem('id')
+    const id = window.sessionStorage.getItem('id')
+    if (theIdIsNotNull(id) && userHasNotFetchedYet(userData)) {
       getUserService({ id, jwt })
         .then(response => setUserData({ ...response.user }))
         .catch(err => console.error(err))
