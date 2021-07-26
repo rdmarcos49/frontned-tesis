@@ -1,12 +1,12 @@
 // @packages
 import { useState } from 'react'
-import { useLocation } from 'wouter'
 // @componets
 import Button from 'components/Button'
 import ListOfImages from 'components/ListOfImages/index'
 import SelectedImage from 'components/SelectedImage/index'
 import NewPatientForm from 'components/Form/NewPatientForm'
 import InputFileNewPatient from 'components/InputFile/InputFileNewPatient'
+import Error from 'views/Error'
 // @hooks
 import useUser from 'hooks/useUser'
 // @services
@@ -23,11 +23,8 @@ function NewPatient () {
   const [selectedImage, setSelectedImage] = useState(null)
 
   const { isLoading, isLogged } = useUser()
-  const [, setLocation] = useLocation()
 
   if (isLoading) return <p>Cargando...</p>
-
-  if (!isLogged) setLocation(URL.ERROR_PAGE)
 
   const handleNewPatient = () => {
     const randomDni = Math.floor(Math.random() * 100 + 100000)
@@ -67,34 +64,38 @@ function NewPatient () {
   }
 
   return (
-    <div className='NewPatient'>
-      { step === STEP_ONE ?
-        <NewPatientForm handleOnSubmit={moveToStepTwo}/>
-      :
-        <div className='NewPatient__images'>
-          <InputFileNewPatient callback={handleChangeImages} accept='.png, .jpg, .jpeg' multiple />
+    isLogged
+    ?
+      <div className='NewPatient'>
+        { step === STEP_ONE ?
+          <NewPatientForm handleOnSubmit={moveToStepTwo}/>
+        :
+          <div className='NewPatient__images'>
+            <InputFileNewPatient callback={handleChangeImages} accept='.png, .jpg, .jpeg' multiple />
 
-          <div className='total-wrapper'>
-            <SelectedImage
-              selectedImage={selectedImage}
-            />
-            <ListOfImages
-              images={images}
-              onRemoveImage={handleRemoveImage}
-              onSelectImage={handleSelectImage}
-            />
+            <div className='total-wrapper'>
+              <SelectedImage
+                selectedImage={selectedImage}
+              />
+              <ListOfImages
+                images={images}
+                onRemoveImage={handleRemoveImage}
+                onSelectImage={handleSelectImage}
+              />
+            </div>
+            <div className='listOfImagesFooter'>
+              <Button onClick={returnToStepOne}>
+                Volver
+              </Button>
+              <Button onClick={handleNewPatient}>
+                Finalizar
+              </Button>
+            </div>
           </div>
-          <div className='listOfImagesFooter'>
-            <Button onClick={returnToStepOne}>
-              Volver
-            </Button>
-            <Button onClick={handleNewPatient}>
-              Finalizar
-            </Button>
-          </div>
-        </div>
-      }
-    </div>
+        }
+      </div>
+    :
+      <Error />
   )
 }
 

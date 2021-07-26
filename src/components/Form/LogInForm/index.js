@@ -6,15 +6,12 @@ import Form from 'components/Form'
 import Input from 'components/Input'
 import Button from 'components/Button'
 import ButtonsWrapper from 'components/ButtonsWrapper'
-// @hooks
-import useUser from 'hooks/useUser'
 // @constants
 import { URL } from 'constants/urls'
 // @styles
 // import './styles.scss'
 
-export function LogInForm() {
-  const { login } = useUser()
+export function LogInForm({ login }) {
   const [, setLocation] = useLocation();
   const [formData, setFormData] = useState({})
 

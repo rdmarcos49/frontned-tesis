@@ -13,7 +13,7 @@ import './styles.scss'
 function LogIn() {
   const [, setLocation] = useLocation();
 
-  const { isLoading, isLogged } = useUser()
+  const { isLoading, isLogged, login } = useUser()
 
   useEffect(() => {
     if (isLoading) return <p>Cargando...</p>
@@ -27,7 +27,7 @@ function LogIn() {
 
   return (
     <div className='Login'>
-      <LogInForm />
+      <LogInForm login={login}/>
     </div>
   )
 }

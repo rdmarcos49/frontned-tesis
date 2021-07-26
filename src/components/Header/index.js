@@ -8,7 +8,7 @@ import { IsLoggedOptions } from './IsLoggedOptions'
 import { IsNotLoggedOptions } from './IsNotLoggedOptions'
 
 function Header() {
-  const { isLoading, isLogged, userData, logout } = useUser()
+  const { isLogged, userData, logout } = useUser()
   /*
   const getUserRole = (roleValue) => {
     switch (roleValue) {
@@ -28,7 +28,7 @@ function Header() {
 
   return (
     <header className={styles.Header}>
-      {isLoading || !isLogged
+      {!isLogged
         ?
         <IsNotLoggedOptions />
         :
