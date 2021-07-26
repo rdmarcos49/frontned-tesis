@@ -1,9 +1,9 @@
 // @packages
 import { useState, useEffect, createContext } from 'react'
-// @services
-import getUserService from 'services/getUserService'
+// @utils
+import { parseJwt } from 'utils/parseJwt'
 // @constants
-import { initialUserData, userHasNotFetchedYet, theIdIsNotNull } from 'constants/initialUserData'
+import { initialUserData } from 'constants/initialUserData'
 
 const Context = createContext({})
 
@@ -13,19 +13,18 @@ export function SessionContextProvider ({ children }) {
     () => window.sessionStorage.getItem('jwt')
   )
 
+  if (jwt) console.log(parseJwt(jwt))
+
   useEffect(() => {
-    const id = window.sessionStorage.getItem('id')
-    if (theIdIsNotNull(id) && userHasNotFetchedYet(userData)) {
-      getUserService({ id, jwt })
-        .then(response => setUserData({ ...response.user }))
-        .catch(err => console.error(err))
+    if (jwt) {
+      const userInformation = parseJwt(jwt)
+      setUserData({ ...userInformation })
     }
-  }, [jwt, userData])
+  }, [jwt])
  
   return <Context.Provider value={{
     userData,
     jwt,
-    setUserData,
     setJwt,
   }}>
     {children}

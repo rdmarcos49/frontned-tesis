@@ -9,7 +9,7 @@ import loginService from 'services/loginService'
 import { URL } from 'constants/urls'
 
 export default function useUser() {
-  const { userData, setUserData, jwt, setJwt } = useContext(SessionContext)
+  const { userData, jwt, setJwt } = useContext(SessionContext)
   const [status, setStatus] = useState({ loading: false, error: false })
   const [, setLocation] = useLocation()
 
@@ -17,27 +17,22 @@ export default function useUser() {
     setStatus({ loading: true, error: false })
     loginService({ username, password })
       .then(response => {
-        window.sessionStorage.setItem('id', response.user.id)
         window.sessionStorage.setItem('jwt', response.token)
-        setUserData({ ...response.user })
         setJwt(response.token)
         setStatus({ loading: false, error: false })
         setLocation(URL.HOME)
       })
       .catch(err => {
         window.sessionStorage.removeItem('jwt')
-        window.sessionStorage.removeItem('id')
         setStatus({ loading: false, error: true })
         console.error(err)
       })
-  }, [setJwt, setUserData, setLocation])
+  }, [setJwt, setLocation])
 
   const logout = useCallback(() => {
     window.sessionStorage.removeItem('jwt')
-    window.sessionStorage.removeItem('id')
-    setUserData(null)
     setJwt(null)
-  }, [setJwt, setUserData])
+  }, [setJwt])
 
   return {
     login,
