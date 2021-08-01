@@ -6,7 +6,9 @@ const signInService = async (dataForSignIn) => {
       'Content-type': 'application/json',
     },
     body: JSON.stringify(dataForSignIn),
-  }).then(response => response.json())
+  })
+    .then(res => res.json())
+    .catch(err => console.error(err))
  }
 
 export default signInService

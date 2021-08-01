@@ -13,8 +13,6 @@ export function SessionContextProvider ({ children }) {
     () => window.sessionStorage.getItem('jwt')
   )
 
-  if (jwt) console.log(parseJwt(jwt))
-
   useEffect(() => {
     if (jwt) {
       const userInformation = parseJwt(jwt)

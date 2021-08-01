@@ -5,7 +5,7 @@ const getUserService = async ({ id, jwt }) => {
     method: 'POST',
     headers: {
       'Content-type': 'application/json',
-      'access-token': jwt,
+      'Authorization': jwt,
     },
     body: JSON.stringify({ id }),
   })
