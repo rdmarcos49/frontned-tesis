@@ -5,7 +5,7 @@ const sendNewPatientService = async ({ dni, images, jwt }) => {
     method: 'POST',
     headers: {
       'Content-type': 'application/json',
-      'Authorization': jwt,
+      'Authorization': `Bearer ${jwt}`,
     },
     body: JSON.stringify({ dni, images }),
   })
