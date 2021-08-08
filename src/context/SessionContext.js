@@ -10,13 +10,17 @@ const Context = createContext({})
 export function SessionContextProvider ({ children }) {
   const [userData, setUserData] = useState({ ...initialUserData })
   const [jwt, setJwt] = useState(
-    () => window.sessionStorage.getItem('jwt')
+    parseJwt(window.sessionStorage.getItem('jwt'))
+      ? () => window.sessionStorage.getItem('jwt')
+      : null
   )
 
   useEffect(() => {
     if (jwt) {
       const userInformation = parseJwt(jwt)
-      setUserData({ ...userInformation })
+      if (userInformation) {
+        setUserData({ ...userInformation })
+      }
     }
   }, [jwt])
  

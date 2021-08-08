@@ -17,8 +17,8 @@ export default function useUser() {
     setStatus({ loading: true, error: false })
     loginService({ username, password })
       .then(response => {
-        window.sessionStorage.setItem('jwt', response.token)
-        setJwt(response.token)
+        window.sessionStorage.setItem('jwt', response.jwt)
+        setJwt(response.jwt)
         setStatus({ loading: false, error: false })
         setLocation(URL.HOME)
       })

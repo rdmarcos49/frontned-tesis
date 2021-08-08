@@ -1,5 +1,5 @@
 const sendNewPatientService = async ({ dni, images, jwt }) => {
-  const URL = 'http://localhost:3030/patient'
+  const URL = 'http://localhost:3030/api/patients'
 
   const response = await fetch(URL, {
     method: 'POST',
@@ -9,7 +9,7 @@ const sendNewPatientService = async ({ dni, images, jwt }) => {
     },
     body: JSON.stringify({ dni, images }),
   })
-    .then(response => response.json())
+    .then(response => response.ok)
     .catch(err => console.error(err))
   return response
  }

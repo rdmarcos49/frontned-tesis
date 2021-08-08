@@ -1,5 +1,5 @@
 const loginService = async ({ username, password }) => {
-  const URL = 'http://localhost:3030/login'
+  const URL = 'http://localhost:3030/api/login'
   const response = await fetch(URL, {
     method: 'POST',
     headers: {
