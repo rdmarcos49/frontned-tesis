@@ -10,11 +10,11 @@ import Button from 'components/Button'
 // @constants
 import { URL } from 'constants/urls'
 
-function NewPatientForm ({ handleOnSubmit }) {
+function NewPatientForm ({ handleOnSubmit, handlePrincipalForm }) { // TODO: this handlePrincipalForm method would be refactored, it's a code smell
   const [formData, setFormData] = useState({})
   const [, setLocation] = useLocation()
 
-  const sexOptions = [
+  const genderOptions = [
     { value: 'male', text: 'Masculino' },
     { value: 'female', text: 'Femenino' },
     { value: 'nsnc', text: 'Prefiero no responder' },
@@ -36,6 +36,10 @@ function NewPatientForm ({ handleOnSubmit }) {
       ...formData,
       [field]: value,
     })
+    handlePrincipalForm({
+      ...formData,
+      [field]: value,
+    })
   }
 
   return (
@@ -52,8 +56,7 @@ function NewPatientForm ({ handleOnSubmit }) {
       <Input
         halfWidth
         label='Fecha de consulta'
-        name='consultDate'
-        placeholder=''
+        name='checkDate'
         type='date'
       />
 
@@ -74,26 +77,25 @@ function NewPatientForm ({ handleOnSubmit }) {
       />
 
       <Select
+        defaultValue=''
         disabledText='Seleccione una opcion'
         label='Sexo (asignado al nacer)'
-        name='sex'
-        options={sexOptions}
-        placeholder=''
+        name='gender'
+        options={genderOptions}
       />
 
       <Input
         label='Fecha de nacimiento'
-        name='birthday'
-        placeholder=''
+        name='birthDate'
         type='date'
       />
 
       <Select
+        defaultValue=''
         disabledText='Seleccione un tipo'
         label='Tipo de diabetes'
         name='diabetesType'
         options={diabetesOptions}
-        placeholder=''
       />
       <ButtonsWrapper>
         <Button onClick={handlePreviousPage} type='button'> Volver </Button>

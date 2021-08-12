@@ -10,7 +10,7 @@ import Error from 'views/Error'
 // @hooks
 import useUser from 'hooks/useUser'
 // @services
-import sendNewPatientService from 'services/sendNewPatientService'
+import sendNewPatientService from 'services/newCheckService'
 // @constants
 import { STEP_ONE, STEP_TWO } from 'constants/steps'
 // @styles
@@ -21,15 +21,15 @@ function NewPatient () {
   const [step, setStep] = useState(STEP_ONE)
   const [images, setImages] = useState([])
   const [selectedImage, setSelectedImage] = useState(null)
+  const [formData, setFormData] = useState({})
 
   const { isLoading, isLogged } = useUser()
 
   if (isLoading) return <p>Cargando...</p>
 
   const handleNewPatient = () => {
-    const randomDni = Math.floor(Math.random() * 100 + 100000)
     const jwt = window.sessionStorage.getItem('jwt')
-    sendNewPatientService({ dni: randomDni, images: [...images.map(image => image.image)], jwt })
+    sendNewPatientService({ ...formData, images: [...images.map(image => image.image)] }, jwt)
   }
 
   const moveToStepTwo = (e) => {
@@ -68,7 +68,7 @@ function NewPatient () {
     ?
       <div className='NewPatient'>
         { step === STEP_ONE ?
-          <NewPatientForm handleOnSubmit={moveToStepTwo}/>
+          <NewPatientForm handlePrincipalForm={setFormData} handleOnSubmit={moveToStepTwo}/>
         :
           <div className='NewPatient__images'>
             <InputFileNewPatient callback={handleChangeImages} accept='.png, .jpg, .jpeg' multiple />
