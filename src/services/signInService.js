@@ -1,5 +1,5 @@
 const signInService = async (dataForSignIn) => {
-  const URL = 'http://localhost:3030/api/signin'
+  const URL = 'http://localhost:3030/api/users'
   const result = await fetch(URL, {
     method: 'POST',
     headers: {
