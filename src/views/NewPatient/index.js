@@ -6,7 +6,6 @@ import ListOfImages from 'components/ListOfImages/index'
 import SelectedImage from 'components/SelectedImage/index'
 import NewPatientForm from 'components/Form/NewPatientForm'
 import InputFileNewPatient from 'components/InputFile/InputFileNewPatient'
-import Error from 'views/Error'
 // @hooks
 import useUser from 'hooks/useUser'
 // @services
@@ -15,6 +14,7 @@ import sendNewPatientService from 'services/newCheckService'
 import { STEP_ONE, STEP_TWO } from 'constants/steps'
 // @styles
 import './styles.scss'
+import AuthWrapper from 'components/AuthWrapper/index'
 
 function NewPatient () {
   
@@ -23,13 +23,14 @@ function NewPatient () {
   const [selectedImage, setSelectedImage] = useState(null)
   const [formData, setFormData] = useState({})
 
-  const { isLoading, isLogged } = useUser()
-
-  if (isLoading) return <p>Cargando...</p>
+  const { isLoading, userData } = useUser()
 
   const handleNewPatient = () => {
     const jwt = window.sessionStorage.getItem('jwt')
-    sendNewPatientService({ ...formData, images: [...images.map(image => image.image)] }, jwt)
+    const filteredImages = [...images.map(image => image.image)]
+    const payload = { ...formData, images: filteredImages }
+    
+    sendNewPatientService(payload, jwt)
   }
 
   const moveToStepTwo = (e) => {
@@ -64,13 +65,12 @@ function NewPatient () {
   }
 
   return (
-    isLogged
-    ?
+    <AuthWrapper isLoading={isLoading} user={userData}>
       <div className='NewPatient'>
         { step === STEP_ONE ?
           <NewPatientForm handlePrincipalForm={setFormData} handleOnSubmit={moveToStepTwo}/>
         :
-          <div className='NewPatient__images'>
+          <div className='NewPatient__images'> {/* refactor this, e.g: form_step_two */}
             <InputFileNewPatient callback={handleChangeImages} accept='.png, .jpg, .jpeg' multiple />
 
             <div className='total-wrapper'>
@@ -94,8 +94,7 @@ function NewPatient () {
           </div>
         }
       </div>
-    :
-      <Error />
+    </AuthWrapper>
   )
 }
 

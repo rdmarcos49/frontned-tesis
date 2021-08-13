@@ -1,14 +1,14 @@
 // @components
 import { AdminOptions } from 'components/UserOptions/AdminOptions'
 import { TechnicalOptions } from 'components/UserOptions/TechnicalOptions'
-import Error from 'views/Error'
+import AuthWrapper from 'components/AuthWrapper'
+import UserOptions from 'components/UserOptions/index'
 // @hooks
 import useUser from 'hooks/useUser'
 // @constants
 import { ROLES } from 'constants/roles'
 // @styles
 import './styles.scss'
-import UserOptions from 'components/UserOptions/index'
 
 const MenuRoles = {
   [ROLES.ADMIN]: AdminOptions,
@@ -18,15 +18,12 @@ const MenuRoles = {
 }
 
 function Home() {
-  const { isLoading, isLogged, userData } = useUser()
-  
-  if (isLoading) return <p>Cargando...</p>
+  const { isLoading, userData } = useUser()
 
   const { role } = userData
 
   return (
-    isLogged
-    ?
+    <AuthWrapper isLoading={isLoading} user={userData}>
       <div className='Home'>
         <div className='Home__logo-wrapper'>
           <img
@@ -40,8 +37,7 @@ function Home() {
         <h3 className='Home__subtitle'>¿Que desea hacer hoy?</h3>
         <UserOptions options={MenuRoles[role]}/>
       </div>
-    :
-      <Error />
+    </AuthWrapper>
   )
 }
 

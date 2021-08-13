@@ -8,10 +8,10 @@ import SignIn from 'views/SignIn'
 import Home from 'views/Home'
 import PasswordRecovery from 'views/PasswordRecovery'
 import NewPatient from 'views/NewPatient'
-import ErrorPage from 'views/Error'
 // @components
 import Header from 'components/Header'
 import MainLayout from 'components/MainLayout'
+import ErrorPage from 'components/Error'
 // import Footer from 'components/Footer'
 // @contexts
 import { SessionContextProvider } from 'context/SessionContext'
