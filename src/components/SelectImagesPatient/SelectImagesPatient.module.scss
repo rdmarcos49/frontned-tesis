@@ -1,26 +1,16 @@
-.NewPatient {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-    
-    &__images {
-        
-        input[type=file] {
-            display: none;
-        }
+.SelectImagesPatient {
+    input[type=file] {
+        display: none;
     }
 }
 
-.total-wrapper {
+.ImagesSelector{
     display: flex;
     margin-top: 15px;
     flex-wrap: wrap;
 }
 
-.listOfImagesFooter {
+.ImagesFooter {
     align-items: center;
     display: flex;
     justify-content: flex-start;
