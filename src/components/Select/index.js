@@ -1,5 +1,5 @@
 // @packages
-import React from 'react'
+import PropTypes from 'prop-types'
 // @styles
 import './styles.scss'
 
@@ -26,3 +26,9 @@ function Select({
 }
 
 export default Select
+
+Select.propTypes = {
+  options: PropTypes.array.isRequired,
+  disabledText: PropTypes.string,
+  label: PropTypes.string
+}

@@ -1,3 +1,6 @@
+// @packages
+import PropTypes from 'prop-types'
+// @components
 import Error from 'components/Error'
 
 const AuthWrapper = ({ isLoading, user, children }) => {
@@ -12,3 +15,8 @@ const AuthWrapper = ({ isLoading, user, children }) => {
 }
 
 export default AuthWrapper
+
+AuthWrapper.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  user: PropTypes.object.isRequired
+}

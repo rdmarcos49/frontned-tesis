@@ -1,5 +1,6 @@
 // @packages
 import React from 'react'
+import PropTypes from 'prop-types'
 // @styles
 import './styles.scss'
 
@@ -16,3 +17,8 @@ const Button = ({ children, size, tabIndex, ...props }) => {
 }
 
 export default Button
+
+Button.propTypes = {
+  size: PropTypes.string,
+  tabIndex: PropTypes.string
+}

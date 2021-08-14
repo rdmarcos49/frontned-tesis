@@ -1,3 +1,5 @@
+// @packages
+import PropTypes from 'prop-types'
 // @styles
 import styles from './Avatar.module.scss'
 
@@ -13,8 +15,13 @@ function Avatar({ avatar, name, lastname }) {
           </p>
       }
     </>
-    
   )
 }
 
 export default Avatar
+
+Avatar.propTypes = {
+  name: PropTypes.string.isRequired,
+  lastname: PropTypes.string.isRequired,
+  avatar: PropTypes.string
+}

@@ -1,5 +1,6 @@
 // @package
 import { useLocation } from 'wouter'
+import PropTypes from 'prop-types'
 // @components
 import Form from 'components/Form'
 import Input from 'components/Input'
@@ -94,3 +95,9 @@ function NewPatientForm ({ formValues, goForward, handleOnChange }) {
 }
 
 export default NewPatientForm
+
+NewPatientForm.propTypes = {
+  formValues: PropTypes.object,
+  goForward: PropTypes.func,
+  handleOnChange: PropTypes.func
+}

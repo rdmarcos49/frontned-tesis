@@ -1,6 +1,7 @@
 // @packages
 import { useState } from 'react'
 import { Link, useLocation } from 'wouter'
+import PropTypes from 'prop-types'
 // @components
 import Form from 'components/Form'
 import Input from 'components/Input'
@@ -58,4 +59,8 @@ export function LogInForm({ login }) {
       </ButtonsWrapper>
     </Form>
   )
+}
+
+LogInForm.propTypes = {
+  login: PropTypes.func.isRequired
 }

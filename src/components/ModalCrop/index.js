@@ -1,6 +1,7 @@
 // @packages
-import React, { useState, useRef } from 'react'
+import { useState, useRef } from 'react'
 import ReactCrop from 'react-image-crop';
+import PropTypes from 'prop-types'
 // @styles
 import styles from './ModalCrop.module.scss'
 import 'react-image-crop/lib/ReactCrop.scss';
@@ -57,3 +58,10 @@ function ModalCrop({ cancelCrop, handleCroppedAvatar, isOpen = false, src }) {
 }
 
 export default ModalCrop
+
+ModalCrop.propTypes = {
+  cancelCrop: PropTypes.func,
+  handleCroppedAvatar: PropTypes.func,
+  isOpen: PropTypes.bool,
+  src: PropTypes.string
+}

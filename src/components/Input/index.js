@@ -1,5 +1,5 @@
 // @packages
-import React from 'react'
+import PropTypes from 'prop-types'
 // @styles
 import './styles.scss'
 
@@ -22,3 +22,9 @@ function Input({
 }
 
 export default Input
+
+Input.propTypes = {
+  error: PropTypes.string,
+  label: PropTypes.string,
+  halfWidth: PropTypes.bool
+}
