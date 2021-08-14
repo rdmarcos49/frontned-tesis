@@ -1,3 +1,5 @@
+// @packages
+import PropTypes from 'prop-types'
 // @components
 import Option from 'components/Option'
 // @styles
@@ -19,3 +21,7 @@ function UserOptions ({ options = [] }) {
 }
 
 export default UserOptions
+
+UserOptions.propTypes = {
+  options: PropTypes.array
+}

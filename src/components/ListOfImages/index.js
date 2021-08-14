@@ -1,5 +1,5 @@
 // @packages
-import React from 'react'
+import PropTypes from 'prop-types'
 // @styles
 import './styles.scss'
 
@@ -32,3 +32,9 @@ function ListOfImages ({ images, onRemoveImage, onSelectImage }) {
 }
 
 export default ListOfImages
+
+ListOfImages.propTypes = {
+  images: PropTypes.array.isRequired,
+  onRemoveImage: PropTypes.func,
+  onSelectImage: PropTypes.func
+}

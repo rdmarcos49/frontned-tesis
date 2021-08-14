@@ -1,5 +1,6 @@
 // @packages
 import { useState } from 'react'
+import PropTypes from 'prop-types'
 // @componets
 import Button from 'components/Button'
 import ListOfImages from 'components/ListOfImages/index'
@@ -52,3 +53,12 @@ function SelectImagesPatient({ addImages, currentImages, goBack, onSubmit, remov
 }
 
 export default SelectImagesPatient
+
+SelectImagesPatient.propTypes = {
+  addImages: PropTypes.func.isRequired,
+  currentImages: PropTypes.array.isRequired,
+  goBack: PropTypes.func,
+  onSubmit: PropTypes.func,
+  removeImage: PropTypes.func
+}
+// addImages, currentImages, goBack, onSubmit, removeImage

@@ -29,3 +29,5 @@ function SelectedImage ({ selectedImage }) {
 }
 
 export default SelectedImage
+
+//TODO: ADD PROPTYPES

@@ -1,5 +1,6 @@
 // @packages
 import { Link } from 'wouter'
+import PropTypes from 'prop-types'
 // @components
 import Avatar from 'components/Avatar'
 // @constants
@@ -28,4 +29,11 @@ export function IsLoggedOptions({ avatar, name, lastname, handleLogOut }) {
       </div>
     </nav>
   )
+}
+
+IsLoggedOptions.propTypes = {
+  name: PropTypes.string.isRequired,
+  lastname: PropTypes.string.isRequired,
+  avatar: PropTypes.string,
+  handleLogOut: PropTypes.func
 }
