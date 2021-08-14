@@ -1,36 +1,39 @@
 // @packages
 import { useState } from 'react'
 // @componets
-import Button from 'components/Button'
-import ListOfImages from 'components/ListOfImages/index'
-import SelectedImage from 'components/SelectedImage/index'
 import NewPatientForm from 'components/Form/NewPatientForm'
-import InputFileNewPatient from 'components/InputFile/InputFileNewPatient'
+import SelectImagesPatient from 'components/SelectImagesPatient'
+import AuthWrapper from 'components/AuthWrapper/index'
 // @hooks
 import useUser from 'hooks/useUser'
+// @utils
+import { initialPatientData, initialPatientImages } from 'utils/initialStates'
 // @services
-import sendNewPatientService from 'services/newCheckService'
+import newCheckService from 'services/newCheckService'
 // @constants
 import { STEP_ONE, STEP_TWO } from 'constants/steps'
+// @local-helpers
+import { getFormattedImages } from './helpers'
 // @styles
-import './styles.scss'
-import AuthWrapper from 'components/AuthWrapper/index'
+import styles from './NewPatient.module.scss'
 
 function NewPatient () {
-  
   const [step, setStep] = useState(STEP_ONE)
-  const [images, setImages] = useState([])
-  const [selectedImage, setSelectedImage] = useState(null)
-  const [formData, setFormData] = useState({})
-
+  const [patientData, setPatientData] = useState(initialPatientData)
+  const [images, setImages] = useState(initialPatientImages)
   const { isLoading, userData } = useUser()
+  
+  const handleChangePatientData = (event) => {
+    const { name: field, value } = event.target
 
-  const handleNewPatient = () => {
-    const jwt = window.sessionStorage.getItem('jwt')
-    const filteredImages = [...images.map(image => image.image)]
-    const payload = { ...formData, images: filteredImages }
-    
-    sendNewPatientService(payload, jwt)
+    setPatientData({
+      ...patientData,
+      [field]: value,
+    })
+  }
+
+  const returnToStepOne = () => {
+    setStep(STEP_ONE)
   }
 
   const moveToStepTwo = (e) => {
@@ -38,60 +41,44 @@ function NewPatient () {
     setStep(STEP_TWO)
   }
 
-  const returnToStepOne = () => {
-    setStep(STEP_ONE)
-  }
-
-  const handleChangeImages = newImages => {
+  const addImages = (newImages) => {
     setImages([
       ...images,
       ...newImages,
     ])
   }
 
-  const handleRemoveImage = (id) => {
+  const removeImage = (id) => {
     setImages(prevImages => {
       return prevImages.filter(image => image.id !== id)
     })
-    if (!!selectedImage) {
-      if (id === selectedImage.id) {
-        setSelectedImage(null)
-      }
-    }
   }
 
-  const handleSelectImage = ({ image, id }) => {
-    setSelectedImage({ image, id })
+  const handleOnSubmit = () => {
+    const formattedImages = getFormattedImages(images)
+    const payload = { ...patientData, ...formattedImages }
+    newCheckService(payload)
   }
 
   return (
     <AuthWrapper isLoading={isLoading} user={userData}>
-      <div className='NewPatient'>
-        { step === STEP_ONE ?
-          <NewPatientForm handlePrincipalForm={setFormData} handleOnSubmit={moveToStepTwo}/>
-        :
-          <div className='NewPatient__images'> {/* refactor this, e.g: form_step_two */}
-            <InputFileNewPatient callback={handleChangeImages} accept='.png, .jpg, .jpeg' multiple />
-
-            <div className='total-wrapper'>
-              <SelectedImage
-                selectedImage={selectedImage}
-              />
-              <ListOfImages
-                images={images}
-                onRemoveImage={handleRemoveImage}
-                onSelectImage={handleSelectImage}
-              />
-            </div>
-            <div className='listOfImagesFooter'>
-              <Button onClick={returnToStepOne}>
-                Volver
-              </Button>
-              <Button onClick={handleNewPatient}>
-                Finalizar
-              </Button>
-            </div>
-          </div>
+      <div className={styles.NewPatient}>
+        {
+          step === STEP_ONE
+          ?
+            <NewPatientForm
+              formValues={patientData}
+              goForward={moveToStepTwo}
+              handleOnChange={handleChangePatientData}
+            />
+          :
+            <SelectImagesPatient
+              addImages={addImages}
+              goBack={returnToStepOne}
+              onSubmit={handleOnSubmit}
+              currentImages={images}
+              removeImage={removeImage}
+            />
         }
       </div>
     </AuthWrapper>
