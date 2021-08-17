@@ -14,7 +14,7 @@ import MainLayout from 'components/MainLayout'
 import ErrorPage from 'components/Error'
 // import Footer from 'components/Footer'
 // @contexts
-import { SessionContextProvider } from 'context/SessionContext'
+import { AuthContextProvider } from 'context/AuthContext'
 // @constants
 import { URL } from 'constants/urls'
 // @styles
@@ -22,7 +22,7 @@ import './styles.scss'
 
 const App = () => {
   return(
-    <SessionContextProvider>
+    <AuthContextProvider>
       <Header />
       <MainLayout>
         <Switch>
@@ -35,7 +35,7 @@ const App = () => {
           <Route path={URL.REST} component={ ErrorPage } />
         </Switch>
       </MainLayout>
-    </SessionContextProvider>
+    </AuthContextProvider>
   )
 }
 

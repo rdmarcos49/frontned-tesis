@@ -2,14 +2,14 @@
 import { useCallback, useContext, useState } from 'react'
 import { useLocation } from 'wouter'
 // @contexts
-import SessionContext from 'context/SessionContext'
+import AuthContext from 'context/AuthContext'
 // @services
 import loginService from 'services/loginService'
 // @constants
 import { URL } from 'constants/urls'
 
 export default function useUser() {
-  const { userData, jwt, setJwt } = useContext(SessionContext)
+  const { userData, jwt, setJwt } = useContext(AuthContext)
   const [status, setStatus] = useState({ loading: false, error: false })
   const [, setLocation] = useLocation()
 

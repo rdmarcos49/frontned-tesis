@@ -7,8 +7,8 @@ import { initialUserData } from 'constants/initialUserData'
 
 const Context = createContext({})
 
-export function SessionContextProvider ({ children }) {
-  const [userData, setUserData] = useState({ ...initialUserData })
+export function AuthContextProvider ({ children }) {
+  const [userData, setUserData] = useState(initialUserData)
   const [jwt, setJwt] = useState(
     parseJwt(window.sessionStorage.getItem('jwt'))
       ? () => window.sessionStorage.getItem('jwt')
@@ -19,7 +19,7 @@ export function SessionContextProvider ({ children }) {
     if (jwt) {
       const userInformation = parseJwt(jwt)
       if (userInformation) {
-        setUserData({ ...userInformation })
+        setUserData(userInformation)
       }
     }
   }, [jwt])
