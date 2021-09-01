@@ -31,7 +31,7 @@ const App = () => {
           <Route path={URL.SIGN_IN} component={ SignIn } />
           <Route path={URL.HOME} component={ Home } />
           <Route path={URL.PASSWORD_RECOVERY} component={ PasswordRecovery } />
-          <Route path={URL.NEW_PATIENT} component={ NewPatient } />
+          <Route path={URL.NEW_CHECK} component={ NewPatient } />
           <Route path={URL.REST} component={ ErrorPage } />
         </Switch>
       </MainLayout>
