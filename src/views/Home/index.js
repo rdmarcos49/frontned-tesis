@@ -1,6 +1,7 @@
 // @components
 import { AdminOptions } from 'components/UserOptions/AdminOptions'
 import { TechnicalOptions } from 'components/UserOptions/TechnicalOptions'
+import { OphthalmologistOptions } from 'components/UserOptions/OphthalmologistOptions'
 import AuthWrapper from 'components/AuthWrapper'
 import UserOptions from 'components/UserOptions/index'
 // @hooks
@@ -13,8 +14,8 @@ import './styles.scss'
 const MenuRoles = {
   [ROLES.ADMIN]: AdminOptions,
   [ROLES.TECHNICAL]: TechnicalOptions,
+  [ROLES.OPHTHALMOLOGIST]: OphthalmologistOptions,
   // [ROLES.ONLY_READ]: OnlyReadOptions,
-  // [ROLES.OPHTHALMOLOGIST]: OphthalmologistOptions,
 }
 
 function Home() {

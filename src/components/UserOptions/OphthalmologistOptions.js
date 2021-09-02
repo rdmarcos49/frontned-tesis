@@ -1,7 +1,7 @@
 // @constants
 import { URL } from 'constants/urls'
 
-export const OphtalmologistOptions = [
+export const OphthalmologistOptions = [
   {
     icon: 'fas fa-9x fa-user-cog',
     path: URL.NEW_CHECK,
