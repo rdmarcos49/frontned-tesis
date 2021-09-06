@@ -8,11 +8,24 @@ import styles from './InputFile.module.scss'
 
 export const InputFileAvatar = ({ ...props }) => {
   const { callback, ...rest } = props
-  // this is the reference to the original and selected image for crop
   const [image, setImage] = useState(null)
-  // this is the cropped image
   const [croppedAvatar, setCroppedAvatar] = useState(null)
   const [isOpen, setIsOpen] = useState(false)
+
+  function dataURLtoFile(dataurl, filename) {
+ 
+    let arr = dataurl.split(','),
+        mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]), 
+        n = bstr.length, 
+        u8arr = new Uint8Array(n);
+        
+    while(n--){
+        u8arr[n] = bstr.charCodeAt(n);
+    }
+    
+    return new File([u8arr], filename, {type:mime});
+  }
 
   const resizeImage = (base64Str, maxWidth = 150, maxHeight = 150) => {
     return new Promise((resolve) => {
@@ -40,7 +53,10 @@ export const InputFileAvatar = ({ ...props }) => {
         canvas.height = height
         let ctx = canvas.getContext('2d')
         ctx.drawImage(img, 0, 0, width, height)
-        resolve(canvas.toDataURL())
+        // aca la convierto
+        const file = dataURLtoFile(canvas.toDataURL(),'avatar');
+
+        resolve(file)
       }
     })
   }
@@ -50,9 +66,9 @@ export const InputFileAvatar = ({ ...props }) => {
   }
 
   const handleCroppedAvatar = async (newAvatar) => {
-    // resizeImage(newAvatar).then(res => setCroppedAvatar(res))
     const result = await resizeImage(newAvatar)
-    setCroppedAvatar(result)
+    const transformedResult = URL.createObjectURL(result);
+    setCroppedAvatar(transformedResult)
     callback(result)
     setIsOpen(false)
   }
