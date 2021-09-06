@@ -35,7 +35,6 @@ export function SignInForm() {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault()
-    
     await signInService({
       ...formData,
       avatar,
@@ -52,12 +51,13 @@ export function SignInForm() {
   }
 
   return (
-    <Form onChange={handleOnChange} onSubmit={handleOnSubmit}>
+    <Form onSubmit={handleOnSubmit}>
       <div className='Signin__form-section'>
         <div className='Signin__form-section__inputs'>
           <Input
             autoFocus
             label='Nombre'
+            onChange={handleOnChange}
             name='name'
             placeholder='Juan'
             type='text'
@@ -65,17 +65,22 @@ export function SignInForm() {
 
           <Input
             label='Apellido'
+            onChange={handleOnChange}
             name='lastname'
             placeholder='Perez'
             type='text'
           />
         </div>
+        {/* in INPUTFILEAVATAR we can use as a child an img tag, avoiding all the logic inside the component */}
+        {/* right now there is a very strange behavior with the thumbnail of the current selected avatar */}
+        {/* TODO: refactor that */}
         <InputFileAvatar callback={handleChangeAvatar} accept='.png, .jpg, .jpeg' />
       </div>
 
       <Input
         label='Correo electrónico'
         name='email'
+        onChange={handleOnChange}
         placeholder='juanperez123@gmail.com'
         type='text'
       />
@@ -83,6 +88,7 @@ export function SignInForm() {
       <Input
         label='Usuario'
         name='username'
+        onChange={handleOnChange}
         placeholder='juanperez123'
         type='text'
       />
@@ -90,6 +96,7 @@ export function SignInForm() {
       <Input
         label='Contraseña'
         name='password'
+        onChange={handleOnChange}
         placeholder='••••••••••••••'
         type='password'
       />
@@ -97,6 +104,7 @@ export function SignInForm() {
       <Input
         label='Repetir contraseña'
         name='repeatPassword'
+        onChange={handleOnChange}
         placeholder='••••••••••••••'
         type='password'
       />
@@ -106,6 +114,7 @@ export function SignInForm() {
         disabledText='Selecciona un rol'
         label='Rol'
         name='role'
+        onChange={handleOnChange}
         options={options}
         placeholder='Rol'
         type='select'
