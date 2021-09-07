@@ -3,7 +3,7 @@ import { URL } from 'constants/urls'
 
 export const OphthalmologistOptions = [
   {
-    icon: 'fas fa-9x fa-user-cog',
+    icon: 'fas fa-9x fa-user-plus',
     path: URL.NEW_CHECK,
     text: 'Consulta de nuevo paciente'
   },
