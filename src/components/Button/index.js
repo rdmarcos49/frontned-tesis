@@ -2,17 +2,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 // @styles
-import './styles.scss'
+import { Button as StyledButton } from './Button.styled'
 
-const Button = ({ children, size, tabIndex, ...props }) => {
+const Button = ({ children, size, ...props }) => {
   return (
-    <button
-      className={`Button ${size ? `Button--${size}` : 'Button--medium'}`}
-      tabIndex={tabIndex && tabIndex}
-      {...props}
-    >
+    <StyledButton {...props} >
       {children}
-    </button>
+    </StyledButton>
   )
 }
 

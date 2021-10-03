@@ -1,33 +1,35 @@
 // @packages
 import PropTypes from 'prop-types'
 // @styles
-import './styles.scss'
+import {
+  Container,
+  ImagesWrapper,
+  Image,
+  IconWrapper,
+} from './ListOfImages.styled'
 
 function ListOfImages ({ images, onRemoveImage, onSelectImage }) {
   return (
-    <div className='list-of-images'>
+    <Container>
       {images.map(image => {
         return (
-          <div
-            className='list-of-images__wrapper'
-            key={image.id}
-          >
-            <span
+          <ImagesWrapper key={image.id} >
+            <IconWrapper
               className='list-of-images__wrapper__icon'
               onClick={() => onRemoveImage(image.id)}
             >
               <i className="fas fa-2x fa-times-circle"></i>
-            </span>
-            <img
+            </IconWrapper>
+            <Image
               alt='small-capture'
               className='list-of-images__wrapper__image'
               onClick={() => onSelectImage(image)}
               src={image.image}
             />
-          </div>
+          </ImagesWrapper>
         )
       })}
-    </div>
+    </Container>
   )
 }
 

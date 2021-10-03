@@ -3,7 +3,12 @@ import { useState, useRef } from 'react'
 import ReactCrop from 'react-image-crop';
 import PropTypes from 'prop-types'
 // @styles
-import styles from './ModalCrop.module.scss'
+import {
+  Container,
+  ButtonsWrapper,
+  CancelButton,
+  ConfirmButton,
+} from './ModalCrop.styled'
 import 'react-image-crop/lib/ReactCrop.scss';
 
 function ModalCrop({ cancelCrop, handleCroppedAvatar, isOpen = false, src }) {
@@ -47,13 +52,13 @@ function ModalCrop({ cancelCrop, handleCroppedAvatar, isOpen = false, src }) {
   if (!isOpen) return null
 
   return (
-    <div className={styles.ModalCrop}>
+    <Container>
       <ReactCrop ref={imageRef} onChange={handleChange} src={src} crop={crop} />
-      <section>
-        <button onClick={cancelCrop}>Cancelar</button>
-        <button onClick={cropImage} type='button'>Seleccionar</button>
-      </section>
-    </div>
+      <ButtonsWrapper>
+        <CancelButton onClick={cancelCrop}>Cancelar</CancelButton>
+        <ConfirmButton onClick={cropImage} type='button'>Seleccionar</ConfirmButton>
+      </ButtonsWrapper>
+    </Container>
   )
 }
 

@@ -1,33 +1,38 @@
 // @packages
-import { Link } from 'wouter'
 import PropTypes from 'prop-types'
 // @components
 import Avatar from 'components/Avatar'
 // @constants
 import { URL } from 'constants/urls'
 // @styles
-import styles from './Header.module.scss'
+import {
+  LoggedInWrapper,
+  NavigationWrapper,
+  AvatarWrapper,
+  AvatarName,
+  Link,
+} from './Header.styled'
 
 export function IsLoggedOptions({ avatar, name, lastname, handleLogOut }) {
   return (
-    <nav className={styles.IsLoggedOptions}>
-      <div>
+    <LoggedInWrapper>
+      <NavigationWrapper>
         <Link to={URL.HOME}>
           Home
         </Link>
         <Link onClick={handleLogOut} to={URL.LOG_IN}>
           Log out
         </Link>
-      </div>
-      <div>
-        <span>{name}</span>
+      </NavigationWrapper>
+      <AvatarWrapper>
+        <AvatarName>{name}</AvatarName>
         <Avatar
           avatar={avatar}
           name={name}
           lastname={lastname}
         />
-      </div>
-    </nav>
+      </AvatarWrapper>
+    </LoggedInWrapper>
   )
 }
 

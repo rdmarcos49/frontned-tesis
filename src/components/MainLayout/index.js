@@ -1,11 +1,11 @@
 // @styles
-import styles from './MainLayout.module.scss'
+import { Container } from './MainLayout.styled'
 
 function MainLayout({ children }) {
   return (
-    <div className={styles.MainLayout}>
+    <Container>
       {children}
-    </div>
+    </Container>
   )
 }
 

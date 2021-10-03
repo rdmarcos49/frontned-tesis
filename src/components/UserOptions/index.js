@@ -3,11 +3,11 @@ import PropTypes from 'prop-types'
 // @components
 import Option from 'components/Option'
 // @styles
-import styles from './UserOptions.module.scss'
+import { Container } from './UserOptions.styled'
 
 function UserOptions ({ options = [] }) {
   return (
-    <section className={styles.UserOptions}>
+    <Container>
       {options.map(option => 
         <Option
           key={option.text}
@@ -16,7 +16,7 @@ function UserOptions ({ options = [] }) {
           text={option.text}
         />
       )}
-    </section>
+    </Container>
   )
 }
 
