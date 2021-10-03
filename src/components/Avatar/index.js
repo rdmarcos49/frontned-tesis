@@ -1,20 +1,15 @@
 // @packages
 import PropTypes from 'prop-types'
 // @styles
-import styles from './Avatar.module.scss'
+import { Image, LettersAsAvatar } from './Avatar.styled'
 
 function Avatar({ avatar, name, lastname }) {
+  if (avatar) return <Image alt='avatar' src={avatar}/>
+
   return (
-    <>
-      {avatar
-        ?
-          <img className={styles.AvatarImage} alt='avatar' src={avatar}/>
-        :
-          <p className={styles.AvatarLetters}>
-            {name.charAt(0).toUpperCase()}{lastname.charAt(0).toUpperCase()}
-          </p>
-      }
-    </>
+    <LettersAsAvatar>
+      {name.charAt(0).toUpperCase()}{lastname.charAt(0).toUpperCase()}
+    </LettersAsAvatar>
   )
 }
 

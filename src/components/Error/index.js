@@ -1,14 +1,22 @@
 // @styles
-import styles from './Error.module.scss'
+import {
+  Container,
+  Title,
+  MessageWrapper,
+  Message,
+} from './Error.styled'
 
-function Error() { // TODO: pass the title and content as props
+function Error({
+  errorCode = 404,
+  message = 'Ups! No hemos podido encontrar la pagina que buscas.',
+}) {
   return (
-    <div className={styles.ErrorPage}>
-      <h1>404</h1>
-      <section>
-        <p>Ups! No hemos podido encontrar la pagina que buscas.</p>
-      </section>
-    </div>
+    <Container>
+      <Title> {errorCode} </Title>
+      <MessageWrapper>
+        <Message> {message} </Message>
+      </MessageWrapper>
+    </Container>
   )
 }
 

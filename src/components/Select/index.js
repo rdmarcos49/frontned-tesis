@@ -1,7 +1,12 @@
 // @packages
 import PropTypes from 'prop-types'
 // @styles
-import './styles.scss'
+import {
+  Container,
+  Label,
+  Selection,
+  Option
+} from './Select.styled'
 
 function Select({
   disabledText,
@@ -9,19 +14,17 @@ function Select({
   options,
   ...props
 }) {
+  const defaultFieldAttrs = { disabled: true, defaultValue: true, value: '' }
   return (
-    <div className='Select'>
-      <label className='Select__label'>{label}</label>
-      <select
-        className={`Select__select Select__select--normal-border`}
-        {...props}
-      >
-        <option disabled defaultValue value=''> {`-- ${disabledText} --`} </option>
+    <Container>
+      <Label>{label}</Label>
+      <Selection {...props} >
+        <Option {...defaultFieldAttrs}> {`-- ${disabledText} --`} </Option>
         {options.map((option, index) => 
-          <option key={index} value={option.value}>{option.text}</option>  
+          <Option key={index} value={option.value}>{option.text}</Option>  
         )}
-      </select>
-    </div>
+      </Selection>
+    </Container>
   )
 }
 

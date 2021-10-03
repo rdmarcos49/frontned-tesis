@@ -1,13 +1,13 @@
 // @packages
 import React from 'react'
 // @styles
-import './styles.scss'
+import { Wrapper } from './ButtonsWrapper.styled'
 
 function ButtonsWrapper({ children }) {
   return (
-    <div className='ButtonsWrapper'>
+    <Wrapper>
       {children}
-    </div>
+    </Wrapper>
   )
 }
 

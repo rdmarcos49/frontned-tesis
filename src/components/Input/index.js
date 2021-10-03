@@ -1,7 +1,11 @@
 // @packages
 import PropTypes from 'prop-types'
 // @styles
-import './styles.scss'
+import {
+  InputWrapper,
+  Label,
+  StyledInput,
+} from './Input.styled'
 
 function Input({
   error,
@@ -10,14 +14,10 @@ function Input({
   ...props
 }) {
   return (
-    <div className={`Input ${!!halfWidth ? 'Input--half-width' : 'Input--full-width'}`}>
-      <label className='Input__label'>{label}</label>
-      <input
-        autoComplete='off'
-        className='Input__input Input__input--error-border'
-        {...props}
-      />
-    </div>
+    <InputWrapper halfWidth>
+      <Label> {label} </Label>
+      <StyledInput autoComplete='off' {...props} />
+    </InputWrapper>
   )
 }
 
