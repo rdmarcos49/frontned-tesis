@@ -1,15 +1,15 @@
 // @packages
 import React from 'react'
 // @styles
-import { Container, ImageWrapper, Image, } from 'SelectedImage.styled'
+import { Container, ImageWrapper, Image, } from './SelectedImage.styled'
 
 function SelectedImage ({ selectedImage }) {
   return (
     <Container>
-      <ImageWrapper selectedImage>
+      <ImageWrapper selectedImage={selectedImage}>
         <Image 
           alt='preview'
-          selectedImage
+          selectedImage={selectedImage}
           src={selectedImage ? selectedImage.image : 'image-placeholder.png'}
         />
       </ImageWrapper>

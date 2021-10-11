@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 // @styles
 import { Button as StyledButton } from './Button.styled'
 
-const Button = ({ children, size, ...props }) => {
+const Button = ({ children, ...props }) => {
   return (
     <StyledButton {...props} >
       {children}

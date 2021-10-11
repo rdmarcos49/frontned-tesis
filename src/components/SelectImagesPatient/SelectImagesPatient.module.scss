@@ -1,0 +1,27 @@
+.SelectImagesPatient {
+    input[type=file] {
+        display: none;
+    }
+}
+
+.ImagesSelector{
+    display: flex;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.ImagesFooter {
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+
+    & > * {
+        margin-top: 10px;
+    }
+
+    & > *:not(:first-child) {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}

@@ -1,11 +1,10 @@
 // @hooks
 import useUser from 'hooks/useUser'
-// @constants
-// import { ROLES } from 'constants/roles'
-// @styles
-import styles from './Header.module.scss'
-import { IsLoggedOptions } from './IsLoggedOptions'
+// @components
 import { IsNotLoggedOptions } from './IsNotLoggedOptions'
+import { IsLoggedOptions } from './IsLoggedOptions'
+// @styles
+import { HeaderContainer } from './Header.styled'
 
 function Header() {
   const { isLogged, userData, logout } = useUser()
@@ -27,7 +26,7 @@ function Header() {
   */
 
   return (
-    <header className={styles.Header}>
+    <HeaderContainer>
       {!isLogged
         ?
         <IsNotLoggedOptions />
@@ -37,9 +36,10 @@ function Header() {
           name={userData.name}
           lastname={userData.lastname}
           handleLogOut={logout}
+          role={userData.role}
         />
       }
-    </header>
+    </HeaderContainer>
   )
 }
 

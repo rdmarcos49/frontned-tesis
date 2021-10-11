@@ -121,8 +121,8 @@ export function SignInForm() {
       />
 
       <ButtonsWrapper>
-        <Button onClick={clearAllFields} type='button'> Borrar Datos </Button>
-        <Button> Solicitar registro </Button>
+        <Button size='medium' onClick={clearAllFields} type='button'> Borrar Datos </Button>
+        <Button size='medium'> Solicitar registro </Button>
       </ButtonsWrapper>
     </Form>
   )

@@ -17,21 +17,10 @@ export const ImageWrapper = styled.div(
 )
 
 export const Image = styled.img(
-  ({ selectedImage }) => {
-    const imageStyles = () => (`
-      max-height: 50vh;
-      max-width: 100%;
-      padding: 5px;
-    `);
-
-    const placeholderStyles = () => (`
-      max-width: 200px;
-      padding: 5px;
-      width: 100%;
-    `);
-
-    css`
-      ${selectedImage ? imageStyles() : placeholderStyles()};
-    `
-  }
+  ({ selectedImage }) => css`
+    max-height: ${selectedImage ? '50vh' : 'auto'};
+    max-width: ${selectedImage ? '100%' : '200px'};
+    padding: 5px;
+    width: ${selectedImage ? 'auto' : '50%'};
+  `
 )
