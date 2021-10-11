@@ -7,8 +7,8 @@ import {
 
 function Form({ children, ...props }) {
   return (
-    <FormContainer className='Form' {...props}>
-      <ImageWrapper className='Form__logo-wrapper'>
+    <FormContainer {...props}>
+      <ImageWrapper>
         <Image
           alt='logo'
           className='Form__logo-wrapper__logo'

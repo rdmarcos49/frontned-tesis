@@ -31,7 +31,7 @@ export const IconWrapper = styled.span`
   z-index: 1;
 `
 
-export const Image = styled.span`
+export const Image = styled.img`
   cursor: pointer;
   height: 110px;
   margin: 5px 0;

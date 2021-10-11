@@ -7,7 +7,7 @@ export const URL = {
   NEW_PATIENT: '/new-patient',
   NEW_CHECK: '/new-check',
   PASSWORD_RECOVERY: '/password-recovery',
-  PENDENT_PATIENT: '/new_patient/pendent',
+  PENDENT_PATIENT: '/new-patient/pendent',
   PREVIOUS_CHECKS: '/previous-checks',
   PREVIOUS_NOTES: '/previous-notes',
   PREVIOUS_PATIENT: '/previous-patient',

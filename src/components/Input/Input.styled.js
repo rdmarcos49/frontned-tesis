@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-export const InputWrapper = styled.input(
+export const InputWrapper = styled.div(
   ({ halfWidth }) => css`
     display: flex;
     flex-direction: column;

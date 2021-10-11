@@ -6,16 +6,16 @@ import Avatar from 'components/Avatar'
 import { URL } from 'constants/urls'
 // @styles
 import {
-  LoggedInWrapper,
   NavigationWrapper,
   AvatarWrapper,
   AvatarName,
   Link,
+  Role,
 } from './Header.styled'
 
-export function IsLoggedOptions({ avatar, name, lastname, handleLogOut }) {
+export function IsLoggedOptions({ avatar, name, lastname, handleLogOut, role}) {
   return (
-    <LoggedInWrapper>
+    <>
       <NavigationWrapper>
         <Link to={URL.HOME}>
           Home
@@ -26,13 +26,14 @@ export function IsLoggedOptions({ avatar, name, lastname, handleLogOut }) {
       </NavigationWrapper>
       <AvatarWrapper>
         <AvatarName>{name}</AvatarName>
+        <Role>({role})</Role>
         <Avatar
           avatar={avatar}
           name={name}
           lastname={lastname}
         />
       </AvatarWrapper>
-    </LoggedInWrapper>
+    </>
   )
 }
 

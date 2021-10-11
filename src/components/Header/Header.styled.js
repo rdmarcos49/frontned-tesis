@@ -8,6 +8,7 @@ export const HeaderContainer = styled.header`
   display: flex;
   font-weight: bold;
   height: 50px;
+  justify-content: space-between;
   padding: 0 10px;
   width: 100%;
 `
@@ -19,6 +20,7 @@ export const NavigationWrapper = styled.nav`
 
 export const Link = styled(WouterLink)`
   color: #ccc;
+  margin: 0 10px;
   text-decoration: none;
 
   &:hover {
@@ -27,9 +29,17 @@ export const Link = styled(WouterLink)`
 `
 
 export const AvatarWrapper = styled.div`
+  align-items: center;
+  display: flex;
   margin: 0 10px;
 `
 
 export const AvatarName = styled.span`
+  margin: 0 10px;
+`
 
+export const Role = styled.span`
+  font-size: 12px;
+  font-style: italic;
+  margin: 0 2px;
 `
