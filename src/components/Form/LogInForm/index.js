@@ -9,8 +9,6 @@ import Button from 'components/Button'
 import ButtonsWrapper from 'components/ButtonsWrapper'
 // @constants
 import { URL } from 'constants/urls'
-// @styles
-// import './styles.scss'
 
 export function LogInForm({ login }) {
   const [, setLocation] = useLocation();
@@ -18,7 +16,7 @@ export function LogInForm({ login }) {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault()
-    login(formData)
+    await login(formData)
   }
 
   const handleOnChange = (e) => {

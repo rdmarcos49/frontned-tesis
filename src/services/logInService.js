@@ -7,10 +7,17 @@ const loginService = async (payload) => {
     },
     body: JSON.stringify(payload),
   })
-    .then(res => res.json())
+    .then(res => res)
     .catch(err => console.error(err))
 
-  return response
+  const { ok, status } = response
+  const data = await response.json()
+  
+  return {
+    ok,
+    status,
+    data,
+  }
 } 
 
 export default loginService

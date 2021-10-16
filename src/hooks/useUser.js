@@ -1,33 +1,32 @@
 // @packages
 import { useCallback, useContext, useState } from 'react'
-import { useLocation } from 'wouter'
 // @contexts
 import AuthContext from 'context/AuthContext'
 // @services
-import loginService from 'services/loginService'
-// @constants
-import { URL } from 'constants/urls'
+import loginService from 'services/logInService'
 
 export default function useUser() {
   const { userData, jwt, setJwt } = useContext(AuthContext)
   const [status, setStatus] = useState({ loading: false, error: false })
-  const [, setLocation] = useLocation()
 
   const login = useCallback(({ username, password }) => {
     setStatus({ loading: true, error: false })
+    
     loginService({ username, password })
-      .then(response => {
-        window.sessionStorage.setItem('jwt', response.jwt)
-        setJwt(response.jwt)
+      .then((response) => {
+        const { jwt: fetchedJwt } = response.data
+        window.sessionStorage.setItem('jwt', fetchedJwt)
+        setJwt(fetchedJwt)
         setStatus({ loading: false, error: false })
-        setLocation(URL.HOME)
+        return response
       })
-      .catch(err => {
+      .catch((err) => {
         window.sessionStorage.removeItem('jwt')
         setStatus({ loading: false, error: true })
         console.error(err)
+        return null
       })
-  }, [setJwt, setLocation])
+  }, [setJwt])
 
   const logout = useCallback(() => {
     window.sessionStorage.removeItem('jwt')

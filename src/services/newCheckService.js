@@ -2,7 +2,6 @@ const newCheckService = async (payload) => {
   const URL = 'http://localhost:3030/api/patients'
   const jwt = window.sessionStorage.getItem('jwt')
 
-  console.log(payload)
   const response = await fetch(URL, {
     method: 'POST',
     headers: {
