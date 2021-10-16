@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import { WHITE } from 'styles/colors'
 
 const fonts = {
   small: '12px',
@@ -13,7 +14,7 @@ const padding = {
 
 export const Button = styled.button(
   ({ size }) => css`
-    background-color: $white;
+    background-color: ${WHITE};
     border: none;
     border-radius: 5px;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);

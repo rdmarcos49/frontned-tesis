@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Link as WouterLink } from 'wouter'
+import { WHITE } from 'styles/colors'
 
 export const Link = styled(WouterLink)`
   display: flex;
@@ -15,7 +16,7 @@ export const Link = styled(WouterLink)`
 
 export const Button = styled.button`
   background-color: #333;
-  border: solid 4px $white;
+  border: solid 4px ${WHITE};
   border-radius: 20px;
   box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, 0.2);
   color: white;
