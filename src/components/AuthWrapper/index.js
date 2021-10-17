@@ -2,14 +2,17 @@
 import PropTypes from 'prop-types'
 // @components
 import Error from 'components/Error'
+import Loading from 'components/Loading/index'
 
 const AuthWrapper = ({ isLoading, user, children }) => {
 
-  if (isLoading) return <p>Cargando...</p>
-
   return (
     user.role //TODO: refactor
-    ? children
+    ? 
+      <>
+        {children}
+        {isLoading ? <Loading /> : null}
+      </>
     : <Error />
   )
 }
