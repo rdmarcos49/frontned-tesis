@@ -75,7 +75,8 @@ export const InputFileAvatar = ({ ...props }) => {
 
   const onHandleChange = (arrOfImages) => {
     const image = arrOfImages[0]
-    setImage(image)
+    const imageSrc = URL.createObjectURL(image)
+    setImage(imageSrc)
     setIsOpen(true)
   }
 

@@ -18,22 +18,10 @@ export const InputFile = ({ ...props }) => {
     inputFileRef.current.click()
   }
 
-  const getBase64 = (file) => new Promise((resolve, reject) => {
-    const reader = new FileReader()
-    reader.readAsDataURL(file)
-    reader.onload = () => resolve(reader.result)
-    reader.onerror = error => reject(error)
-  })
-
   const handleProfileImageChanged = async (e) => {
     const files = e.target.files
     if (files[0] && handleChange) {
-      let base64NewImages = []
-      for (const file of files) {
-        const newImage = await getBase64(file)
-        base64NewImages.push(newImage)
-      }
-      handleChange(base64NewImages)
+      handleChange(files)
     }
     resetInputFile()
   }

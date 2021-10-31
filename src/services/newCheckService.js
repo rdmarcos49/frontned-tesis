@@ -1,4 +1,5 @@
 const newCheckService = async (payload) => {
+  console.log({payload})
   const URL = 'http://localhost:3030/api/patients'
   const jwt = window.sessionStorage.getItem('jwt')
 

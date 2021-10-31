@@ -56,7 +56,7 @@ function NewPatient () {
 
   const handleOnSubmit = () => {
     const formattedImages = getFormattedImages(images)
-    const payload = { ...patientData, ...formattedImages }
+    const payload = { ...patientData, images: formattedImages }
     newCheckService(payload)
   }
 

@@ -68,5 +68,4 @@ ModalCrop.propTypes = {
   cancelCrop: PropTypes.func,
   handleCroppedAvatar: PropTypes.func,
   isOpen: PropTypes.bool,
-  src: PropTypes.string
 }

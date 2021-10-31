@@ -1,5 +1,6 @@
 // @packages
 import PropTypes from 'prop-types'
+import { useState, useEffect } from 'react'
 // @styles
 import {
   Container,
@@ -9,9 +10,25 @@ import {
 } from './ListOfImages.styled'
 
 function ListOfImages ({ images, onRemoveImage, onSelectImage }) {
+  const [transformedImages, setTransformedImages] = useState([])
+
+  useEffect(() => {
+    console.log({images})
+    const newImages = images.map(image => {
+      const { id, image: imageFile } = image
+      const imageUrl = URL.createObjectURL(imageFile)
+      return {
+        id,
+        image: imageUrl,
+      }
+    })
+
+    setTransformedImages(newImages)
+  }, [images])
+  
   return (
     <Container>
-      {images.map(image => {
+      {transformedImages.map(image => {
         return (
           <ImagesWrapper key={image.id} >
             <IconWrapper
