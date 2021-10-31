@@ -13,7 +13,6 @@ function ListOfImages ({ images, onRemoveImage, onSelectImage }) {
   const [transformedImages, setTransformedImages] = useState([])
 
   useEffect(() => {
-    console.log({images})
     const newImages = images.map(image => {
       const { id, image: imageFile } = image
       const imageUrl = URL.createObjectURL(imageFile)
