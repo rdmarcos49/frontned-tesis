@@ -28,7 +28,7 @@ function SelectImagesPatient({ addImages, currentImages, goBack, onSubmit, remov
 
   return (
     <div className={styles.SelectImagesPatient}>
-      <InputFileNewPatient callback={addImages} accept='.png, .jpg, .jpeg' multiple />
+      <InputFileNewPatient handleArrayOfImagesSelected={addImages} accept='.png, .jpg, .jpeg' multiple />
 
       <div className={styles.ImagesSelector}>
         <SelectedImage

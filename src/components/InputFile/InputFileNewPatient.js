@@ -3,8 +3,7 @@ import { useState } from 'react'
 // @components
 import InputFile from './index'
 
-function InputFileNewPatient({ ...props }) {
-  const { callback, ...rest } = props
+function InputFileNewPatient({ handleArrayOfImagesSelected, ...props }) {
   const [lastId, setLastId] = useState(1)
 
   const onHandleChange = arrOfImages => {
@@ -20,11 +19,11 @@ function InputFileNewPatient({ ...props }) {
     }
 
     setLastId(localLastId)
-    callback(newImages)
+    handleArrayOfImagesSelected(newImages)
   }
 
   return (
-    <InputFile handleChange={onHandleChange} text='Selecciona imagenes' {...rest} />
+    <InputFile handleChange={onHandleChange} text='Selecciona imagenes' {...props} />
   )
 }
 
