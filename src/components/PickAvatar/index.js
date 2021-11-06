@@ -1,12 +1,12 @@
 // @packages
 import React, { useState } from 'react'
 // @components
-import InputFile from './index'
-import ModalCrop from 'components/ModalCrop'
+import InputFile from '../InputFile'
+import ModalToCropAvatarImage from 'components/ModalCrop'
 // @styles
-import styles from './InputFile.module.scss'
+import { Container, AvatarPreview } from './styles'
 
-export const InputFileAvatar = ({ ...props }) => {
+export const PickAvatar = ({ ...props }) => {
   const { callback, ...rest } = props
   const [image, setImage] = useState(null)
   const [croppedAvatar, setCroppedAvatar] = useState(null)
@@ -81,15 +81,13 @@ export const InputFileAvatar = ({ ...props }) => {
   }
 
   return (
-    <div className={styles.InputFileAvatar}>
-      <ModalCrop cancelCrop={handleCancelCrop} handleCroppedAvatar={handleCroppedAvatar} isOpen={isOpen} src={image}/>
-      <img
+    <Container>
+      <ModalToCropAvatarImage cancelCrop={handleCancelCrop} handleCroppedAvatar={handleCroppedAvatar} isOpen={isOpen} src={image}/>
+      <AvatarPreview
           alt='profile'
           src={`${croppedAvatar ? croppedAvatar : 'assets/default-profile-image.jpg'}`}
       />
       <InputFile handleChange={onHandleChange} text='Seleccionar archivo' {...rest} />
-    </div>
+    </Container>
   )
 }
-
-export default InputFileAvatar

@@ -3,7 +3,7 @@ import React, { useRef } from 'react'
 // @components
 import Button from 'components/Button'
 // @styles
-import styles from "./InputFile.module.scss"
+import { Container, Input } from './styles';
 
 export const InputFile = ({ ...props }) => {
   const { handleChange, text, ...rest } = props
@@ -27,8 +27,8 @@ export const InputFile = ({ ...props }) => {
   }
 
   return (
-    <div className={styles.InputFile}>
-      <input
+    <Container>
+      <Input
         onChange={handleProfileImageChanged}
         ref={inputFileRef}
         type='file'
@@ -42,7 +42,7 @@ export const InputFile = ({ ...props }) => {
       >
         {text}
       </Button>
-    </div>
+    </Container>
   )
 }
 

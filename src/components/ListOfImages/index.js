@@ -30,15 +30,11 @@ function ListOfImages ({ images, onRemoveImage, onSelectImage }) {
       {transformedImages.map(image => {
         return (
           <ImagesWrapper key={image.id} >
-            <IconWrapper
-              className='list-of-images__wrapper__icon'
-              onClick={() => onRemoveImage(image.id)}
-            >
+            <IconWrapper onClick={() => onRemoveImage(image.id)}>
               <i className="fas fa-2x fa-times-circle"></i>
             </IconWrapper>
             <Image
               alt='small-capture'
-              className='list-of-images__wrapper__image'
               onClick={() => onSelectImage(image)}
               src={image.image}
             />

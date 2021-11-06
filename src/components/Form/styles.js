@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Link as WouterLink } from 'wouter'
 
 export const FormContainer = styled.form`
   background-color: #333;
@@ -24,4 +25,29 @@ export const ImageWrapper = styled.div`
 export const Image = styled.img`
   margin-bottom: 10px;
   width: 220px;
+`
+
+export const InputsAndAvatarThumbnailWrapper = styled.div`
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+export const NameAndLastnameWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+  width: 50%;
+`;
+
+export const Link = styled(WouterLink)`
+  color: #ccc;
+  margin: 10px 0;
+  text-decoration: none;
+
+  &:hover {
+      text-decoration: underline;
+  }
 `

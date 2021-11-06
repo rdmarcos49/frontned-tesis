@@ -6,7 +6,9 @@ import Button from 'components/Button'
 import Input from 'components/Input'
 import Select from 'components/Select'
 import ButtonsWrapper from 'components/ButtonsWrapper'
-import { InputFileAvatar } from 'components/InputFile/InputFileAvatar'
+import { PickAvatar } from 'components/PickAvatar'
+// @styles
+import { InputsAndAvatarThumbnailWrapper, NameAndLastnameWrapper } from '../styles'
 // @services
 import signInService from 'services/signInService'
 // @constants
@@ -52,8 +54,8 @@ export function SignInForm() {
 
   return (
     <Form onSubmit={handleOnSubmit}>
-      <div className='Signin__form-section'>
-        <div className='Signin__form-section__inputs'>
+      <InputsAndAvatarThumbnailWrapper>
+        <NameAndLastnameWrapper>
           <Input
             autoFocus
             label='Nombre'
@@ -70,12 +72,9 @@ export function SignInForm() {
             placeholder='Perez'
             type='text'
           />
-        </div>
-        {/* in INPUTFILEAVATAR we can use as a child an img tag, avoiding all the logic inside the component */}
-        {/* right now there is a very strange behavior with the thumbnail of the current selected avatar */}
-        {/* TODO: refactor that */}
-        <InputFileAvatar callback={handleChangeAvatar} accept='.png, .jpg, .jpeg' />
-      </div>
+        </NameAndLastnameWrapper>
+        <PickAvatar callback={handleChangeAvatar} accept='.png, .jpg, .jpeg' />
+      </InputsAndAvatarThumbnailWrapper>
 
       <Input
         label='Correo electrónico'

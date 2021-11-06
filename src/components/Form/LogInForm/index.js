@@ -1,12 +1,14 @@
 // @packages
 import { useState } from 'react'
-import { Link, useLocation } from 'wouter'
+import { useLocation } from 'wouter'
 import PropTypes from 'prop-types'
 // @components
 import Form from 'components/Form'
 import Input from 'components/Input'
 import Button from 'components/Button'
 import ButtonsWrapper from 'components/ButtonsWrapper'
+// @styles
+import { Link } from '../styles'
 // @constants
 import { URL } from 'constants/urls'
 
@@ -49,7 +51,7 @@ export function LogInForm({ login }) {
         type='password'
       />
 
-      <Link href='/password-recovery' className="Login__forgot-password">¿Ha olvidado su contraseña?</Link>
+      <Link href='/password-recovery'>¿Ha olvidado su contraseña?</Link>
 
       <ButtonsWrapper>
         <Button onClick={redirectToSignIn} type='button'> Solicitar Registro </Button>
