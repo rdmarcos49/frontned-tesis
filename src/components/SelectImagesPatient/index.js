@@ -5,12 +5,13 @@ import PropTypes from 'prop-types'
 import Button from 'components/Button'
 import ListOfImages from 'components/ListOfImages/index'
 import SelectedImage from 'components/SelectedImage/index'
-import InputFileNewPatient from 'components/InputFile/InputFileNewPatient'
+import InputFile from 'components/InputFile'
 // @styles
-import styles from './SelectImagesPatient.module.scss'
+import { Container, ImageSelectorWrapper, ImagesFooterWrapper } from './styles'
 
 function SelectImagesPatient({ addImages, currentImages, goBack, onSubmit, removeImage }) {
   const [selectedImage, setSelectedImage] = useState(null)
+  const [lastId, setLastId] = useState(0)
 
   const handleRemoveImage = (id) => {
     
@@ -26,11 +27,27 @@ function SelectImagesPatient({ addImages, currentImages, goBack, onSubmit, remov
     setSelectedImage({ image, id })
   }
 
-  return (
-    <div className={styles.SelectImagesPatient}>
-      <InputFileNewPatient handleArrayOfImagesSelected={addImages} accept='.png, .jpg, .jpeg' multiple />
+  const onHandleChange = arrOfImages => {
+    let localLastId = lastId
+    let newImages = []
 
-      <div className={styles.ImagesSelector}>
+    for (const image of arrOfImages) {
+      newImages.push({
+        id: localLastId,
+        image,
+      })
+      localLastId++
+    }
+
+    setLastId(localLastId)
+    addImages(newImages)
+  }
+
+  return (
+    <Container>
+      <InputFile handleChange={onHandleChange} text='Selecciona imagenes' accept='.png, .jpg, .jpeg' multiple />
+
+      <ImageSelectorWrapper>
         <SelectedImage
           selectedImage={selectedImage}
         />
@@ -39,16 +56,17 @@ function SelectImagesPatient({ addImages, currentImages, goBack, onSubmit, remov
           onRemoveImage={handleRemoveImage}
           onSelectImage={handleSelectImage}
         />
-      </div>
-      <div className={styles.ImagesFooter}>
+      </ImageSelectorWrapper>
+
+      <ImagesFooterWrapper>
         <Button onClick={goBack}>
           Volver
         </Button>
         <Button onClick={onSubmit}>
           Finalizar
         </Button>
-      </div>
-    </div>
+      </ImagesFooterWrapper>
+    </Container>
   )
 }
 
@@ -61,4 +79,3 @@ SelectImagesPatient.propTypes = {
   onSubmit: PropTypes.func,
   removeImage: PropTypes.func
 }
-// addImages, currentImages, goBack, onSubmit, removeImage
