@@ -15,7 +15,7 @@ import { STEP_ONE, STEP_TWO } from 'constants/steps'
 // @local-helpers
 import { getFormattedImages } from './helpers'
 // @styles
-import styles from './NewPatient.module.scss'
+import { Container } from './styles'
 
 function NewPatient () {
   const [step, setStep] = useState(STEP_ONE)
@@ -60,27 +60,29 @@ function NewPatient () {
     newCheckService(payload)
   }
 
-  return (
+  if (step === STEP_ONE) return (
     <AuthWrapper isLoading={isLoading} user={userData}>
-      <div className={styles.NewPatient}>
-        {
-          step === STEP_ONE
-          ?
-            <NewPatientForm
-              formValues={patientData}
-              goForward={moveToStepTwo}
-              handleOnChange={handleChangePatientData}
-            />
-          :
-            <SelectImagesPatient
-              addImages={addImages}
-              goBack={returnToStepOne}
-              onSubmit={handleOnSubmit}
-              currentImages={images}
-              removeImage={removeImage}
-            />
-        }
-      </div>
+      <Container>
+        <NewPatientForm
+          formValues={patientData}
+          goForward={moveToStepTwo}
+          handleOnChange={handleChangePatientData}
+        />
+      </Container>
+    </AuthWrapper>
+  )
+
+  if (step === STEP_TWO) return (
+    <AuthWrapper isLoading={isLoading} user={userData}>
+      <Container>
+        <SelectImagesPatient
+          addImages={addImages}
+          goBack={returnToStepOne}
+          onSubmit={handleOnSubmit}
+          currentImages={images}
+          removeImage={removeImage}
+        />
+      </Container>
     </AuthWrapper>
   )
 }
