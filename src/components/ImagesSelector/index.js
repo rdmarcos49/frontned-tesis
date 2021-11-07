@@ -7,9 +7,9 @@ import {
   ImagesWrapper,
   Image,
   IconWrapper,
-} from './ListOfImages.styled'
+} from './styles'
 
-function ListOfImages ({ images, onRemoveImage, onSelectImage }) {
+function ImagesSelector ({ images, onRemoveImage, onSelectImage }) {
   const [transformedImages, setTransformedImages] = useState([])
 
   useEffect(() => {
@@ -45,9 +45,9 @@ function ListOfImages ({ images, onRemoveImage, onSelectImage }) {
   )
 }
 
-export default ListOfImages
+export default ImagesSelector
 
-ListOfImages.propTypes = {
+ImagesSelector.propTypes = {
   images: PropTypes.array.isRequired,
   onRemoveImage: PropTypes.func,
   onSelectImage: PropTypes.func

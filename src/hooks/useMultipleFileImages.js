@@ -1,11 +1,15 @@
 import { useState } from 'react'
 
-export const useMultipleFileImages = (addImage, removeImage) => {
+export function useMultipleFileImages () {
+  const [listOfImages, setListOfImages] = useState([])
   const [selectedImage, setSelectedImage] = useState(null)
   const [lastId, setLastId] = useState(0)
 
   const handleRemoveImage = (id) => {
-    removeImage(id)
+    setListOfImages(prevImages => {
+      return prevImages.filter(image => image.id !== id)
+    })
+
     if (!!selectedImage) {
       if (id === selectedImage.id) {
         setSelectedImage(null)
@@ -17,7 +21,7 @@ export const useMultipleFileImages = (addImage, removeImage) => {
     setSelectedImage({ image, id })
   }
 
-  const handleChange = arrOfImages => {
+  const handleAddImages = arrOfImages => {
     let localLastId = lastId
     let newImages = []
 
@@ -30,13 +34,21 @@ export const useMultipleFileImages = (addImage, removeImage) => {
     }
 
     setLastId(localLastId)
-    addImage(newImages)
+    setListOfImages([
+      ...listOfImages,
+      ...newImages,
+    ])
   }
+
+
 
   return {
     selectedImage,
+    listOfImages,
     handleSelectImage,
-    handleChange,
+    handleAddImages,
     handleRemoveImage,
   }
 }
+
+export default useMultipleFileImages

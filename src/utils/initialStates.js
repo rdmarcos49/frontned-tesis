@@ -7,5 +7,3 @@ export const initialPatientData = {
   gender:'',
   diabetesType:'',
 }
-
-export const initialPatientImages = []

@@ -5,7 +5,7 @@ import AuthContext from 'context/AuthContext'
 // @services
 import loginService from 'services/logInService'
 
-export default function useUser() {
+export function useUser() {
   const { userData, jwt, setJwt } = useContext(AuthContext)
   const [status, setStatus] = useState({ loading: false, error: false })
 
@@ -41,3 +41,5 @@ export default function useUser() {
     isLoading: status.loading,
   }
 }
+
+export default useUser

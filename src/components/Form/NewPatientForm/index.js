@@ -20,7 +20,7 @@ function NewPatientForm ({ formValues, goForward, handleOnChange }) {
   }
 
   return (
-    <Form onSubmit={goForward}>
+    <Form>
       <Input
         autoFocus
         halfWidth
@@ -88,7 +88,7 @@ function NewPatientForm ({ formValues, goForward, handleOnChange }) {
       />
       <ButtonsWrapper>
         <Button onClick={handlePreviousPage} type='button'> Volver </Button>
-        <Button> Siguiente </Button>
+        <Button onClick={goForward} type='button'> Siguiente </Button>
       </ButtonsWrapper>
     </Form>
   )

@@ -2,25 +2,28 @@
 import { useState } from 'react'
 // @componets
 import NewPatientForm from 'components/Form/NewPatientForm'
-import SelectImagesPatient from 'components/SelectImagesPatient'
 import AuthWrapper from 'components/AuthWrapper/index'
+import ImagesSelector from 'components/ImagesSelector'
+import Button from 'components/Button'
+import SelectedImage from 'components/SelectedImage/index'
+import InputFile from 'components/InputFile'
 // @hooks
-import useUser from 'hooks/useUser'
+import { useUser, useSteps, useMultipleFileImages } from 'hooks'
+// @consntants
+import { STEP_ONE, STEP_TWO } from 'constants/steps'
 // @utils
-import { initialPatientData, initialPatientImages } from 'utils/initialStates'
+import { initialPatientData } from 'utils/initialStates'
 // @services
 import newCheckService from 'services/newCheckService'
-// @constants
-import { STEP_ONE, STEP_TWO } from 'constants/steps'
 // @local-helpers
 import { getFormattedImages } from './helpers'
 // @styles
-import { Container } from './styles'
+import { Container, SelectImagesWrapper, ImagesViewerWrapper, OptionsFooter } from './styles'
 
 function NewPatient () {
-  const [step, setStep] = useState(STEP_ONE)
   const [patientData, setPatientData] = useState(initialPatientData)
-  const [images, setImages] = useState(initialPatientImages)
+  const { selectedImage, listOfImages, handleSelectImage, handleAddImages, handleRemoveImage } = useMultipleFileImages()
+  const { step, moveToStepOne, moveToStepTwo } = useSteps()
   const { isLoading, userData } = useUser()
   
   const handleChangePatientData = (event) => {
@@ -32,30 +35,8 @@ function NewPatient () {
     })
   }
 
-  const returnToStepOne = () => {
-    setStep(STEP_ONE)
-  }
-
-  const moveToStepTwo = (e) => {
-    e.preventDefault()
-    setStep(STEP_TWO)
-  }
-
-  const addImages = (newImages) => {
-    setImages([
-      ...images,
-      ...newImages,
-    ])
-  }
-
-  const removeImage = (id) => {
-    setImages(prevImages => {
-      return prevImages.filter(image => image.id !== id)
-    })
-  }
-
   const handleOnSubmit = () => {
-    const formattedImages = getFormattedImages(images)
+    const formattedImages = getFormattedImages(listOfImages)
     const payload = { ...patientData, images: formattedImages }
     newCheckService(payload)
   }
@@ -75,13 +56,23 @@ function NewPatient () {
   if (step === STEP_TWO) return (
     <AuthWrapper isLoading={isLoading} user={userData}>
       <Container>
-        <SelectImagesPatient
-          addImages={addImages}
-          goBack={returnToStepOne}
-          onSubmit={handleOnSubmit}
-          currentImages={images}
-          removeImage={removeImage}
-        />
+        <SelectImagesWrapper>
+          <InputFile handleChange={handleAddImages} text='Selecciona imagenes' accept='.png, .jpg, .jpeg' multiple />
+
+          <ImagesViewerWrapper>
+            <SelectedImage selectedImage={selectedImage} />
+            <ImagesSelector
+              images={listOfImages}
+              onRemoveImage={handleRemoveImage}
+              onSelectImage={handleSelectImage}
+            />
+          </ImagesViewerWrapper>
+
+          <OptionsFooter>
+            <Button onClick={moveToStepOne}> Volver </Button>
+            <Button onClick={handleOnSubmit}> Finalizar </Button>
+          </OptionsFooter>
+        </SelectImagesWrapper>
       </Container>
     </AuthWrapper>
   )
