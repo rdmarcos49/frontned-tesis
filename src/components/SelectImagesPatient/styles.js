@@ -2,13 +2,13 @@ import styled from 'styled-components'
 
 export const Container = styled.div``;
 
-export const ImageSelectorWrapper = styled.div`
+export const ImagesViewerWrapper = styled.div`
   display: flex;
   margin-top: 15px;
   flex-wrap: wrap;
 `;
 
-export const ImagesFooterWrapper = styled.div`
+export const OptionsFooter = styled.div`
   align-items: center;
   display: flex;
   justify-content: flex-start;

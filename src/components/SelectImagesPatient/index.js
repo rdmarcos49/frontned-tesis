@@ -1,5 +1,4 @@
 // @packages
-import { useState } from 'react'
 import PropTypes from 'prop-types'
 // @componets
 import Button from 'components/Button'
@@ -7,65 +6,29 @@ import ListOfImages from 'components/ListOfImages/index'
 import SelectedImage from 'components/SelectedImage/index'
 import InputFile from 'components/InputFile'
 // @styles
-import { Container, ImageSelectorWrapper, ImagesFooterWrapper } from './styles'
+import { Container, ImagesViewerWrapper, OptionsFooter } from './styles'
+import { useMultipleFileImages } from 'hooks/useMultipleFileImages'
 
 function SelectImagesPatient({ addImages, currentImages, goBack, onSubmit, removeImage }) {
-  const [selectedImage, setSelectedImage] = useState(null)
-  const [lastId, setLastId] = useState(0)
-
-  const handleRemoveImage = (id) => {
-    
-    removeImage(id)
-    if (!!selectedImage) {
-      if (id === selectedImage.id) {
-        setSelectedImage(null)
-      }
-    }
-  }
-
-  const handleSelectImage = ({ image, id }) => {
-    setSelectedImage({ image, id })
-  }
-
-  const onHandleChange = arrOfImages => {
-    let localLastId = lastId
-    let newImages = []
-
-    for (const image of arrOfImages) {
-      newImages.push({
-        id: localLastId,
-        image,
-      })
-      localLastId++
-    }
-
-    setLastId(localLastId)
-    addImages(newImages)
-  }
+  const { selectedImage, handleSelectImage, handleChange, handleRemoveImage } = useMultipleFileImages(addImages, removeImage)
 
   return (
     <Container>
-      <InputFile handleChange={onHandleChange} text='Selecciona imagenes' accept='.png, .jpg, .jpeg' multiple />
+      <InputFile handleChange={handleChange} text='Selecciona imagenes' accept='.png, .jpg, .jpeg' multiple />
 
-      <ImageSelectorWrapper>
-        <SelectedImage
-          selectedImage={selectedImage}
-        />
+      <ImagesViewerWrapper>
+        <SelectedImage selectedImage={selectedImage} />
         <ListOfImages
           images={currentImages}
           onRemoveImage={handleRemoveImage}
           onSelectImage={handleSelectImage}
         />
-      </ImageSelectorWrapper>
+      </ImagesViewerWrapper>
 
-      <ImagesFooterWrapper>
-        <Button onClick={goBack}>
-          Volver
-        </Button>
-        <Button onClick={onSubmit}>
-          Finalizar
-        </Button>
-      </ImagesFooterWrapper>
+      <OptionsFooter>
+        <Button onClick={goBack}> Volver </Button>
+        <Button onClick={onSubmit}> Finalizar </Button>
+      </OptionsFooter>
     </Container>
   )
 }
