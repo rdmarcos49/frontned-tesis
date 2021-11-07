@@ -1,7 +1,7 @@
 // @packages
 import React from 'react'
 // @styles
-import { Wrapper } from './ButtonsWrapper.styled'
+import { Wrapper } from './styles'
 
 function ButtonsWrapper({ children }) {
   return (

@@ -6,7 +6,7 @@ import {
   Label,
   Selection,
   Option
-} from './Select.styled'
+} from './styles'
 
 function Select({
   disabledText,

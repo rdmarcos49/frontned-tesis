@@ -8,7 +8,7 @@ import {
   ButtonsWrapper,
   CancelButton,
   ConfirmButton,
-} from './ModalCrop.styled'
+} from './styles'
 import 'react-image-crop/lib/ReactCrop.scss';
 
 function ModalCrop({ cancelCrop, handleCroppedAvatar, isOpen = false, src }) {

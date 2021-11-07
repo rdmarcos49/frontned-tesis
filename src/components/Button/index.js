@@ -2,7 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 // @styles
-import { Button as StyledButton } from './Button.styled'
+import { Button as StyledButton } from './styles'
 
 const Button = ({ children, ...props }) => {
   return (

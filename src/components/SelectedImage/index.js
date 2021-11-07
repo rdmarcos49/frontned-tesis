@@ -1,7 +1,7 @@
 // @packages
 import React from 'react'
 // @styles
-import { Container, ImageWrapper, Image, } from './SelectedImage.styled'
+import { Container, ImageWrapper, Image, } from './styles'
 
 function SelectedImage ({ selectedImage }) {
   return (

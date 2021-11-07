@@ -11,7 +11,7 @@ import {
   AvatarName,
   Link,
   Role,
-} from './Header.styled'
+} from './styles'
 
 export function IsLoggedOptions({ avatar, name, lastname, handleLogOut, role}) {
   return (

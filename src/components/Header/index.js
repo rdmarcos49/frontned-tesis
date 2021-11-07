@@ -4,7 +4,7 @@ import useUser from 'hooks/useUser'
 import { IsNotLoggedOptions } from './IsNotLoggedOptions'
 import { IsLoggedOptions } from './IsLoggedOptions'
 // @styles
-import { HeaderContainer } from './Header.styled'
+import { HeaderContainer } from './styles'
 
 function Header() {
   const { isLogged, userData, logout } = useUser()

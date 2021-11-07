@@ -1,7 +1,7 @@
 // @packages
 import PropTypes from 'prop-types'
 // @styles
-import { Image, LettersAsAvatar } from './Avatar.styled'
+import { Image, LettersAsAvatar } from './styles'
 
 function Avatar({ avatar, name, lastname }) {
   if (avatar) return <Image alt='avatar' src={avatar}/>

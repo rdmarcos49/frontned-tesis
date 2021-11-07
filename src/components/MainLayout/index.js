@@ -1,5 +1,5 @@
 // @styles
-import { Container } from './MainLayout.styled'
+import { Container } from './styles'
 
 function MainLayout({ children }) {
   return (

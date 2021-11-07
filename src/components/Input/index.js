@@ -5,7 +5,7 @@ import {
   InputWrapper,
   Label,
   StyledInput,
-} from './Input.styled'
+} from './styles'
 
 function Input({
   error,

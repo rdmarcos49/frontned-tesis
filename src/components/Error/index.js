@@ -4,7 +4,7 @@ import {
   Title,
   MessageWrapper,
   Message,
-} from './Error.styled'
+} from './styles'
 
 function Error({
   errorCode = 404,

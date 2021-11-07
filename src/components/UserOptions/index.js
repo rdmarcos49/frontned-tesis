@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 // @components
 import Option from 'components/Option'
 // @styles
-import { Container } from './UserOptions.styled'
+import { Container } from './styles'
 
 function UserOptions ({ options = [] }) {
   return (

@@ -6,7 +6,7 @@ import {
   Button,
   Description,
   Icon,
-} from './Option.styled'
+} from './styles'
 
 function Option({ icon, path, text }) {
 

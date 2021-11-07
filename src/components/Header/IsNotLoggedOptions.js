@@ -1,7 +1,7 @@
 // @constants
 import { URL } from 'constants/urls'
 // @styles
-import { NavigationWrapper, Link } from './Header.styled'
+import { NavigationWrapper, Link } from './styles'
 
 export function IsNotLoggedOptions() {
   return (
