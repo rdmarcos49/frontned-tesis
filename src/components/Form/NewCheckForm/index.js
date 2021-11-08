@@ -12,7 +12,7 @@ import { URL } from 'constants/urls'
 // @local-helpers
 import { genderOptions, diabetesOptions } from './helpers'
 
-function NewPatientForm ({ formValues, goForward, handleOnChange }) {
+function NewCheckForm ({ formValues, goForward, handleOnChange }) {
   const [, setLocation] = useLocation()
 
   const handlePreviousPage = () => {
@@ -94,9 +94,9 @@ function NewPatientForm ({ formValues, goForward, handleOnChange }) {
   )
 }
 
-export default NewPatientForm
+export default NewCheckForm
 
-NewPatientForm.propTypes = {
+NewCheckForm.propTypes = {
   formValues: PropTypes.object,
   goForward: PropTypes.func,
   handleOnChange: PropTypes.func

@@ -7,7 +7,7 @@ import LogIn from 'views/LogIn'
 import SignIn from 'views/SignIn'
 import Home from 'views/Home'
 import PasswordRecovery from 'views/PasswordRecovery'
-import NewPatient from 'views/NewPatient'
+import NewCheck from 'views/NewCheck'
 // @components
 import Header from 'components/Header'
 import MainLayout from 'components/MainLayout'
@@ -31,7 +31,7 @@ const App = () => {
           <Route path={URL.SIGN_IN} component={ SignIn } />
           <Route path={URL.HOME} component={ Home } />
           <Route path={URL.PASSWORD_RECOVERY} component={ PasswordRecovery } />
-          <Route path={URL.NEW_CHECK} component={ NewPatient } />
+          <Route path={URL.NEW_CHECK} component={ NewCheck } />
           <Route path={URL.REST} component={ ErrorPage } />
         </Switch>
       </MainLayout>

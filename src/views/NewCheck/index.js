@@ -1,7 +1,7 @@
 // @packages
 import { useState } from 'react'
 // @componets
-import NewPatientForm from 'components/Form/NewPatientForm'
+import NewCheckForm from 'components/Form/NewCheckForm'
 import AuthWrapper from 'components/AuthWrapper/index'
 import ImagesSelector from 'components/ImagesSelector'
 import Button from 'components/Button'
@@ -20,7 +20,7 @@ import { getFormattedImages } from './helpers'
 // @styles
 import { Container, SelectImagesWrapper, ImagesViewerWrapper, OptionsFooter } from './styles'
 
-function NewPatient () {
+function NewCheck () {
   const [patientData, setPatientData] = useState(initialPatientData)
   const { selectedImage, listOfImages, handleSelectImage, handleAddImages, handleRemoveImage } = useMultipleFileImages()
   const { step, moveToStepOne, moveToStepTwo } = useSteps()
@@ -44,7 +44,7 @@ function NewPatient () {
   if (step === STEP_ONE) return (
     <AuthWrapper isLoading={isLoading} user={userData}>
       <Container>
-        <NewPatientForm
+        <NewCheckForm
           formValues={patientData}
           goForward={moveToStepTwo}
           handleOnChange={handleChangePatientData}
@@ -78,4 +78,4 @@ function NewPatient () {
   )
 }
 
-export default NewPatient
+export default NewCheck
